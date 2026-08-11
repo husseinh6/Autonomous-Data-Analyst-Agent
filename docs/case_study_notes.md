@@ -18,3 +18,21 @@ worked, what broke, what the agent got wrong.
   deliberately deferred to closer to deployment (week 6) — not needed yet.
 - Next: Tue Aug 11 — Streamlit skeleton (page loads, upload button, blank
   results area), per Plan.md Week 1.
+
+## 2026-08-11 — Week 1, Day 2 (Tuesday)
+- Streamlit skeleton built — title, caption, CSV-only file uploader,
+  results area that shows "NO FILE UPLOADED" or "<filename> UPLOADED
+  SUCCESSFULLY" depending on upload state. Verified working in browser.
+- Build mode decision: Hamsa writes the code by hand, Claude explains
+  concepts/reviews/debugs rather than writing it directly — first time
+  using Streamlit. Fallback: if a task is taking too long, Claude can
+  finish the remainder to keep pace with the plan.
+- First-pass bugs (all self-corrected with guidance, good sign): using
+  `input()`/`print()` out of habit from plain Python scripts instead of
+  Streamlit's `st.*` calls; case-sensitivity slips (`St`/`If`/`Else`,
+  `X` vs `x`); `=` vs `==`; `NONE` vs `None`; passing `str` (the type)
+  instead of a label string; `<var>` instead of an f-string `{var}` for
+  interpolation — all standard first-exposure mistakes, not concerning.
+- Day 2 complete. Next per Plan.md: Thu Aug 13 — core profiling code
+  (pandas: missing %, dtypes, duplicates, outliers). Wed Aug 12 has no
+  scheduled task.
