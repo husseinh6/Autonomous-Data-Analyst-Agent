@@ -36,3 +36,29 @@ worked, what broke, what the agent got wrong.
 - Day 2 complete. Next per Plan.md: Thu Aug 13 — core profiling code
   (pandas: missing %, dtypes, duplicates, outliers). Wed Aug 12 has no
   scheduled task.
+
+## 2026-08-12 — Week 1, Day 3 (Wednesday — Thursday's task pulled forward)
+- Wed had no scheduled task per the plan; pulled Thursday's core profiling
+  code forward instead of taking the day off, since the energy was there.
+- Built `profile_dataset(df)` in `data/profiling.py`: row/column counts,
+  duplicate count, per-column dtype/missing-count/missing-%/unique-count,
+  and per-column outlier count via the 1.5×IQR rule (numeric columns
+  only, `None` for non-numeric). Tested against `top_reviewed_businesses.csv`
+  — correct output (50 rows, 5 cols, 0 duplicates, outliers flagged
+  correctly on `stars`/`review_count`, `None` on text columns).
+- Bugs found and self-corrected: column-name vs column-data confusion
+  (`df[i]` vs bare `i`), `I`/`i` case slips (recurring pattern — worth
+  double-checking capitalization as a habit going forward), dict key set
+  to the literal string `"i"` instead of the variable's value, `df.rows`
+  doesn't exist (switched to vectorized boolean-mask + `.sum()` instead
+  of a manual loop — good instinct once shown the pattern), stale/unset
+  variable across loop iterations (`num_out` needed a default before the
+  numeric check), `NONE` vs `None`.
+- One structural bug was Claude's fault, not Hamsa's: the original file
+  stub's docstring was never closed, so all of Hamsa's code silently
+  landed inside a string literal and never executed (no output, no
+  error). Claude fixed the file structure directly rather than having
+  Hamsa debug something that wasn't his mistake.
+- Day 3 complete, ahead of schedule (Thursday's task done Wednesday).
+  Next per Plan.md: Fri Aug 14 — first real agent call (profile → Claude
+  → structured cleaning recommendations), the highest-risk task of week 1.
