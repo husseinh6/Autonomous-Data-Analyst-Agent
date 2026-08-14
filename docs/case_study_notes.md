@@ -62,3 +62,28 @@ worked, what broke, what the agent got wrong.
 - Day 3 complete, ahead of schedule (Thursday's task done Wednesday).
   Next per Plan.md: Fri Aug 14 — first real agent call (profile → Claude
   → structured cleaning recommendations), the highest-risk task of week 1.
+
+## 2026-08-14 — Week 1, Day 4 (Friday) — first real agent call
+- Built `agent/client.py` (`get_client()` — loads the API key via
+  `python-dotenv`, returns an authenticated Anthropic client) and tested
+  it standalone first with a trivial "say hello" call before touching
+  anything more complex — isolated "is the connection working" from "is
+  the prompt working." Worked on the first attempt.
+- Built `agent/cleaning_agent.py` (`get_cleaning_recommendations(profile)`
+  — takes a profile dict, prompts Claude for a structured JSON
+  recommendation per column with action/reason/risk level, parses the
+  reply with `json.loads`). Tested against a small hand-written fake
+  profile (not yet wired to Wednesday's real `profile_dataset` output —
+  that integration is future work, not today's scope).
+- Result: worked correctly on the first real attempt — valid JSON,
+  sensible reasoning (e.g. correctly distinguished a numeric column
+  needing imputation from a text column needing reformatting). No bugs
+  to debug this session — the flagged highest-risk task of week 1 landed
+  cleanly.
+- Model used: `claude-sonnet-5`. Prompt explicitly demands JSON-only
+  output (no markdown fences, no explanation) — this instruction is
+  doing real work, not just politeness, since `json.loads` fails on any
+  stray text around the JSON.
+- Week 1's deep-work tasks (Mon-Fri) are now all complete, with Thursday
+  finished a day early. Sun Aug 16 remains: review, tidy, plan week 2 —
+  also the checkpoint Plan.md flagged for revisiting pace/scope.
