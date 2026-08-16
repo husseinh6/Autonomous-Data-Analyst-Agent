@@ -9,7 +9,7 @@ Not yet implemented.
 """
 
 import json
-from client import get_client
+from agent.client import get_client
 
 def get_cleaning_recommendations(profile):
     client = get_client()
@@ -29,14 +29,15 @@ code fences. Use this exact structure:
         max_tokens=1024,
         messages=[{"role": "user", "content": prompt}],
     )
-    reply_text = response.content[0].text
+    reply_text = next(block.text for block in response.content if block.type == "text")
     return json.loads(reply_text)
     
     
 if __name__ == "__main__":
-    fake_profile = {
-        "age": {"dtype": "float64", "missing_pct": 12.5, "n_unique": 40},
-        "email": {"dtype": "object", "missing_pct": 0, "n_unique": 998},
-    }
-    result = get_cleaning_recommendations(fake_profile)
+    import pandas as pd
+    from data.profiling import profile_dataset
+
+    df = pd.read_csv("top_reviewed_businesses.csv")
+    profile = profile_dataset(df)
+    result = get_cleaning_recommendations(profile)
     print(result)

@@ -26,4 +26,5 @@ def profile_dataset(df):
 		profile[i] = {"Column Type": col_type, "Missing values": num_missing, "Missing values percentage": miss_perc, "Number of unique values": num_unique, "Number of outliers": num_out} 
 	return profile
 
-print(profile_dataset(pd.read_csv("top_reviewed_businesses.csv")))
+if __name__ == "__main__":
+	print(profile_dataset(pd.read_csv("top_reviewed_businesses.csv")))

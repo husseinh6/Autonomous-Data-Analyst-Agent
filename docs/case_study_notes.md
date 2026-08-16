@@ -87,3 +87,50 @@ worked, what broke, what the agent got wrong.
 - Week 1's deep-work tasks (Mon-Fri) are now all complete, with Thursday
   finished a day early. Sun Aug 16 remains: review, tidy, plan week 2 —
   also the checkpoint Plan.md flagged for revisiting pace/scope.
+
+## 2026-08-16 — Week 1, Day 5 (Sunday) — checkpoint + tidy
+- Pace check-in: every task this week finished under estimate (~1h-1.5h
+  actual vs ~2-2.5h estimated). Read as week 1 covering well-trodden,
+  forgiving territory (Streamlit basics, pandas, a single API call)
+  rather than the plan being miscalibrated — harder weeks ahead (SQL
+  agent, validation layer) likely to eat into that margin more. No
+  changes made to weeks 2-6 — decided to keep re-assessing weekly rather
+  than adjusting pre-emptively off one easy week.
+- Concept review: walked back through Friday's `client.py`/
+  `cleaning_agent.py` and Wednesday's `profile_dataset` in plain terms
+  (Hamsa was unwell Friday and flagged gaps in understanding on his own
+  initiative — good habit, kept up).
+- Closed the real gap from Friday: wired `profile_dataset`'s actual
+  output into `get_cleaning_recommendations` for the first time (Friday
+  only tested against a hand-written fake profile). Required switching
+  `cleaning_agent.py`'s import style from same-folder (`from client
+  import ...`) to package-style (`from agent.client import ...`, `from
+  data.profiling import ...`) and running via `python3 -m
+  agent.cleaning_agent` from the project root instead of running the
+  file path directly — needed once imports had to reach across sibling
+  folders (`agent/` and `data/`) rather than staying within one.
+- Two real bugs surfaced testing against the real profile (neither
+  Hamsa's fault — both API/response-handling edge cases):
+  1. `profiling.py`'s leftover test `print(...)` was never guarded by
+     `if __name__ == "__main__":`, so importing it elsewhere (as
+     `cleaning_agent.py` now does) fired it as a side effect. Fixed.
+  2. `response.content[0].text` assumed position 0 is always the text
+     block; this run, Claude returned a `ThinkingBlock` first. Fixed by
+     searching `response.content` for whichever block has
+     `type == "text"` instead of assuming a fixed position. A first
+     retry after that fix hit a `JSONDecodeError` (empty reply text) —
+     resolved itself on the next attempt; added a temporary debug print
+     to inspect `stop_reason`/content blocks directly rather than guess,
+     confirmed a clean `end_turn` with valid JSON, then removed the
+     debug lines. Root cause of that one transient failure unconfirmed —
+     flagged as a "LLM calls aren't fully deterministic" reminder for
+     the validation layer (week 4) rather than chased further today.
+- Real result on the actual Yelp export: Claude recommended "reformat"
+  across all 5 columns (text standardization for `name`/`city`/`state`,
+  outlier handling for `stars`/`review_count`) — sensible given the real
+  profile has 0% missing everywhere, so "impute" correctly never came up
+  (unlike Friday's fake profile, which did have a missing column).
+- Week 1 fully closed: all deep-work tasks done, pipeline genuinely
+  connected end-to-end for the first time (CSV → profile → Claude →
+  structured recommendations), checkpoint passed with no plan changes.
+  Week 2 tasks being added to Notion next.
