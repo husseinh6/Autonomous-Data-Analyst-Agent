@@ -134,3 +134,70 @@ worked, what broke, what the agent got wrong.
   connected end-to-end for the first time (CSV → profile → Claude →
   structured recommendations), checkpoint passed with no plan changes.
   Week 2 tasks being added to Notion next.
+
+## 2026-08-17 — Week 2, Day 1 (Monday) — apply cleaning recommendations
+- Built `apply_cleaning(df, recommendations)` in `data/cleaning.py`:
+  drops exact duplicate rows automatically (not gated on a Claude
+  recommendation — duplicates were never part of the recommendation
+  schema to begin with, see design note below), then per column applies
+  impute (median for numeric, mode for text), drop (remove the column),
+  or reformat (numeric: clip to the same 1.5×IQR bounds used for outlier
+  detection in profiling; text: strip whitespace + lowercase). Returns
+  the cleaned dataframe plus a plain `changes` list (one entry per
+  column) — full audit-trail file format is tomorrow's task.
+- Design note worth remembering: `get_cleaning_recommendations`'s prompt
+  only ever asks Claude for a per-column action (impute/drop/reformat)
+  — duplicate rows were never part of that schema, and "reformat" itself
+  is a deliberately vague bucket covering different real fixes per
+  column (text standardization vs outlier handling in practice so far).
+  The code has to pick a concrete rule for what vague labels mean;
+  documented as a heuristic, not a perfect interpretation of Claude's
+  reasoning text.
+- Bugs found and self-corrected, most stemming from one core pandas rule
+  (most methods return a new object rather than mutating in place —
+  `.drop_duplicates()`, `.clip()`, `.str.strip()`, `.drop(columns=...)`
+  all needed explicit reassignment): backwards `fillna(value) = ...`
+  syntax (fixed to `col = col.fillna(value)`), `np.issubdtype` called on
+  a whole Series instead of its `.dtype` (switched to
+  `pd.api.types.is_numeric_dtype` instead — simpler, already known),
+  `import pandas` without the `pd` alias while calling `pd.api...`,
+  clipping directly to Q1/Q3 instead of the actual IQR bounds (would
+  have flattened ~50% of values, not just outliers), a leftover `[...]`
+  placeholder in a `.drop(columns=...)` call, and assigning a
+  column-drop's result into a single-column slot instead of the whole
+  dataframe.
+- Verified end-to-end against the real Yelp export via `python3 -m
+  data.cleaning`: real profile → real Claude call → real pandas changes
+  → shape stayed (50, 5) as expected (0 duplicates, nothing dropped),
+  all 5 columns landed on "reformat" again (consistent with Sunday,
+  0% missing throughout the dataset).
+- One process note: this session's first run failed with
+  `ModuleNotFoundError: No module named 'dotenv'` — venv wasn't
+  activated in the fresh terminal session (prompt read `(base)` not
+  `(venv) (base)`). Reminder to check for `(venv)` before running
+  anything, especially at the start of a new day/terminal session.
+- Next per Notion/Plan.md: Tue Aug 18 — audit-trail logging (formalize
+  today's `changes` list into the real `audit_log.jsonl` file format).
+- Sanity-checked the actual cleaning output before trusting it (in the
+  spirit of the project's own thesis — don't trust agent output just
+  because it ran without error): compared `stars`/`review_count`
+  before/after with `.describe()`. Confirmed exactly, not just
+  approximately — `stars`'s IQR lower bound works out to 3.25, original
+  min was 2.5 (an outlier), cleaned min is precisely 3.25;
+  `review_count`'s IQR upper bound works out to 5947.125, original max
+  was 7568 (an outlier), cleaned max is precisely 5947.125. Real
+  confirmation the clipping logic is exactly correct, not just plausible.
+- The `JSONDecodeError` bug from Sunday recurred once more today, same
+  signature (empty text reply). Diagnosed properly this time with a
+  temporary debug print on `response.usage`: Claude's "thinking" tokens
+  count against the same `max_tokens` budget as the actual answer — on
+  the successful debug run, thinking used 423 of 720 output tokens,
+  leaving comfortable room under the `max_tokens=1024` cap; the theory
+  (unconfirmed for the two failed runs specifically, since debug wasn't
+  in yet then, but consistent with the evidence) is that thinking
+  occasionally used up the entire budget, leaving zero tokens for the
+  real answer. Fix: bumped `max_tokens` from 1024 to 2048 in
+  `agent/cleaning_agent.py` for real headroom. Debug lines removed after
+  diagnosis. Worth remembering as a real reliability gap the validation
+  layer (week 4) should account for, not fully eliminated just because
+  it hasn't failed since.

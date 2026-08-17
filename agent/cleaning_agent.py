@@ -26,7 +26,7 @@ code fences. Use this exact structure:
 """
     response = client.messages.create(
         model="claude-sonnet-5",
-        max_tokens=1024,
+        max_tokens=2048,
         messages=[{"role": "user", "content": prompt}],
     )
     reply_text = next(block.text for block in response.content if block.type == "text")
