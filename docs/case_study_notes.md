@@ -201,3 +201,59 @@ worked, what broke, what the agent got wrong.
   diagnosis. Worth remembering as a real reliability gap the validation
   layer (week 4) should account for, not fully eliminated just because
   it hasn't failed since.
+
+## 2026-08-18 — Week 2, Day 2 (Tuesday) — audit-trail logging
+- Enriched `apply_cleaning`'s `changes` list (previously just
+  column/action/reason) with `risk` (was already returned by Claude,
+  never captured) and structured `before_sample`/`after_sample` per
+  action type: impute -> missing count / fill value used; drop -> column
+  present / removed; reformat-numeric -> min/max and outlier count
+  before vs. min/max after (directly shows the clipping effect);
+  reformat-text -> one example value before vs. after. Collapsed what
+  had briefly been two parallel lists into one list of complete
+  per-column dicts — needed as one structured record per change for the
+  JSON logger next, and safer than keeping two lists in sync by hand.
+- This edit was made by Claude directly (Hamsa asked for it explicitly,
+  invoking the established fallback) rather than hands-on — bugs fixed:
+  missing-value count captured *after* `fillna` already ran (always
+  read 0), `.min`/`.max` called without parentheses (returns the method
+  object, not a value), and `clean_df[col[0]]` indexing into the column
+  *name* string's first character instead of the dataframe's first row
+  (needed `clean_df[col].iloc[0]`).
+- Built `audit/logger.py` (`write_audit_log`) — genuinely new territory
+  for Hamsa (first exposure to file I/O and JSON in this project), given
+  more scaffolding than usual for that reason. Writes one JSON object
+  per line to `audit_log.jsonl` in append mode, each entry combining
+  `type`/`timestamp` with the change's own fields via dict-unpacking
+  (`**change`). Written by Hamsa from a fuller worked example, correct
+  on the first attempt — real, valid JSONL output confirmed by reading
+  the file directly.
+- Significant finding, found by actually running the pipeline rather
+  than assuming it worked: on one run, Claude recommended `"drop"` for
+  *both* `stars` and `review_count` — core columns with 0% missing,
+  whose only issue was 3 outliers each. Dropping them outright is a
+  poor call a competent human analyst wouldn't make, and it's the exact
+  failure mode named in the plan's own success criteria ("validation
+  layer catches... a silently dropped column") — except this happened
+  for real, unprompted, not seeded. Across today's several runs alone,
+  Claude gave `stars`/`review_count` four different actions on identical
+  data (reformat, impute, drop, impute) — real, repeated evidence of
+  recommendation inconsistency, not a one-off.
+- Hamsa raised a genuinely good design question in response: should the
+  app ask for user confirmation before executing risky actions like a
+  column drop? Discussed and deliberately declined for now — the plan
+  already made this call explicitly ("autonomous by default... validation
+  layer double-checks higher-risk changes rather than every single
+  decision"), a step-by-step approval loop cuts against the project's
+  actual differentiator (an agent that acts, not a copilot that waits),
+  and doesn't scale to bigger/messier datasets (Thursday's task).
+  Decision: keep full autonomy as planned; this exact `stars`/
+  `review_count` drop becomes the first concrete test case for week 4's
+  validation layer rather than a hypothetical to design against later.
+- Made the test script robust to whatever Claude decides (a list
+  comprehension filtering to only columns that still exist before
+  comparing before/after stats) rather than assuming any particular
+  column survives — confirmed working on a run where the columns
+  happened to still exist, so also worth a follow-up real test on a run
+  where they don't survive, to be certain.
+- Next per Notion/Plan.md: Wed Aug 19 — data-quality report generation.
