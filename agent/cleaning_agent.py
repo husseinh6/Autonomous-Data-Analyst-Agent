@@ -24,13 +24,20 @@ Respond with ONLY valid JSON, nothing else — no explanation, no markdown
 code fences. Use this exact structure:
 {{"column_name": {{"action": "...", "reason": "...", "risk": "..."}}}}
 """
-    response = client.messages.create(
-        model="claude-sonnet-5",
-        max_tokens=2048,
-        messages=[{"role": "user", "content": prompt}],
-    )
-    reply_text = next(block.text for block in response.content if block.type == "text")
-    return json.loads(reply_text)
+    max_attempts = 3
+    for attempt in range(max_attempts):
+        response = client.messages.create(
+            model="claude-sonnet-5",
+            max_tokens=2048,
+            messages=[{"role": "user", "content": prompt}],
+        )
+        reply_text = next(block.text for block in response.content if block.type == "text")
+        try:
+            return json.loads(reply_text)
+        except json.JSONDecodeError:
+            if attempt == max_attempts - 1:
+                raise
+            continue
     
     
 if __name__ == "__main__":

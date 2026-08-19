@@ -257,3 +257,35 @@ worked, what broke, what the agent got wrong.
   happened to still exist, so also worth a follow-up real test on a run
   where they don't survive, to be certain.
 - Next per Notion/Plan.md: Wed Aug 19 — data-quality report generation.
+
+## 2026-08-19 — Week 2, Day 3 (Wednesday) — data-quality report generation
+- Built `data/report.py` (`generate_report(profile, changes)`) — a new
+  file, not part of the original day-1 scaffold (that only anticipated
+  profiling/cleaning/db/audit/tests, not a dedicated report step).
+  Combines `profile[col]` (what was found: dtype, missing %, outlier
+  count) with the matching `changes` entry (what was done: action,
+  reason, risk, before/after) into one readable line per column, plus a
+  dataset-level summary line up top. Built by Hamsa largely independently
+  — bugs were minor and self-explanatory once flagged (missing `def`,
+  appending raw dicts to a list `"\n".join()` expected to be all
+  strings — needed f-strings pulling specific values out instead of the
+  whole dict, an unterminated f-string missing its closing quote in two
+  places, and a `'Total Columns'`/`'Total columns'` casing mismatch
+  against the real profiling.py key).
+- Recurring issue mitigated properly this time rather than re-debugged:
+  the `JSONDecodeError` (empty reply text) from Sunday/Tuesday happened
+  a third time today, despite Monday's `max_tokens` bump — confirming
+  the note from Monday that it wasn't fully eliminated. Rather than
+  diagnose the same known issue again, added a genuine fix: `get_cleaning_
+  recommendations` now retries up to 3 times on a JSON parse failure
+  before actually raising an error. Standard practice for flaky LLM
+  calls; a pragmatic, minimal mitigation rather than the full validation
+  layer (still week 4's job for judging recommendation *quality*, not
+  just call *reliability*).
+- `stars`/`review_count` got `"drop"` again this run — now a well-
+  established, previously documented pattern (Tuesday's notes), not
+  reflagged in depth here.
+- Week 2 progress: Mon (apply cleaning), Tue (audit logging), Wed
+  (report generation) all done, each verified against real output, not
+  just "ran without error." Next per Notion/Plan.md: Thu Aug 20 — test
+  on Yelp export + a second messy CSV, fix bugs.
