@@ -1,0 +1,501 @@
+business_id,name,address,city,state,postal_code,latitude,longitude,stars,review_count,is_open
+___UdvaxCnwsQ7nA1eKZAQ,PHLASH,NULL,Philadelphia,PA,19106,39.956596,-75.165024,3.5,41,1
+_-c2qTsM7fEzrIfHWDlEqg,"Family Tree & Garden",NULL,"Santa Barbara",CA,93105,34.420831,-119.698190,4.0,5,1
+_-XpHIzBYNzEdNHX72l0Vw,"R & I Construction Company",NULL,Philadelphia,PA,19152,40.061868,-75.046512,4.0,9,1
+_040EfopTZs5BfvqClhvhw,"Bryan Lawn Care",NULL,Nashville,TN,37211,36.077543,-86.731579,3.0,9,1
+_2-9uuL5pfAi9lvc_GNCbw,"Cotton Candy Bar",NULL,Tampa,FL,33611,27.890814,-82.502346,5.0,8,1
+_25lQXPxtNsgE9eWD8cQzQ,"Foolish Pleasure Hot Air Balloon Rides",NULL,Tucson,AZ,85743,32.354980,-111.093335,5.0,18,1
+_2BPnrpByKEPgHDlpfpQfA,"J&J Studios",NULL,Philadelphia,PA,19102,39.955624,-75.164753,5.0,24,1
+_3uzefAEsn4bkCO0M6lG6g,"Angel Pet Sitting",NULL,Reno,NV,89511,39.380903,-119.927795,4.5,10,1
+_5rN5py0CJSAVYWDor_02Q,"GameTruck Cherry Hill",NULL,Haddonfield,NJ,08033,39.896756,-75.031909,4.5,12,1
+_6nzD_8pIPj4v6VNN48XWw,"Cheap Cheap Movers",NULL,"St. Louis",MO,63146,38.688757,-90.464391,2.0,5,1
+_79Z5wHA9hO-XvEASrb-Mg,"Easy Living Home Care",NULL,Abington,PA,19001,40.131382,-75.137025,4.5,6,1
+_7AoembU6rEQ6BqZm2dc1Q,"Indy Boot Camps",NULL,Indianapolis,IN,46214,39.788408,-86.286951,3.0,8,1
+_7G_j42CkHQrsPeTncRJwg,"Master Garage Door",NULL,Brandon,FL,33511,27.843921,-82.293661,5.0,47,1
+_9llyHSLPAGEHAcvTWt57Q,"Lara’s Cleaning Services",NULL,Tucson,AZ,85706,32.148566,-110.962585,5.0,8,1
+_9LYFeppGSWnnQvzKrD_fQ,"Advanced Locksmith Services",NULL,Sparks,NV,89432,39.541653,-119.733787,5.0,20,1
+_agzW_0F9uSJ7i6EJ9ufeg,"Rebecca Gay Doula CBE CLC",NULL,Tampa,FL,33601,27.940102,-82.450194,5.0,33,1
+_Au951YoX51M4pwA1HzKcQ,"Green Lizard Lawn Care",NULL,Riverview,FL,33568,27.853980,-82.314440,2.5,6,1
+_B_7jckylxM2WqI6HMQGDw,"Instinct Dog Behavior & Training - Nashville",NULL,Nashville,TN,37011,36.194240,-86.758442,5.0,19,1
+_BEP3GuBR4TvxedLOQd6JA,"Cascade Pool Service",NULL,Philadelphia,PA,19090,40.149891,-75.125349,4.0,10,1
+_Cqf_2xTe37IL2obhQtgiw,"Valley Carpet Care",NULL,Meridian,ID,83646,43.643494,-116.436000,5.0,11,1
+_d5UWptr2v7BlboeF5_MBQ,"Bob's Appliance Service",NULL,Warminster,PA,18974,40.205368,-75.090315,2.0,9,1
+_DW3iAmAk6w_vpUrPhRd6Q,"Gandy Bridge",NULL,"Tampa Bay",FL,33601,27.879181,-82.581262,4.5,13,1
+_e717sd9Ww9u4dnRBhNocQ,"Off Leash K9 Training",NULL,"St. Petersburg",FL,33713,27.789678,-82.680746,5.0,17,1
+_E7aSVCukvjNgV-HiuVZnw,"Cordero Pest Control",NULL,"Santa Barbara",CA,93190,34.420000,-119.700000,5.0,7,1
+_E7p_2LZk7cat6mnIx2A8g,"The Biggest Little Fashion Truck",NULL,Reno,NV,NULL,39.529633,-119.813803,4.5,6,1
+_EeS7Zb0Co6uyvFZLXHH7g,Lyft,NULL,Nashville,TN,37219,36.166470,-86.783737,3.5,42,1
+_g8GdOBOrpoU6jTWOHr8ig,"Leupold Plumbing & Heating",NULL,Levittown,PA,19056,40.155426,-74.882875,4.0,5,0
+_GameVII8zP9Ymtr7OePgQ,matt-hair,NULL,Philadelphia,PA,19103,39.953187,-75.174967,4.0,36,1
+_h9b34onQc_26F9mvmsNhw,"J&M Gutter Pros",NULL,Voorhees,NJ,08043,39.851945,-74.961517,5.0,22,1
+_HmySkpAYC3ewKzPiMpjSg,"317 Juicery",NULL,Indianapolis,IN,46203,39.737577,-86.096922,5.0,11,1
+_iuer-e5Exq3w5Zkf1sOEg,"Positive Energy Electrical Contractors",NULL,"St. Louis",MO,63109,38.584419,-90.294880,5.0,5,0
+_jnX0tG-hlvJEFfYYm_fdQ,"John Snyder Plumbing and Heating",NULL,Philadelphia,PA,19128,40.036650,-75.218808,4.5,29,1
+_l9J1_7GAaJDDNtHBz99kQ,"Chic Cosmetique",NULL,Philadelphia,PA,19130,39.968261,-75.174967,5.0,8,1
+_lbizmMqsEONM0hxhz3Pxg,"Tiara Styles Beauty",NULL,Tampa,FL,33647,28.143432,-82.334338,2.5,6,1
+_LHkm-m9a_IDqfqfdWggHQ,"Dj Hecktik",NULL,"Santa Barbara",CA,93101,34.420334,-119.710749,5.0,67,1
+_lKecLTU9C1tnU_RYzUQ2g,"Tree Monkey Tree Trimming",NULL,Tucson,AZ,85719,32.254652,-110.944703,5.0,11,1
+_mNDy_Rdd_t4cmZldeMpPw,"Stranded Towing",NULL,Indianapolis,IN,46204,39.771526,-86.156823,1.5,9,1
+_Mwn4CjSoBXAc_eCeLDleg,"Rover Veterinary Care",NULL,Reno,NV,89503,39.542462,-119.841017,5.0,15,1
+_mXx2LK2F1Axbj2KXyVMig,"Narola Design + Letterpress",NULL,Philadelphia,PA,19147,39.935064,-75.151619,5.0,7,1
+_Nc779Dzh8S-uZy3RLPT-Q,"Tres Movers",NULL,Metairie,LA,70003,30.008562,-90.215087,5.0,8,1
+_o9R-hWBBFZEuKTLdVUwGw,"Inner Makeup Astrology",NULL,Media,PA,19063,39.916778,-75.387693,5.0,14,1
+_Om9umJQRS8Gi-PTWJJyYg,"Taceaux Loceaux",NULL,"New Orleans",LA,70119,29.979811,-90.079349,4.0,28,0
+_PdmupHWKJrvVMgDu9I9nQ,"Robert A Wortman, OD",NULL,Philadelphia,PA,19102,39.955624,-75.164753,5.0,12,1
+_PZGrevgQ_YBdX5CUl5IdA,"AA Appliance Repair",NULL,"Santa Barbara",CA,93111,34.463083,-119.806291,3.5,13,1
+_qmFWIAH9ZATeQpXxdm8rg,"Cloud Climbers Jeep Tours",NULL,"Santa Barbara",CA,93101,34.420334,-119.710749,4.5,149,1
+_QVaLI9Gn0dDi71eR4W9yw,"Absolute Best Appliance",NULL,Largo,FL,33774,27.884754,-82.826362,4.0,23,1
+_RMb-HO3vInP6oa6jF8TLQ,"Santa Barbara Woodfire Catering",NULL,Goleta,CA,93117,34.435829,-119.827639,5.0,21,1
+_sE5Fw4Ui2XbvMLPUL9Bcw,"2 Sisters Photography",NULL,Tucson,HI,85641,32.227086,-110.961609,5.0,15,0
+_sszFtdqzembcl6UNdXOkA,"Maggie B’s Cookies",NULL,"Sparks ",NV,89436,39.603484,-119.707853,5.0,5,1
+_sW_oA5e_xdDwz05fGS7pQ,"Stack’s Culinary Creations",NULL,Tucson,AZ,85707,32.178188,-110.885095,4.5,11,1
+_SwAnKgAksxlHerN3CrQDA,"OxyBrite of Tampa",NULL,Clearwater,FL,33759,27.962869,-82.799835,4.5,5,1
+_T2a9ZTB-iujOpXRS7Ji0Q,"Andy the Wildlife Trapper",NULL,Goleta,CA,93117,34.435829,-119.827639,4.5,6,1
+_tl85KAjEM4F8tpcUzb2lg,"Back On The Road For Less, LLC",NULL,Trenton,NJ,08618,40.248433,-74.786370,2.5,6,1
+_TpBAJ-ZYQjkJ47qYOkKwg,"J&A Arcos Construction",NULL,Philadelphia,PA,19104,39.958359,-75.195393,5.0,5,1
+_uf1gqKKWtHkGOyrhOdaLg,"Empire Today",NULL,"Maryland Heights",MO,63043,38.725445,-90.459672,2.0,37,1
+_UJ7Sz-A8AZKGHdDlD0HHw,AquaSteamer,NULL,"Cherry Hill",NJ,08003,39.881709,-74.955948,5.0,6,1
+_uRKysKoPbd8IT8zOe5b6Q,"A Perfect Touch Limo and Party Bus",NULL,"St Louis",MO,63147,38.699949,-90.219777,2.5,19,1
+_v4POAdWWpesGEMQyClNww,"Infinity Rentals",NULL,"Santa Barbara",CA,93105,34.420831,-119.698190,1.0,25,1
+_VtTxYLqs5p91np3KOzE8g,"5 Star Plumbing And Drains",NULL,Seffner,FL,33584,27.983633,-82.275647,4.0,10,1
+_vvrOZdudfwHOPeErjcL7A,"AZUMA Leasing",NULL,Nashville,TN,37210,36.148246,-86.736608,3.0,5,1
+_X5XV72147fLR-2fJ7UthQ,"WM Brooks III LLC",NULL,Glendale,NJ,08043,39.853725,-74.982390,5.0,8,1
+_x6-LjtfWgTYm1wWOWsl_w,"Affordable Seamless Gutters",NULL,Tucson,AZ,85735,32.227832,-110.943959,4.5,11,1
+_xgXJqFWBH6bpOH64d0prw,"Svetlana's Cleaning Service",NULL,Yardley,PA,19067,40.245664,-74.845997,4.5,6,1
+_yk7klwrfUIX1qhaITV2nA,"Bacon Boss",NULL,Tampa,FL,33602,27.955269,-82.456320,4.0,48,1
+_YPlKEAMWAAZ---UrR6JUg,"Voodoo Sweets",NULL,Harvey,LA,70058,29.869933,-90.065334,5.0,7,1
+_YRHez7A5IUaej4WJFkWRw,"At Your Service Fine Food & Catering",NULL,"Santa Barbara",CA,93101,34.420334,-119.710749,5.0,6,1
+_YzvoswQ5OZttgxDhbEgCw,"Happy Tails of South Jersey",NULL,Marlton,NJ,08053,39.891225,-74.921832,4.0,7,1
+_ZWVhrUfp3kRkIUHZUzmrA,"JpGlover Moving",NULL,"Land O Lakes",FL,34639,28.242486,-82.442777,5.0,6,1
+--sXnWH9Xm6_NvIjyuA99w,Philadelphia,NULL,Philadelphia,PA,NULL,39.952584,-75.165222,4.0,29,1
+-1-8eimDEnS9fezJNZkQkQ,"Wire To Wire",NULL,Havertown,PA,19083,39.976366,-75.314980,4.0,5,1
+-1g8Qb6t_mSX_ak1thMmrQ,FreeWalkingTourSB,NULL,"Santa Barbara",CA,93101,34.420334,-119.710749,5.0,48,1
+-1i-mOn_jxKUWmqJDk3JNg,"Oltmann Weddings",NULL,"New Orleans",LA,70119,29.951066,-90.071532,4.0,5,1
+-1w9JMktu9oWTXwNqtZQoA,"Sazon El Cebo-Yon",NULL,Tucson,AZ,85705,32.268074,-110.992390,4.0,16,1
+-3Z9SadSY-w_ckVGQ0dedQ,"Center City Towing",NULL,Philadelphia,PA,19148,39.912060,-75.148701,2.5,8,1
+-6mXhSbA_u1ofHiaNnplEQ,"Calling All Dogs and Cats",NULL,"Saint Petersburg",FL,33702,27.851204,-82.632138,5.0,6,1
+-6p-MRp5mP35EN5rp-84nA,"Southwest Pest Solutions",NULL,Tucson,AZ,85752,32.350679,-111.046952,4.5,7,1
+-7MoVXn7R2Rc9jrMVsK7pQ,"De Colores Photography",NULL,"Santa Barbara",CA,93101,34.420334,-119.710749,5.0,18,1
+-8ACWxUmr0ZiEYctdlgvAA,"Dippel Plumbing & Heating Company",NULL,"Saint Louis",MO,63109,38.584419,-90.294880,3.0,9,0
+-aB4ivRDzRb57v9IvN9zog,"Nashville Hypnosis",NULL,Nashville,TN,37221,36.152381,-86.789389,4.5,6,1
+-bAnaYzQ1vdKoZYGfe8E_w,Sweetfixx,NULL,"Saint Louis",MO,63101,38.630539,-90.192822,4.5,9,0
+-Bx1sXOPz_Vjn8C87-pFOg,"High End Appliance",NULL,Lansdale,PA,19446,40.241495,-75.283786,1.0,10,1
+-Cg7YHZruPxmj--xoefNvQ,"Bin There Dump That",NULL,Brentwood,MO,63144,38.615747,-90.351302,5.0,11,1
+-d0NkfQFuNpr6V2kdWJMSw,RenoTahoeDogs,NULL,Reno,NV,89523,39.544823,-119.951134,5.0,16,1
+-d7jgvf-Aq3C-LFrBysFXA,"Tawny Ballard Photography",NULL,"St. Louis",MO,63116,38.584487,-90.266699,5.0,5,1
+-dc49jsYqR2zNblJkB9i8w,"Homeward Bound Veterinary Services",NULL,Reno,NV,89523,39.544484,-119.950926,5.0,40,1
+-EyRrBY1d-EQZrTIXWH4BQ,"Spa Guy Dave",NULL,Pennsauken,NJ,08109,39.967107,-75.031909,4.5,6,1
+-FeeEqYmAJ00G66ngdxFZg,"Tastings and Tours",NULL,"New Hope",PA,18938,40.364273,-74.951279,4.5,19,1
+-Fka99c-tJ-epWYNIobqyQ,"Pizza Mizza",NULL,"Santa Barbara",CA,93105,34.420831,-119.698190,3.5,169,0
+-FkOGy1AP9LXuoeqZpp06A,"Lap of Love Veterinary Hospice and In-Home Euthanasia",NULL,Lutz,FL,33549,28.149459,-82.442777,5.0,52,1
+-gFg1yDJPXsfyest9loNrQ,"Dani Benton Photography",NULL,"New Orleans",LA,70117,29.968268,-90.032653,5.0,21,1
+-gszhMcUrwHwDq6F2Pv4ZQ,"Craig Paul Greene",NULL,"Santa Barbara",CA,93101,34.420334,-119.710749,5.0,5,1
+-H6a4mIT5GbQiiWZz2luOw,"Droopy's BBQ",NULL,Indianapolis,IN,46237,39.678804,-86.083542,4.5,12,1
+-HbZLx47yHLdp98kSEog2g,"Delintz Dryer Vent Cleaning Service",NULL,Tampa,FL,33618,28.077108,-82.502346,4.0,14,1
+-HHBEjgo257YRvix8an2yg,"MDC Mobile Detailing Concepts",NULL,Tucson,AZ,85719,32.254652,-110.944703,5.0,21,0
+-IYP0bmh-Mwkd7t71JSM4A,"A & E STAR SERVICES",NULL,"New Orleans",LA,70116,29.991838,-90.091777,3.0,7,1
+-jkoDJwgzOu3uiVIT6FGMw,"Wise Cut Tree Service",NULL,Gretna,LA,70056,29.893087,-90.027987,5.0,6,1
+-jZXu7_FePOSAkfSv3oD3Q,"1-Less Chore Dry Cleaning, Shirts & More",NULL,"Bryn Mawr",PA,19010,40.003041,-75.272543,4.5,18,1
+-kIJmSUZiBygYu6KYWHGQg,"Scotty's Hot Dogs",NULL,Boise,ID,83709,43.595038,-116.276819,5.0,15,1
+-kkPhVn7P-QqtinpW-bjEg,"Max Cool Air Conditioning",NULL,Riverview,FL,33579,27.791780,-82.290915,2.5,6,1
+-kzNKaCPg4l3i0fWg8jt3w,"All Seasons Lawn Care",NULL,"Saint Louis",MO,63139,38.615903,-90.294880,1.5,6,1
+__2LkeVwTuKar5AE95Idzw,McDonald's,"11007 Bloomingdale Ave",Riverview,FL,33569,27.893199,-82.319844,1.5,13,1
+__4gkf_0UJW78rkRzFm6Gw,"Cafe Baladi","235 Lancaster Ave",Malvern,PA,19355,40.041639,-75.542839,5.0,54,1
+__93GWaEEcUf9TSyyJbkmQ,"Sunwest Park","17362 Old Dixie Hwy",Hudson,FL,34667,28.404785,-82.671966,3.5,48,1
+__AB6oytCW4hD2Jca02kRA,Chick-fil-A,"184 W County Ctr N Spc, Space N","Des Peres",MO,63131,38.599651,-90.446909,3.5,15,1
+__aP-gQsROtMFNWR51oMYA,"Wildcat House","1801 N Stone Ave",Tucson,AZ,85705,32.243958,-110.972090,3.0,13,0
+__bDOPMbPcYaC9WsCyAiWQ,"Fantastic Sams Cut and Color","1345 Easton Rd",Warrington,PA,18976,40.250494,-75.133035,4.0,5,1
+__bSsYCu2KDn8pb31Epgrg,"American Seafoods","3034 George Nick Connor Dr","New Orleans",LA,70119,29.988917,-90.069586,5.0,5,1
+__CYdei4W4pVb4SThJ-HYg,"Raider Axe Lodge","5018 N Coolidge Ave, Bldg 2 Ste D",Tampa,FL,33614,27.992811,-82.517377,5.0,35,0
+__Dbc84VjNmVLNgyTUP4iw,"Vampire Penguin","10789 Park Blvd",Seminole,FL,33772,27.841166,-82.788355,4.5,79,1
+__dp19BldlU5bGy87LJ0KA,Revibed,"1402 N Sheldon St",Indianapolis,IN,46201,39.786007,-86.132244,5.0,5,1
+__FDUGj1N-HrvAmFriy2Vg,"Arizona Steel & Ornamental Supply","3150 E Benson Hwy",Tucson,AZ,85706,32.156449,-110.925470,3.0,6,1
+__I81oH6jmYwh1YXjVWsWA,"The Corkscroo Bar & Pizzeria","10 E 9th St",Reno,NV,89501,39.536073,-119.815973,4.5,14,0
+__Jhyl5p8bfnnYOGjwPtsg,"Al-Sham Restaurant","201 W Boise Ave",Boise,ID,83706,43.585883,-116.183792,4.0,19,0
+__Ld2XsuPMHjo5uzLF0sXQ,"Hand & Stone Massage and Facial Spa","2500 Grant Ave",Philadelphia,PA,19114,40.078370,-75.025516,3.0,93,1
+__LrkbeqnfmprmB98uLZ6A,"Dollar or Two","1305 W Chester Pike",Havertown,PA,19083,39.974273,-75.322610,2.0,6,1
+__NA1bpnfNRvjIQkNo5_HA,"Elliston Place Smoke Shop","2204 Elliston Pl, Ste H",Nashville,TN,37203,36.151403,-86.804034,3.5,15,1
+__q2lqxbh1tnug8xyzhYLg,"E.Sierra Media","1855 Sullivan Ln, Ste 215,",Sparks,NV,89431,39.549750,-119.771804,4.0,5,1
+__qax_vxKX9FjNNyye9z9A,"Fast Freddie's Diner","624 W Main St",Hendersonville,TN,37075,36.303067,-86.637579,4.0,6,0
+__QqLzVxwrrdBuc-5evfqA,"Windermere Animal Hospital","9785 Olympia Dr",Fishers,IN,46037,39.929815,-85.984047,4.0,13,1
+__qZrCESIQTMEtXTIhcXsw,"Bo'diddly's Pub & Grill","2331 66 St NW, Ste 101",Edmonton,AB,"T6K 4B4",53.454957,-113.430920,3.0,8,0
+__rP5Fy4peONwyjcmbFfwg,"Ellas Frozen Yogurt & Candy Shop","520 North State Rd 135, Ste A",Greenwood,IN,46142,39.621108,-86.159781,4.5,33,1
+__UJ0y9HkJ8KTswmMZJRlA,"Istanbul Cafe","109 Royal St","New Orleans",LA,70130,29.953556,-90.068844,4.5,91,1
+__VZ9oVOU4xIK4JnagYIHQ,"Utopia Studios","3957 Park Ave","Saint Louis",MO,63110,38.622202,-90.246493,3.0,9,1
+__W6-4Xm_CHd0rmg18mhrQ,"Liberto Cleaners","8128 Willow St","New Orleans",LA,70118,29.949040,-90.128588,4.5,46,1
+__WSPB2Wq2DLllZ9TPV8OQ,"Rose Bank Winery","258 Durham Rd",Newtown,PA,18940,40.249693,-74.952708,3.5,95,1
+__YGMQexDIqJKtYynxh5gg,Lou,"1304 McGavock Pk",Nashville,TN,37216,36.204176,-86.725242,4.5,89,1
+__yJPcT-C68DuQ4dHdsrmg,"Dentistry on 1st","4801 N 1st Ave",Tucson,AZ,85718,32.294130,-110.961644,2.5,20,1
+_--enhHgze7cbOhO6IGRRg,"Creative Bridewear","720 Bobwhite Ln","Huntingdon Valley",PA,19006,40.150269,-75.039325,5.0,22,1
+_-0n5-6jEUC8lVYIY4VaYA,"Jessica Shaun","4139 Manchester Ave","Saint Louis",MO,63110,38.627843,-90.251824,5.0,10,1
+_-1bNXIuu9Ez0FO44sFGmw,"Indianapolis Racquet Club","8249 Dean Rd",Indianapolis,IN,46240,39.906288,-86.097074,4.5,7,1
+_-337VZauaJhDksxgB4aFA,"Lindo Mexico II","997 E County Line Rd",Greenwood,IN,46143,39.635259,-86.084381,4.0,123,1
+_-72yXflLxu0qrTcT0s2xQ,"Paddy Wagon Irish Pub Downtown Tampa","813 N Tampa St",Tampa,FL,33602,27.951074,-82.460145,3.5,5,1
+_-85zXi_ykRNo5rtbrAmIA,"Quality Plus Cleaners","30575 US 19 N","Palm Harbor",FL,34684,28.112130,-82.739210,2.5,8,0
+_-8jQkki4Q5XohOeLwNP7g,"West Chester AutoHaus","700 E Market St","West Chester",PA,19382,39.963981,-75.594278,5.0,7,0
+_-8TAMmIbDGkZCXAqSkFMg,"Slack's Hoagie Shack","158 Baltimore Pike",Springfield,PA,19064,39.923569,-75.316495,3.5,58,1
+_-ag9LGrOJkJW3bXmtAv-w,Walgreens,"2418 S Carrollton Ave","New Orleans",LA,70118,29.956463,-90.120439,2.5,33,1
+_-AIbZSkfTFtgn_kKsk7Xw,"Schlemer's Lounge","109 W MacArthur Dr","Cottage Hills",IL,62018,38.903531,-90.070626,2.5,5,1
+_-BFOIdAdk-1ejLSPmaTsQ,"The Hungry Greek","2689 Gulf To Bay Blvd",Clearwater,FL,33759,27.960089,-82.727512,4.0,62,0
+_-e1OGfmj4ttIEunYzgLGA,Supercuts,"2125 66Th St, Crossroads Shopping Center","Saint Petersburg",FL,33710,27.790254,-82.726474,3.5,15,1
+_-eYjGpe71Y0kJYUJxYV4Q,"Little Caesars Pizza","2364 E Stop 11 Rd",Indianapolis,IN,46227,39.650816,-86.119769,1.5,8,1
+_-fCzPISzr0cU8zYJMnkSQ,"Argyles Deli","254 W 1st St",Reno,NV,89501,39.524884,-119.816234,3.5,12,0
+_-GYicUDtfIfMs2SiXdJIA,"Kung Fu Tea","22 Lancaster Ave",Ardmore,PA,19003,40.008069,-75.291949,4.0,32,1
+_-Hb1EU4g276npfZjAFhOw,"K9 Adventures","30860 US Hwy 19 N","Palm Harbor",FL,34684,28.052809,-82.739553,4.5,7,1
+_-I0u6nMuozM3zjC2uJuYg,"Nü Mobile Auto Detailing","1015 W. Kirkland Ave, Ste 205",Nashville,TN,37216,36.210301,-86.735939,3.5,17,1
+_-jdAIUs1nZt9eBuU4ramg,"Enterprise Rent-A-Car","3859 99th St",Edmonton,AB,"T6E 6H6",53.473523,-113.485290,2.0,8,1
+_-L4qMRauIHVcIDneEx12g,"Flip Flops Cantina Grille","13645 Big Bend","Valley Park",MO,63122,38.568337,-90.478047,2.5,11,0
+_-MEpxe4XRNxYL4T67YRSg,"WeWork Market St.","1601 Market St, Fl 19",Philadelphia,PA,19103,39.953097,-75.167358,3.5,5,1
+_-MvmxCwyHaB4KPaxV-Sxg,"Franklin Commons Apartment Homes","1400 Cardinal Dr",Bensalem,PA,19020,40.101976,-74.934186,1.5,12,1
+_-N3lW3Avv5_9HupCBzW2A,"Heavenly Ham","State Hwy 73 & Greentree N",Marlton,NJ,08053,39.908766,-74.939684,3.0,7,0
+_-OS3-VMVJKbFeO-sCLoNQ,"Red Lobster","1814 Gallatin Pike N, ACROSS FROM RIVERGATE MALL",Madison,TN,37115,36.299422,-86.697856,3.0,44,1
+_-otZU2dbPrEZyaVSMmvDg,"Little Vic's","719 Toulouse St","New Orleans",LA,70130,29.957487,-90.065826,4.0,186,0
+_-OXe_vQnPRZp7-JBqXmbA,"India Palace Indian Restaurant","101 N Maryland Ave",Wilmington,DE,19804,39.729730,-75.584638,4.5,84,1
+_-PcEXMgZ7Wiva0fYBZCqQ,"Things Remembered","350 N Milwaukee St",Boise,ID,83704,43.608604,-116.278252,2.5,5,0
+_-pljHy_NUTTdd4dQBL-Yg,"Hunter's Den Restaurant","3517 Old Capitol Trl",Wilmington,DE,19808,39.730836,-75.632038,2.5,31,0
+_-pvGUjCHAnfMlPRObpJcw,"Dairy Queen","108 Street Rd",Southampton,PA,18966,40.181211,-75.055981,3.0,9,1
+_-qMwuEFcz_karr9xRxKYw,"Ashes Cigars","4453 Main St",Philadelphia,PA,19127,40.026891,-75.226540,4.5,16,0
+_-rkYM0q33_0lzmsA1ODBQ,"King Baby Studio","2814 12th Ave S",Nashville,TN,37204,36.121858,-86.790178,4.5,8,1
+_-RLGWamu1SEabz9Y5RD_A,"Best Buy Fairview Heights","26 Plaza Dr","Fairview Heights",IL,62208,38.598927,-89.994155,3.5,26,1
+_-rP1naEtvwxBHOSYIG6ww,"Corner Pub - Brentwood","710 Old Hickory Blvd",Brentwood,TN,37027,36.040986,-86.770153,3.0,154,1
+_-RzqXBIVN5IhBiEJk-Z7Q,iTREKKERS,"500 E Kennedy Blvd, Ste 304",Tampa,FL,33602,27.948558,-82.456055,5.0,5,0
+_-SSObHzljeA11HAF0lIrQ,Hardee's,"4116 W Hillsborough Ave",Tampa,FL,33614,27.995521,-82.512474,2.5,27,0
+_-SxTpN4usnSeevSl-ZYbg,"Officemax 1218","10595 N Oracle Rd",Tucson,AZ,85737,32.400039,-110.958906,3.5,12,1
+_-vALzH-z7SoHyBYXE9EDw,"Dental Studio 4 Kids","4675 Van Dyke Rd, Ste B",Lutz,FL,33558,28.128113,-82.518454,4.5,8,1
+_-VyFI7qvZz8rOwBHtx3ZQ,"Forever 21","500 Port of New Orleans Pl, Ste 128, Outlet Collection at Riverwalk","New Orleans",LA,70124,29.947184,-90.062725,2.0,10,1
+_-wIHIzRdvqPQlzTu8oVSQ,"Charlene Hirsch, DMD","738 S 10th St",Philadelphia,PA,19147,39.940717,-75.159506,4.5,6,0
+_-Wlo1MmNd74dqMVXiu-HA,"Green City Beauty","1036 Pine St",Philadelphia,PA,19107,39.944668,-75.159531,5.0,38,1
+_-XYJgVGrNMtn_S6nPm-GQ,"Vinnie's Italian Beef and Gyros","3208 Ivanhoe Ave","Saint Louis",MO,63139,38.605490,-90.303558,4.5,188,1
+_-y80XtqB8fDyFtXo1mD6Q,"Louisiana State Museum - The Cabildo","701 Chartres St","New Orleans",LA,70130,29.957619,-90.063893,4.5,79,1
+_0-6uHKoz1tWsKC2bFzlpg,"UFC GYM Reno","4875 Kietzke Ln",Reno,NV,89509,39.478328,-119.797929,5.0,20,1
+_0-hSA71VEhKa6flEVn3MA,"Banquet Masters","13355 49th St N",Clearwater,FL,33762,27.893170,-82.698796,2.0,7,1
+_0-qs0PG-XJWaG63IaRzTA,"Wilson's Pub","401 Harmony Rd",Gibbstown,NJ,08027,39.816077,-75.261272,4.0,7,1
+_006yFeQQGTBd1NzFjm9QA,"Venus Nails","7870 N Oracle Rd",Tucson,AZ,85704,32.349374,-110.973716,4.0,20,1
+_04-HPScnydxc8m4B3bnhw,"ACME Markets","2098 Naamans Rd",Wilmington,DE,19810,39.823704,-75.500199,2.5,21,1
+_04zRVBKs7Cqsc3TWf-KRg,"Muva’s Kitchen","3037 Lafayette Rd",Indianapolis,IN,46222,39.810590,-86.221220,4.0,34,1
+_05DcCQmCP5aGnfCnI4r9Q,"Capital One Café","135 S 17th St, Ste A",Philadelphia,PA,19103,39.950054,-75.168914,4.0,178,1
+_05zwVNkOSa9Kym6-omCnQ,"Gordi's Restaurant","1515 E Fletcher Ave",Tampa,FL,33612,28.068724,-82.441292,3.0,5,0
+_06Jj_tcAZtx-VHyVAIPkg,"Air West Air Conditioning","2111 Sunnydale Blvd",Clearwater,FL,33765,27.986575,-82.750053,3.5,10,1
+_07RALXKTwFO1hooTQ57gg,"Allen's Kennel","116 Bortons Landing Rd, Ste A",Moorestown,NJ,08057,39.977870,-74.925514,4.0,16,1
+_0BBv2YQEgxugriq2CF3jg,"Flooring Direct","4844 E Speedway Blvd",Tucson,AZ,85712,32.235951,-110.889189,5.0,16,1
+_0dQs7RgWjUXGi6zbN4J9A,"Payless Furniture","4009 W Hillsborough Ave",Tampa,FL,33614,27.996432,-82.509578,4.0,8,1
+_0JAjja8Pc2StBrhEgdf5Q,"Corner Bakery Cafe","3 West Rd",Newtown,PA,18940,40.234276,-74.944740,3.0,66,0
+_0JDs_1DLtLH5XppCbSk_A,"Aromatic House of Kabob","113 Chestnut St",Philadelphia,PA,19106,39.948399,-75.143140,3.5,29,0
+_0ki9SYy99XWYWT2quHPNA,"The Grandel","3610 Grandel Square","St. Louis",MO,63108,38.640358,-90.231467,4.0,5,1
+_0LfTabLvmU6SssmuNoRHA,"Scout's Pub","158 Front St, Ste 120",Franklin,TN,37064,35.928818,-86.920112,3.5,77,1
+_0Ms7PSWxOtmgx1RLIImbg,"Best Friends Pet Hotel","2500 Route 73",Cinnaminson,NJ,08077,39.973878,-75.008383,3.5,34,1
+_0n6wL1_GFOBjNY2vc-5qg,"House Of Nour","2928 S Brentwood Blvd",Brentwood,MO,63144,38.609168,-90.349628,4.5,29,1
+_0niL5sBVnKCLOPnk8SnTQ,"Ciao Ice Cream Bar","63 Baymont St",Clearwater,FL,33767,27.982005,-82.825705,4.5,11,0
+_0NxSnleA_EBkW1fgsY7HA,"Christ Church Nashville","15354 Old Hickory Blvd",Nashville,TN,37211,36.041786,-86.729947,5.0,7,1
+_0qMCeITOpOHN9Ea_33kmA,"Harbor Bar","840 Main St","Safety Harbor",FL,34695,27.990478,-82.696008,3.5,14,1
+_0QZGrg91aaiMhh7tQyYYg,"Jacksons Bistro Bar & Sushi","601 S Harbour Island Blvd, Ste 100",Tampa,FL,33602,27.938724,-82.454881,3.5,1115,1
+_0RfzLMX2eou1E24i1Vr2g,"A Foam & Fabric Place","246 N 4th Ave",Tucson,AZ,85705,32.224966,-110.965333,4.5,18,1
+_0RHG6h4-GKMTg7NCyYOKQ,"Woof Gang Bakery & Grooming Carrollwood","13156 N Dale Mabry Hwy",Tampa,FL,33618,28.066329,-82.507251,5.0,7,1
+_0RzNepfK1UfAcEe4U1TyQ,"Phresh Skin Aesthetics Wellness","6528 US Hwy 301, Ste 101",Riverview,FL,33578,27.886915,-82.329419,5.0,6,1
+_0sCN_d5mTjcQB6G2zXBOQ,"TCBY Old Metairie Village","701 Metairie Rd, Ste 23101, Old Metairie Village Shopping Center",Metairie,LA,70005,29.988487,-90.130523,3.0,18,1
+_0sis5-KdPTzkt5fuOwTCA,"Ron's Auto Service, Inc.","301 W Kings Hwy",Audubon,NJ,08106,39.884013,-75.068016,5.0,5,1
+_0u1MwrTyXx7bLWuVW1XwQ,"Juan's Mexican Grill","1409 Main St",Dunedin,FL,34698,28.019103,-82.767600,3.5,86,1
+_0Vfxy0FZlJ0Kyc_DrycNA,"UNION PARK CHARTER ACADEMY","32775 Oldwoods Ave","Wesley Chapel",FL,33543,28.185268,-82.273415,2.0,6,1
+_0XbSqyzlUE8yVxvfYTtcQ,"North Shore Hot Dog","904 W Main St",Boise,ID,83702,43.616407,-116.205029,4.0,6,0
+_0xXmhb27rntWnDStLRl0Q,"Travis Hesser - State Farm Insurance Agent","13603 Barrett Office Dr, Ste 102",Ballwin,MO,63021,38.595171,-90.473869,4.0,5,1
+_0yC3ZPvPu_bV-zzSYtBdQ,"Planet Beach - Kenner","819 W Esplanade Ave, Ste I",Kenner,LA,70065,30.020317,-90.257530,5.0,6,1
+_0z0kbLOsVpXmSjKWtrc7w,"Brian Mitchell, DDS","5255 E Knight Dr",Tucson,AZ,85712,32.249629,-110.880349,5.0,18,1
+_0zJGuEoyXlaH98gZD6-cw,"Roman & Leo","8800 North St, Ste 115",Fishers,IN,46038,39.958436,-86.013506,5.0,6,1
+_1_OLxqR-767Wfm8BZu6gQ,"Qt Nails & Spa","301-A Blackwood-Clementon Rd",Lindenwold,NJ,08021,39.805358,-75.008077,3.5,8,1
+_10m_xRpfqqnj9jvUUIqjA,"Applebee's Grill + Bar","70 Buckwalter Rd",Limerick,PA,19468,40.198026,-75.525558,2.0,45,1
+_12864iQDcnAs317NlF0hQ,"Studio Movie Grill","12332 University Mall Ct",Tampa,FL,33612,28.056940,-82.434500,2.5,265,0
+_12o3WIWpnPZvcjlodJIjw,Kmart,"1 Flower Valley Shopping Ctr",Florissant,MO,63033,38.811722,-90.298316,2.0,10,0
+_17mPclvO7AGufoCZoFuqQ,"Penn Dental Family Practice - Locust Walk","240 S 40th St, Fl 3",Philadelphia,PA,19104,39.952779,-75.203250,2.5,13,1
+_1aCRm_YRJ1x9RagRHltLg,"Bergamot Market","336 White Bridge Rd",Nashville,TN,37209,36.151119,-86.857732,3.5,6,0
+_1BaLAwkmuRt7bTCk74cGA,"Niko's Place Restaurant & Bar","6818 Us Hwy 19","New Port Richey",FL,34652,28.256719,-82.727207,4.0,90,0
+_1dKyxpiEYjhCNGSdIn_kw,"Practically Frivolous","4140 16th St N","Saint Petersburg",FL,33703,27.809782,-82.655391,4.5,12,1
+_1DZ7WTVME7u4iYfdAgbqw,"Down the Rabbit Hole","5132 E Pima St",Tucson,AZ,85712,32.243460,-110.882933,4.0,35,1
+_1Ep7fi7vCY3J2rz6YGQmw,"The Vineyards Trattoria","250 Apollo Beach Blvd","Apollo Beach",FL,33572,27.771253,-82.395137,4.0,154,1
+_1erJ4alN71jOjeoThCfxg,"Green Garden","4626 Baltimore Ave",Philadelphia,PA,19143,39.948578,-75.216277,2.5,27,0
+_1f2QqzSKtxPrc5m2jZfBw,"HTG Supply","746 A Chester Pike, Ste A","Prospect Park",PA,19076,39.882892,-75.304638,5.0,5,1
+_1feb1LaWjiDIvqi7qwEfA,"Mario's Bar & Grill Restaurant","668 S Broad St",Trenton,NJ,08611,40.208737,-74.753562,4.5,8,0
+_1gXu5zigV5oW0D9M2I1Hw,"Camp Bow Wow Mt Juliet","3085 N Mt Juliet Rd","Mount Juliet",TN,37122,36.212784,-86.515366,3.5,10,1
+_1i0PSnNVFSuju_4IxxO9Q,"Impact Pest Elimination","501 E Lemon St","Tarpon Springs",FL,34689,28.145147,-82.750201,4.5,19,1
+_1itCzaA3bDVdPSwNCNPtA,"Chili's Grill & Bar","3801 Chestnut St",Philadelphia,PA,19104,39.955349,-75.198691,2.5,41,0
+_1JgT69ALWvHExQNz48_8Q,"Payless Liquors","14580 River Rd",Noblesville,IN,46062,39.998344,-86.037978,4.0,5,1
+_1jlbXWMxN50PQlaRpev7A,"Reytas Filipino Cuisine","1490 Haddonfield Berlin Rd","Cherry Hill",NJ,08003,39.880188,-75.005248,4.5,79,1
+_1JmbxhyiTXO_CDytQTkgA,"Ike's Sandwiches","2175 N Virginia St",Reno,NV,89503,39.548280,-119.821530,4.0,194,1
+_1lBLY51Ysv_U14UYhT2sg,"Nashville Vapor","900 Grammer Ln, Ste 210",Smyrna,TN,37167,35.980807,-86.563734,3.0,6,1
+_1MMgEMpYdR9x7bK9eKyBQ,"Eldon's Auto Repair","2873 S Cole Rd",Boise,ID,83709,43.577221,-116.274666,1.0,5,1
+_1n5XmMJ0cxxg9qMJTXqvw,Arby's,"8301 Little Rd","New Port Richey",FL,34654,28.277650,-82.675241,2.5,9,1
+_1n7jzhNiPoSTCtHbZ9HFA,"Cigars International Superstore","10660 Palm River Rd",Tampa,FL,33619,27.931618,-82.333491,4.5,14,1
+_1OKD3jnwKVFfrq6d4k4lA,"The Nail Lounge Of Tucson","2620 N 1st Ave",Tucson,AZ,85719,32.254358,-110.960554,4.0,191,1
+_1PCcAGXECmf-dTLiCM7Iw,"Regenerative Orthopedic Institute","8011 N Himes Ave, Ste 3",Tampa,FL,33614,28.023021,-82.500343,4.0,6,1
+_1Pid2TAS7REGzTMa2tMRg,"Manton Appliance Service","101 Almott Dr",Philadelphia,PA,19115,40.106902,-75.055531,4.0,20,1
+_1rB4ggX8rhCPHmqqYnltw,"Shums Auto Repair","3600 Rhawn St",Philadelphia,PA,19136,40.042046,-75.028963,5.0,9,1
+_1sd6M3Z6WI_wd87B8DvOw,"Bayou Nissan","13050 I-10 Service Rd","New Orleans",LA,70128,30.051869,-89.950461,3.0,9,1
+_1tAjnIYulKpxgPWoCL3OQ,"Asian Cuisine","2901 E Busch Blvd",Tampa,FL,33612,28.031553,-82.426938,2.5,14,1
+_1vpS2id9Jmd1aki_VYcVg,"Seven Corners","303 Congressional Blvd",Carmel,IN,46032,39.957572,-86.151610,1.0,120,1
+_1W_H-By3_VhM_Bas4-JCQ,"Church's Chicken","2219 E Fletcher Ave",Tampa,FL,33612,28.068781,-82.433062,1.5,15,1
+_1WfzSnKSRxzhg1nr5VQyg,"Escape Quest Tampa","6176 Gunn Hwy",Tampa,FL,33625,28.063716,-82.551360,5.0,5,0
+_1wGbJlj9gRIcbGikrhUmA,"Miss Saigon","5849 Charlotte Pike",Nashville,TN,37209,36.147197,-86.863138,4.0,362,1
+_1yhtgezlYuEAOM4C9nSSw,"Laura Buick GMC","903 N Bluff Rd",Collinsville,IL,62234,38.691701,-90.009272,3.5,102,1
+_1zUyN7PGRVuMKBIjKFykw,"Taco Dirty","4447 4th St N","St. Petersburg",FL,33703,27.812618,-82.638258,4.0,48,1
+_2_FDNxeMycDv_yp6BLHog,Hosteeva,"4736 W Napoleon Ave",Metairie,LA,70001,29.993648,-90.185537,1.5,9,1
+_20lHmUP-NJjwZ9ygLx_sg,"Grateful Pets","1716 S Broadway","Saint Louis",MO,63104,38.608357,-90.199828,4.5,21,1
+_2123T9_PBFtUKSKUhpuVw,"Vibra Hospital of Boise","6651 W Franklin Rd",Boise,ID,83709,43.603407,-116.264465,2.0,9,1
+_22VqZzLBVjhaKfTg70dIA,"Linh-Nam Chinese Restaurant","3936 W Ina Rd, Ste 362",Marana,AZ,85741,32.338072,-111.049933,4.0,118,1
+_240YS1KyuYpUXXZjM5qGg,"Bed Bath & Beyond","141 Highlands Boulevard Dr",Manchester,MO,63011,38.594029,-90.506735,4.0,16,1
+_263rtToYyuswg0SDXBOdA,"Faces of Virtue Makeup Studio","220 Julia St","New Orleans",LA,70130,29.944429,-90.065494,4.5,9,1
+_27_xPY4rCw1JEvz3VolCQ,"Singha Thai Viet Restaurant","8787 N 56th Street Temple Ter",Tampa,FL,33617,28.028473,-82.392200,3.5,104,0
+_27BIQa1uBaqx9deGt6iow,"Laurentius Salon","815 Christian St",Philadelphia,PA,19147,39.938865,-75.156850,4.0,48,1
+_28YCfvdBbjUA61xNi4hdQ,Walgreens,"1801 Saint Charles Ave","New Orleans",LA,70130,29.936216,-90.078014,2.5,45,1
+_2a9eJC2bLeEJd0z1nLFlw,"Caliber Collision","5401 RT-42",Turnersville,NJ,08012,39.755918,-75.047699,3.5,7,1
+_2axAlqUMjbJrtTAgtPQpQ,"Best Buy - Metairie","3780 Veterans Memorial Blvd",Metairie,LA,70002,30.003112,-90.167642,3.0,10,0
+_2cDc86vwgqgnPJiutumbQ,"Premier Cleaners","795 E Lancaster Ave",Villanova,PA,19085,40.036629,-75.350783,2.5,5,1
+_2Cpy1kYY27hh-7p6-OFfg,"Around the Town Property Management","410 S Orchard St",Boise,ID,83705,43.600754,-116.243333,4.0,7,1
+_2FrIA5unwbbweldUnpROQ,"Sip N' Cycle","908 Division St",Nashville,TN,37203,36.151066,-86.781460,2.0,26,0
+_2Ge9Kkch69Xi9A0TvucIg,TallBoys,"201 N Court Ave",Tucson,AZ,85701,32.224183,-110.974056,4.0,165,1
+_2ghaxUvOxxjqcEfLxQSAA,"Whitemarsh Family Dentistry","400-R Germantown Pike","Lafayette Hill",PA,19444,40.092312,-75.261474,4.5,9,1
+_2gi6ICYydmPJz97xwI5Gg,"Joe Dunn Arts","304 Royal St","New Orleans",LA,70130,29.954962,-90.067317,4.5,7,0
+_2h__S21pkGYwDLYV6Z6bg,"CVS Pharmacy","7351 W Hillsborough Ave",Tampa,FL,33634,27.997300,-82.562400,2.0,14,1
+_2k35u1zef_wGuENTVb9iQ,"Silverwood Townhouse Apartments","6707 Abrego Rd, Ste 100",Goleta,CA,93117,34.414206,-119.863720,2.0,19,1
+_2K8CZTDvIHa80wJ6CjxEg,"Anthony's Appliances","1313 Cottman Ave",Philadelphia,PA,19111,40.058388,-75.078020,4.0,5,1
+_2KA4HzZb_WxiBQefVV9xQ,"BRU Coffee + Beer House","11965 Jasper Avenue",Edmonton,AB,"T5K 0P1",53.540706,-113.528830,3.5,40,0
+_2kIt3MLrKlzXgvVgb8YFw,"Dory Pool & Spa","748 S Meadows Pkwy, Ste A9-132",Reno,NV,89521,39.436925,-119.757352,4.5,6,1
+_2miSK7ZGDJFMw-XQXkAuw,"Valvoline Instant Oil Change","8488 W Overland",Boise,ID,83709,43.590570,-116.287638,3.0,5,1
+_2n-gZ53yW80Qf6-8RupYw,"Rightway Automotive","411 S Shortridge Rd",Indianapolis,IN,46219,39.764134,-86.039456,4.5,8,1
+_2px12u77r7E3LQ8vnDbLg,"El Burrito","180 Bridge St",Phoenixville,PA,19460,40.133854,-75.515133,3.5,138,1
+_2QdM7o6rlhUeAeAEdN4MQ,"Dress Right Tailor","1420 Locust St, Unit R2",Philadelphia,PA,19102,39.947955,-75.165897,3.0,21,1
+_2qHYXX2LgozEn9tu5cMRw,"Walmart Supercenter","233 Shoemaker Rd",Pottstown,PA,19464,40.254252,-75.666083,2.0,24,1
+_2tFRpBYAZPDvktMw6sh0g,KFC,"4259 - 23rd Avenue",Edmonton,AB,"T6L 5Z8",53.454195,-113.408847,1.0,7,1
+_2TX8jKP7w-iY9p7LSb-Eg,"Christie's Cabaret","6608 S Tucson Blvd",Tucson,AZ,85756,32.131534,-110.936274,2.5,10,1
+_2uRGD043wpog0sBcrFbYg,"McDonald Pest Control","2220 10th St SE",Largo,FL,33771,27.896692,-82.777787,4.5,7,1
+_2vreQli4wZcSB_ytNuaqQ,"Tastebuds Global Fusion Cuisine","5641 Riverbend Road NW",Edmonton,AB,"T6H 4X9",53.494268,-113.577205,4.5,6,1
+_2Wb35oem68Dt6jCjUumdg,"Public Storage","6543 34th St N","Pinellas Park",FL,33781,27.830718,-82.679428,1.5,7,1
+_2wcVLeS5eS_4oifUjXxAQ,"Wet Seal","136 S Hope Ave","Santa Barbara",CA,93105,34.437018,-119.748229,3.0,5,0
+_2x2i-Dk47a_36hcvT6wfQ,"Third Coast Soccer","2311 Veterans Memorial Blvd",Metairie,LA,70002,30.003142,-90.148017,4.0,6,1
+_2xEQm2W6W5E3G6c49T5Ug,"Batteries Plus Bulbs","5925 W Arizona Pavilions Dr, Ste 101",Tucson,AZ,85743,32.353656,-111.091551,3.5,21,1
+_2xlT8vl3JD68iswnRsaXg,"Rock Solid Climbing + Fitness","3949 W Costco Dr, Ste 151",Tucson,AZ,85741,32.330269,-111.049518,5.0,5,1
+_2yIGMTipDG5bebyj9tINg,"Enterprise Rent-A-Car","3500 Charlotte Ave",Nashville,TN,37209,36.153066,-86.827409,2.5,29,1
+_2Z6ZRtVJZ0Xmk2E8Z-b6A,"Murphy's Guns","3235 N Country Club Rd",Tucson,AZ,85716,32.265669,-110.927239,3.5,42,1
+_3-4zz_PlKsSQwkCU5_a6Q,"Bowties Kids Salon","2809 Egypt Road",Audubon,PA,19403,40.128575,-75.432965,4.5,7,1
+_30PYsnQuGax9SbSnVL0-A,"Mr China","359 Pennington Ave",Trenton,NJ,08618,40.231825,-74.770006,4.0,5,1
+_34KJPR-T0HP9USJw1nCfw,"Hiro Ramen House","1102 Chestnut St",Philadelphia,PA,19107,39.950010,-75.158862,4.0,435,1
+_357-ycTGX1t0Pla4ShVAA,"Thai Terrace Cuisine","444 Hurffville-Cross Keys Rd",Sewell,NJ,08080,39.734753,-75.068129,4.0,202,1
+_370tgY88bNAMXRgN0-J5Q,Arby's,"435 W Main St",Hendersonville,TN,37075,36.303182,-86.641884,2.0,9,1
+_393npnr0Dw1aGKy83x_0A,"Paladar 511","511 Marigny St, Ste A","New Orleans",LA,70117,29.963035,-90.054806,4.5,507,1
+_39Ew9rR8S0YpOzWYhY0ow,"French Quarter Gem & Lapidary","527 St Philip St","New Orleans",LA,70116,29.959698,-90.061229,4.5,65,1
+_3AUB8a63BztTjo7ZIN6-Q,"Positively Records","4153 Woerner Ave",Levittown,PA,19057,40.151383,-74.858544,4.5,21,1
+_3b-lu_5SOpTlWnWjE2w-A,"Lynch Maintenance Service","8200 Offenhauser Dr",Reno,NV,89511,39.447810,-119.770934,5.0,7,1
+_3Cv3TGUPMgnq7aADi13Wg,"WOW Café","231 N Carrolton","New Orleans",LA,70119,29.976100,-90.099526,2.0,24,0
+_3DBgWpzjo_TSNm4jRNiJg,"Chinese Hot Pot Buffet","5420 Calgary Trail NW",Edmonton,AB,"T6H 4J8",53.491505,-113.496766,4.5,52,1
+_3F4-hH5zhJJDTyvzNlDcg,"China Rainbow Restaurant","7217 Torresdale Ave",Philadelphia,PA,19135,40.029463,-75.036028,2.5,19,1
+_3hT6D26_1uGR_W1RcmUaA,"WIN Bubble Tea - White Bridge","99 White Bridge Pike",Nashville,TN,37205,36.131607,-86.858115,4.0,26,1
+_3I8v4W8ap_XK4PewwmU6A,"Valvoline Instant Oil Change","205 Homer Adams Pkwy",Alton,IL,62002,38.919885,-90.172283,4.5,8,1
+_3j8rQHUviV55AqsSSzK2w,"Robola Pizza & Grill","1999 N 52nd St",Philadelphia,PA,19131,39.988611,-75.227645,3.0,35,1
+_3m2qyCqx2pnDNyo5vYM3g,"Stone Creek Zionsville","4450 Weston Pointe Dr, Ste 150",Zionsville,IN,46077,39.947745,-86.238000,4.0,206,1
+_3mIHvzReaJsSB8UnbTnKQ,"David White, DDS","1300 Haskell St",Reno,NV,89509,39.511375,-119.807874,4.5,12,1
+_3NZVCWeyFZ1_vWqi2avjw,"Nick's Old Original Roast Beef","2149 S 20th St",Philadelphia,PA,19145,39.924466,-75.179307,4.5,258,1
+_3OF4bre2nrpIzxC27EhlQ,"Legit Pho","7262 Fishers Crossing Dr",Fishers,IN,46038,39.958558,-86.042344,4.5,85,0
+_3oJRVffZf0W-x8A7_Ds9w,"Elite Hardwood Restoration","405 S Dale Mabry Hwy, Ste 366",Tampa,FL,33609,27.940914,-82.506131,1.0,5,0
+_3pg_9eXU7ZGbljaNuYGiQ,"Stephenson's Auction","1005 Industrial Hwy",Southampton,PA,18966,40.162691,-75.044262,2.5,9,1
+_3SfdIE0ac8SXxMktIGVsQ,"McAlister's Deli","735 E Wetmore Rd",Tucson,AZ,85705,32.287144,-110.960450,4.0,72,0
+_3SJZnJN4wT8yr4DVNNqDA,"David Gardner, DMD - Rittenhouse Dentistry","1728 Spruce St, Ste 101",Philadelphia,PA,19103,39.947458,-75.170830,5.0,48,1
+_3su-am_oQzuvqfaausJ0A,"Karleys Linens","4928 Disston St",Philadelphia,PA,19135,40.023817,-75.040144,4.5,9,1
+_3TCEJUWIsg0RYfg4JktCg,"Hut Sports Bar & Grill","130 Behrens St","O Fallon",IL,62269,38.594714,-89.897176,4.0,9,1
+_3TQ-w2vIh1CTuYgZp76uw,"Rimon at Tulane Hillel","912 Broadway St","New Orleans",LA,70118,29.940061,-90.124958,4.0,5,1
+_3U2YwnbcdtDc1UVvjUrkw,"Just Love Coffee Cafe - Music Row","1528 Demonbreun St",Nashville,TN,37203,36.152948,-86.790782,4.0,263,1
+_3VCzu9a79nrU0YA-WvUCg,McDonald's,"4443 W Kennedy",Tampa,FL,33607,27.945172,-82.519890,2.5,47,1
+_3VgAb8CcWXrsQdR5FM5Qw,Talbots,"3029 Veterans Memorial Blvd",Metairie,LA,70002,30.003733,-90.153279,2.5,5,1
+_3WAkg_nfdRoOvadFs9teA,Subway,"2100 8th Ave S",Nashville,TN,37204,36.132239,-86.778721,3.5,17,1
+_3X4IRjAJ63rk2XoER8eaA,"Jiffy Lube","3998 SouthEast St",Indianapolis,IN,46227,39.708233,-86.149419,3.5,8,1
+_3y3VvOwAqU0w-yz9j9Orw,"Big O Tires","4602 W State St",Boise,ID,83703,43.647913,-116.246021,4.5,15,1
+_4_jANQD9Vxr7y7DVA6RQg,"Maka Eatery","10211-102 Avenue NW",Edmonton,AB,"T6A 0S4",53.543026,-113.496597,4.5,6,1
+_4_qlN7JR4wCRRjkSysk1g,"Godby Home Furnishings","14550 Mundy Dr",Noblesville,IN,46060,39.999497,-86.001132,2.0,41,1
+_40CSZCKamFvHGZXaVaGXQ,"Samosa House","9405 118 Avenue NW",Edmonton,AB,"T5G 0N5",53.570288,-113.486021,3.5,6,1
+_40o-5GZWs6IemZ5G3d_BA,"Soho Shave Company","1910 W Platt St",Tampa,FL,33606,27.941717,-82.479256,4.5,7,1
+_41hRR-WQEz7ffeeopwJ6A,"Go Popcorn","18 W Lightcap Rd, Ste 1053",Pottstown,PA,19464,40.236123,-75.569337,4.0,9,0
+_41SpyZZw0uDUE3mQjv_OQ,Azul,"39 E 9th St",Indianapolis,IN,46204,39.779101,-86.156316,2.5,9,0
+_42GuvIzmEwVI4lE5zYpFA,"Andy Mohr Ford","2713 E Main St",Plainfield,IN,46168,39.719677,-86.349446,2.0,95,1
+_42k0tj-oseoViaTEWb-Dw,"El Indio","3355 S 6th Ave",Tucson,AZ,85713,32.185402,-110.967848,3.5,70,0
+_44M9vtsTFBe_48uB72taA,"Public Storage","6330 Market St","Upper Darby",PA,19082,39.962606,-75.248248,2.5,19,1
+_46NI0zcrnA0HFWdRmGbkg,"Coffee Works Roastery & Cafe","910 Haddonfield Berln Rd, Unit 6",Voorhees,NJ,08043,39.851135,-74.979526,3.5,12,0
+_47K-Y1tPeKHTo6PxJLNYg,"Mower Medics","10004 N Armenia Ave",Tampa,FL,33612,28.040328,-82.480165,4.0,5,1
+_47Xt1FPfidep-Res9U4EQ,"Cookies by Design","11740 N Dale Mabry Hwy",Tampa,FL,33618,28.054921,-82.505846,3.5,8,1
+_49FsmTfruZSTjxU4OwOsg,"Taziki's Mediterranean Cafe - West End","3001 W End Ave",Nashville,TN,37212,36.143655,-86.813522,3.5,120,1
+_4A9jOgyQGrkI9me_TmRmw,"Tempered Fine Chocolates","1201 5th Ave N, Ste 103",Nashville,TN,37208,36.175429,-86.788344,4.5,96,1
+_4AA5f1GhFkBr8mQFkuWug,"R Bar","350 E Congress St, Ste 110",Tucson,AZ,85701,32.221753,-110.966236,4.0,77,0
+_4aSONgu82BOO4Vt2b5pXA,"Head to Toe Salon","13028 Race Track Rd",Tampa,FL,33626,28.070886,-82.632571,3.5,6,1
+_4aXcnsN9iboENHK7cGD4Q,"Lecada Medical Artistry","3710 W Azeele St",Tampa,FL,33609,27.941010,-82.504512,4.5,43,1
+_4bhVmlvT9dvqydQG2TOMA,"Olive + Oak","216 W Lockwood Ave","Saint Louis",MO,63119,38.593008,-90.361687,4.5,722,1
+_4CDv5gKHpPb1ALZKS4Sjw,"Bro's Pizzeria & Bar","2535 E Bay Dr",Largo,FL,33771,27.916164,-82.760905,4.0,98,1
+_4E8aECY-679SxLH4R0Z3g,Amoroso's,"845 S 55th St",Philadelphia,PA,19143,39.945919,-75.233230,3.0,5,0
+_4FbrGumeyeOeK2kbDFxEA,"King of Donair","10364 - 82 Avenue NW",Edmonton,AB,"T6E 1Z8",53.518246,-113.497042,3.0,28,0
+_4g4EBJowOS_LXbyMB7DnQ,McDonald's,"801 Rt 38","Cherry Hill",NJ,08002,39.936079,-75.044117,2.5,18,1
+_4LtVmrCdz40l1DnptAmgQ,"Tin Roof","1516 Demonbreun St",Nashville,TN,37203,36.153289,-86.790056,3.0,215,1
+_4MkKKEP0jt9jnPybvv4mg,"Tailors International","201 Saint Charles Ave","New Orleans",LA,70170,29.952030,-90.070334,4.5,18,1
+_4N42lxdqnKFPKOOFhc0xw,"Mark Silverberg, MD, FAAP, FAAO","4151 Foothill Rd, Bldg B, Sansum Clinic Foothill Eye Center","Santa Barbara",CA,93110,34.420334,-119.710749,4.5,19,1
+_4phv9XzNCWRCsISk4VAsA,"ViXen Nails & Spa","2676 Bayshore Blvd, Ste I",Dunedin,FL,34698,28.052138,-82.780427,4.5,15,1
+_4RMTJMed8dD7_HFzHhwOw,"N'awlins Sports","916 Decatur St","New Orleans",LA,70116,29.958661,-90.060792,2.0,10,1
+_4RXDq3NP1agGtU_9_FdGA,"Liberto Cleaners","4814 Prytania St","New Orleans",LA,70115,29.924106,-90.107065,2.5,44,1
+_4T-55TJgr1uHEQsR-_VkA,"Carmels Dance Wear","3004 Cleary Ave",Metairie,LA,70002,30.000972,-90.172701,4.0,9,1
+_4TdsH2Q35lOHmrP-kbU7w,"American Riviera Bank - Santa Barbara","1033 Anacapa St","Santa Barbara",CA,93101,34.423264,-119.702082,4.0,15,1
+_4tW_rwpBBLzuC0fDfGSdw,"Firestone Complete Auto Care","3301 Old Capitol Trl",Wilmington,DE,19808,39.733912,-75.624563,3.5,11,1
+_4utkCUcIyUT28CtZQ7DnQ,"American Floorcraft","10159 Watson Rd","St. Louis",MO,63127,38.556428,-90.399303,4.5,6,1
+_4VrDSmqabnuqwaQlOI6-w,IHOP,"5 N Hwy 67 St",Florissant,MO,63031,38.795290,-90.340970,2.5,34,1
+_4VXaJvHXEqN-eOPfh3H7A,"Vivo Ristorante","6143 Currents Dr NW",Edmonton,AB,"T6W 0L9",53.437514,-113.603298,3.0,7,1
+_4y59Z-edhsfmLfGAFBjxQ,"Patty Long Catering","1808 S 9th St","Saint Louis",MO,63104,38.648783,-90.260690,3.5,14,0
+_4zUuKFW9GmmNYfswqaXNQ,"Lana's Copper Kettle","4004 Granny White Pike",Nashville,TN,37204,36.105210,-86.795580,3.5,148,1
+_5_x1-g7vMxag8fPNJT_3A,"Village Wine Cellar Wine Bar and Bistro","4038 Skippack Pike",Skippack,PA,19474,40.223500,-75.400216,2.5,26,0
+_5_xybRFzDlvIkK_y10Iww,"Sheraton Westport Chalet Hotel St. Louis","191 Westport Plz","Saint Louis",MO,63146,38.702328,-90.447434,3.0,85,1
+_5-bb3nXPssdFNP_sWW7pg,"O'Neil Buick GMC","869 W St Rd",Warminster,PA,18974,40.211082,-75.106099,3.5,40,1
+_50hNNH69PsOJXrurN2OLw,"North Scott Barber & Salon","27 N Scott Ave",Tucson,AZ,85701,32.222553,-110.969994,4.0,12,0
+_50ktyxuUnfkRcDBELZpvg,"Pizza Pie II","184 N Pine St",Langhorne,PA,19047,40.177601,-74.917750,4.5,34,1
+_52HNoJjNkxemydDYM4CcA,"Beuford's Beauty & Barber","5451 E Benson Hwy",Tucson,AZ,85756,32.127114,-110.876065,4.5,7,1
+_52OeiIHlSwhVjnaI8r46g,"Bliss Nails & Spa","276 W Swedesford Rd",Berwyn,PA,19312,40.071255,-75.441053,3.0,54,1
+_55pMRf55YS9qecJdN4iUA,"La Tolteca","1758 Allentown Roa",Lansdale,PA,19446,40.259817,-75.329315,3.0,7,0
+_57sal9ELZ80BA-hzuadYQ,"Exley's Landscape Service","1535 Tanyard Rd",Sewell,NJ,08080,39.776338,-75.131305,3.0,12,1
+_57u1Hc98wUyxKdgeVURtg,"Bristol Cleaners & Laundry","120 107th Ave","Treasure Island",FL,33706,27.769877,-82.768581,2.5,5,1
+_58WfMGlrmnPossd2Gps6g,"Black Radish Grocer","2923 N 12th St",Tampa,FL,33605,27.970431,-82.446872,5.0,17,1
+_5aMfyqG0ei_dLkUqfSWBQ,"Bear Canyon Pizza","8987 E Tanque Verde Rd",Tucson,AZ,85749,32.259881,-110.799633,3.5,255,1
+_5arUCK9zn1NegiZRxb6Rg,"Love's Travel Stop","130 W Trinity Ln",Nashville,TN,37207,36.205153,-86.771737,3.0,16,1
+_5aUqcRlSkRV32ik88xSKg,ReadyRefresh,"30 Twin Bridge Dr",Pennsauken,NJ,08110,39.982154,-75.024611,1.5,31,1
+_5B7hvgzs8r8cf9KcwhmUA,"Park's Alterations","3707 Hillsboro Pike",Nashville,TN,37215,36.109690,-86.812109,2.0,8,1
+_5BlWVancppOgHHq7WvzQw,"Goodwill Industries of Middle Tennessee - 99 Cent Outlet","291 New Shackle Island Rd",Hendersonville,TN,37075,36.320675,-86.624181,4.5,6,0
+_5cmcdvqnfVCkMnqVJQtXw,"Rossi's Hair Studio","1009 Spruce Street",Philadelphia,PA,19107,39.946358,-75.158296,4.5,15,1
+_5dIisc2ujN8R0IZqBfwWA,"Residence Inn by Marriott Wilmington Downtown","1300 North Market St",Wilmington,DE,19801,39.748335,-75.545454,3.5,6,1
+_5ElpvIsMeeZrCxhb19MzQ,"Glazer Children's Museum","110 W Gasparilla Plz",Tampa,FL,33602,27.949605,-82.461694,4.0,137,1
+_5FDW5ajz6NKsPqePPZI0g,"Wild Wasabi","295 Buck Rd",Southampton,PA,18966,40.174804,-74.984790,3.5,8,0
+_5h3U4VntrDCbdatPykUgg,"Baker's American Bar & Grille","1134 Street Rd",Southampton,PA,18966,40.168464,-75.033844,3.5,35,0
+_5j1jqZfayk8QiOdpclF1Q,"Bravo's Pizza Seafood House","5734 N 2nd St",Philadelphia,PA,19120,40.038510,-75.124900,1.5,12,1
+_5j3lZik3p30e9vxUMtoBg,PetSmart,"12835 Citrus Plaza Dr",Tampa,FL,33625,28.063829,-82.573484,3.0,25,1
+_5k9hs8ae9S9Dj46EZrSAg,Starbucks,"2350 West Brandon Blvd",Brandon,FL,33511,27.939907,-82.323166,2.5,98,1
+_5ks_7OiDD_fte9DSYSQ2w,"Fritz in Fishers","8599 E 116th St",Fishers,IN,46038,39.956197,-86.018376,3.0,14,1
+_5ky43xqNW9epG2KYJnpUQ,"Equus Management Group","4888 Sparks Blvd",Sparks,NV,89436,39.581387,-119.723375,1.5,5,1
+_5LVUuZDjdiDS4wSFDhdVA,"Avivah Wax Spa","929 De Mun Ave",Clayton,MO,63105,38.634243,-90.309804,5.0,20,1
+_5olmRs7XAlpOlArCfr7gg,"The White Roach","5704 Magazine St","New Orleans",LA,70115,29.921342,-90.118207,4.5,8,1
+_5pcT_sQEZQ-0Rfc15j-QQ,"Save A Lot","803 Blackwood Clementon Rd",Lindenwold,NJ,08021,39.805034,-75.021470,3.0,5,1
+_5pmGD1gT-KfikJMqkeucg,"Fairfield Inn & Suites by Marriott Mt. Laurel","350 Century Pkwy","Mount Laurel",NJ,08054,39.928635,-74.961181,2.5,30,1
+_5pT2HdDs9rKiIYvO_csCA,Predella,"932 S 10th St",Philadelphia,PA,19147,39.938303,-75.159796,4.5,10,0
+_5rx2qVN9rkiohyzfdlo0A,"P.F. Chang's","25 The Blvd Saint Louis","Richmond Heights",MO,63117,38.634515,-90.345298,3.0,237,0
+_5upOB7cqNMY0ZAZCBVqOA,AutoZone,"200 Starkey Rd",Largo,FL,33771,27.915263,-82.763069,4.5,8,1
+_5vE7CRfcUPHLIDixqtrMg,"Neshaminy Mall","707 Neshaminy Mall",Bensalem,PA,19020,40.139465,-74.955658,3.5,60,1
+_5vtTWXU_LqVzKmuGZKveg,"Brewer Heating & Cooling","9500 Shelbyville Rd",Indianapolis,IN,46259,39.631605,-85.998961,5.0,5,1
+_5WyW7OsgEkEkBk96zwH2Q,"Crystal Nails","1402 N Dupont Hwy","New Castle",DE,19720,39.689015,-75.581694,2.0,9,1
+_5xODDATgNfz7rNYdtLmrw,IHOP,"805 S Collins St","Plant City",FL,33563,28.007564,-82.121760,3.5,16,1
+_5yJIN7Hk0ul6JWtCxGrYw,"VCA Causeway Animal Hospital","1315 N Causeway Blvd",Metairie,LA,70001,29.984722,-90.155518,4.0,37,1
+_5YJq7mUvTasNQhVb192UA,"Associated Dental Care - Tucson N Campbell","3250 N Campbell, Ste 116",Tucson,AZ,85719,32.266162,-110.943284,2.0,33,1
+_5YKKrnxZ60H_VqtX3k-jw,"Philly Pub 'n Grub","2001 Hamilton St",Philadelphia,PA,19130,39.963000,-75.172451,2.5,42,0
+_5YYdX2mGUfEymf-O8CgNQ,"Your Pot's Desire","6511 Delmar Blvd","Saint Louis",MO,63130,38.655924,-90.304502,2.0,6,0
+_5ZyrboEvdEyOg2a5cgEpg,"Tony's Pizza & Italian Restaurant","9605 111 Avenue NW",Edmonton,AB,"T5G 0A9",53.559091,-113.489837,4.0,98,1
+_61CLj2WP5jA6X3SDDlrrg,"Tang's Halal Chinese Restaurant","2223 Ridge Ave",Philadelphia,PA,19121,39.980255,-75.171765,4.5,31,1
+_63cmxCZdWUDMk6HK1uQhg,Starbucks,"2833 Gulf To Bay Blvd",Clearwater,FL,33759,27.960456,-82.719950,3.0,15,1
+_69Q6f_Whq0M8Z9HpkRctg,"Tropical Smoothie Cafe","2911 N Dale Mabry Hwy",Tampa,FL,33607,27.965480,-82.503711,2.0,13,1
+_6A-vMw12vryDpFRy5vhuQ,"Redlands Grill by J. Alexander's","913 Dale Mabry Hwy",Tampa,FL,33609,27.951955,-82.504039,4.0,390,1
+_6BDxk8486ZYiRwpPmQewg,"Limestone BBQ and Bourbon","2062 Limestone Rd",Wilmington,DE,19808,39.721929,-75.657441,4.0,174,1
+_6BiItGONFUlzOYEYBMFkA,"Trolley Tap House","1616 Delaware Ave",Wilmington,DE,19806,39.757530,-75.562259,3.5,78,1
+_6bIZ-KkfdWzoZpyoM_Qzw,"Ktvb-Idaho's Newschannel 7 NBC","5407 W Fairview Ave",Boise,ID,83706,43.618533,-116.248475,2.0,5,1
+_6BKEY4ZLO1F6a3-yUWsSg,"Wat Buddhametta","1133 S Swan Rd",Tucson,AZ,85711,32.208604,-110.891668,4.5,9,1
+_6BPCsncWRTAXs-8B5PAow,"Panda Express","501 Brandon Town Center Dr",Brandon,FL,33511,27.928168,-82.325617,2.5,7,0
+_6d1V7JWBCewgnX0e7jO-g,Jumpers,"Ridley Creek Plz","Newtown Square",PA,19073,39.973942,-75.457809,4.5,42,1
+_6dsh7utF8eTVG4ItJ59AA,"Handy Green Home Solutions","3983 S McCarran Blvd, Ste 403",Reno,NV,89502,39.477397,-119.763552,5.0,7,1
+_6fsNuGA3W4mkDZhxWVWXA,"Welsh Subaru","105 W Ridge Pike",Limerick,PA,19468,40.218926,-75.507425,4.5,7,0
+_6Iw4dgSxyoINHgtjruu3Q,"Mini Super Pars","9312 34 Ave NW",Edmonton,AB,"T6E 5X8",53.466586,-113.475167,3.5,5,1
+_6jVdQZV-8sFvfJXP-l4FQ,"Safari Club International","4800 W Gates Pass Rd",Tucson,AZ,85745,32.234735,-111.066999,4.5,5,1
+_6Jy0ZH6nqh2k2iefGfYBA,"Panaderia Oaxaquena Bakery","3617 E 10th St",Indianapolis,IN,46201,39.781155,-86.104728,4.5,10,1
+_6K0l9oY5ETQuA4rb6CunQ,Hardee's,"400 S Cartwright",Goodlettsville,TN,37072,36.322546,-86.707746,2.0,18,1
+_6p_j0UL7ST3b2nvHw82eA,"REBAR COFFEE + KTCHN","214 State St","Santa Barbara",CA,93101,34.414441,-119.691916,4.0,160,0
+_6QJBXB4SWXtjLcsKGFMRw,Flavour,"1522 Demonbreun St",Nashville,TN,37203,36.153147,-86.790337,3.5,8,0
+_6s7vdfm8qMfD8sUpQzIbQ,"Gulf Way Inn","2275 Gulf To Bay Blvd",Clearwater,FL,33765,27.960459,-82.742836,1.5,6,1
+_6SXM4fJM7DtMy-ySEYlmg,"Kiehl's Since 1851","1625 Chestnut St",Philadelphia,PA,19103,39.951854,-75.167956,3.5,23,1
+_6umpuMa82PwWpQ9Tz9Raw,"Autopros Towing","5011 N Coolidge Ave",Tampa,FL,33614,27.992647,-82.516741,1.5,23,1
+_6UZVYaDbOVSCkCwSYM8Iw,JCPenney,"50 Hampton Village Plaza","Saint Louis",MO,63109,38.591675,-90.292524,4.0,9,0
+_6woRce_3sGy5zDrpbM4Vg,"Park Place Tire & Auto Center","2841 Tchoupitoulas St","New Orleans",LA,70115,29.920388,-90.079572,4.0,80,1
+_6xXhCMXk7NIwUIm60A6uw,"Children's Medical Clinic - Santa Barbara","15 E Arrellaga St, Ste 1 and 2","Santa Barbara",CA,93101,34.427743,-119.709137,3.0,26,1
+_6Y3SxBvr_NUDBI0eLowLA,"A Fork in the Road","200 Broadway St","New Orleans",LA,70118,29.931433,-90.132943,3.0,7,0
+_7_ZYh1lQkVvmogQyn4HAw,"Tarelli Custom Tailors","1639 S Broad St",Philadelphia,PA,19148,39.929444,-75.168267,5.0,5,0
+_7-Guu9X_ymel2xAXDdVhQ,"RH Outlet Clearwater","21315 US Highway 19 N",Clearwater,FL,33765,27.966202,-82.728750,2.5,6,1
+_71WZL5izRxgFgu-nKsD5w,"Sunny Discount Liquor","2900 Clear Acre Ln, Ste L",Reno,NV,89512,39.557279,-119.790584,3.5,5,1
+_72FLH0VN5iUei4G3s5mYw,"Boom Hair Salon","1441 E Fletcher Ave, Ste 131",Tampa,FL,33612,28.069197,-82.443813,3.0,69,1
+_72lSqRdaLhMngyq-d4OiQ,"Burger King","80 East Bridge Street","Spring City",PA,19475,40.181872,-75.546434,1.5,7,0
+_7849WzN9IkhmO-CRjWctg,Walgreens,"3910 E 22nd St",Tucson,AZ,85711,32.206274,-110.908903,2.5,12,1
+_78BRhM7B3sNy8OvCNgBPw,"China Inn","9613 N College Ave",Indianapolis,IN,46280,39.928428,-86.145216,3.5,37,1
+_78Lam9Jd0W6ZmnHTvdjMg,"Armature Works","1910 N Ola Ave",Tampa,FL,33602,27.961234,-82.463734,4.5,1119,1
+_7aHvKh1QkE2n6ZY5gooWg,Reign,"1122 Washington Ave","St Louis",MO,63101,38.631231,-90.195934,3.5,21,0
+_7As90cYT2bcRKCEPBi23A,Würk,"214 W Commercial Row",Reno,NV,89501,39.527569,-119.816760,3.5,17,0
+_7asVsEzx1kdkNxvdxCQbw,"Tucson Reptile Rescue","844 S 6th Ave",Tucson,AZ,85701,32.210922,-110.968827,3.5,5,0
+_7b9HAH2lJoeLfHTldZ9hA,"Signature by Joseph Lentini","116 S 19th St",Philadelphia,PA,19103,39.962440,-75.199930,3.0,8,0
+_7Be16X5HVe4ypieLii4Ow,"Las Fuentes","680 N US Hwy 67",Florissant,MO,63031,38.798051,-90.335613,3.5,69,1
+_7bSxlQbj51wn5_0DouyKg,"Glauser Joel L PC","4753 E Street Rd","Feasterville Trevose",PA,19053,40.137155,-74.983182,4.5,7,1
+_7cf56aKblR62Jwor53Nlw,"Circle K","1801 Concord Pike",Wilmington,DE,19803,39.786067,-75.545297,3.5,5,1
+_7D1CjVqSSz637-WzDs6kg,"Desert Refrigeration & Auto Service","3675 N Romero Rd",Tucson,AZ,85705,32.274058,-111.003649,5.0,8,1
+_7E6QvonrYOm5LU7By9DLA,"Wendy's Alterations","2105 W Newport Pike",Wilmington,DE,19804,39.716203,-75.638328,5.0,9,1
+_7eE2TYHM6D_qmvavrWF6g,"Bliss Salon & Color Studio","19 N 7th St",Perkasie,PA,18944,40.375269,-75.295038,3.5,9,1
+_7EnH5l_oCZyu407yuvNEQ,"Tacos Mexigo","307 Ridge Rd",Claymont,DE,19703,39.812732,-75.443450,3.5,26,1
+_7eSRvQCHCyagRNZMCXP0A,"Echelon Glen Apartments","314-4 Echelon Rd",Voorhees,NJ,08043,39.848123,-74.990471,1.5,9,1
+_7fOf6X-6dmBgPhAA73kpQ,"LIT Cigar & Martini Lounge","908 N Franklin St",Tampa,FL,33602,27.951691,-82.459917,3.0,17,1
+_7g89aWLTv3kS5xsNcX8Gw,"China One","4316 6th St S","Saint Petersburg",FL,33705,27.729341,-82.639019,3.5,9,1
+_7JgkeNoRn_p7EOj2ZPs-Q,"New Orleans Perspectives","1340 Poydras St, Ste 1440","New Orleans",LA,70112,29.951039,-90.077341,5.0,6,1
+_7JOYqzF0z1hO-aaFOOQpg,"Mac's Automotive & Radiator Repair","4500 W Chinden Blvd",Boise,ID,83714,43.635577,-116.256776,4.5,15,1
+_7ks3u-qZsOTKBrXKcA1Ow,"Empire Beauty School","3810 E Southport Rd",Indianapolis,IN,46237,39.666471,-86.100669,2.5,14,1
+_7lj5Anv74yWRA_JphK__Q,"Palladium Theatre","253 5th Ave N","Saint Petersburg",FL,33701,27.777826,-82.636823,4.0,17,1
+_7Lmzf_J3_Ms2yfB0Fgkgw,"Spa Zeta","7435 N Oracle Rd, Ste 101",Tucson,AZ,85704,32.342149,-110.977707,5.0,6,0
+_7LPHpXK4RvXDc_q-7okvA,"Wild Birds Unlimited","3956 E 82nd St",Indianapolis,IN,46240,39.909399,-86.098423,5.0,14,1
+_7NL4U1qm18RRm1XylZ7wA,Dury's,"1027 Murfreesboro Pike",Nashville,TN,37217,36.128171,-86.713127,3.5,39,0
+_7prozPko8rsK-XPFjf5LA,"The Rockin Redhead","1960 Cherokee St","Saint Louis",MO,63118,38.592585,-90.220764,4.5,6,1
+_7pYY0TS3Wao2_jnQ1LBBQ,"Marco's Pizzeria","2102 S Eagle Rd",Newtown,PA,18940,40.230271,-74.941343,3.0,64,1
+_7REb0hX0RbhSEqdtYycFg,"Impriano Roofing & Siding","3048 W Chester Pike",Broomall,PA,19008,39.983652,-75.376696,4.5,10,1
+_7TAm2XyzahdDRDDE-Xb8A,Dunkin',"10250 Page Ave",Overland,MO,63114,38.690901,-90.386977,2.0,11,1
+_7TCTh2SxoJTgtLcBwn5GA,"Banfield Pet Hospital","62 Centerton Rd","Mt Laurel",NJ,08054,39.969663,-74.910093,3.5,5,1
+_7txbYafymgB-xqbsdWJjA,"Jinxed Fishtown","1331 Frankford Ave",Philadelphia,PA,19125,39.971126,-75.134061,4.5,22,1
+_7V_3b2dSSVIXqVMJwGmoQ,"Golden Cuisine","679 N Broad St",Philadelphia,PA,19123,39.965834,-75.160398,3.0,57,1
+_7V9Yr8VCMlLzykAo-Lhnw,"Cafe 251","251 N Illinois St, Ste 140",Indianapolis,IN,46204,39.771071,-86.159226,4.5,26,1
+_7vwC7qyeKBJmc4yYcQrGA,"Berta Sawyer","306 York Rd",Jenkintown,PA,19046,40.095466,-75.125595,4.0,5,1
+_7wLfTpbf-1O7zS3uzzHEA,"Harry's Beach Bar","5300 Gulf Blvd","St. Pete Beach",FL,33706,27.727213,-82.742865,4.0,32,0
+_7wNcARcLtZWDeurAa6H5g,"Spirits of '76 Ghost Tours","325 Chestnut St",Philadelphia,PA,19106,39.949088,-75.147154,3.0,15,1
+_7X0f9VLowKqH-wtrWwTuw,"CD Roma's","1280 66th St N","Saint Petersburg",FL,33710,27.784188,-82.728704,5.0,7,0
+_8_j8KRNtHtGoG6q6q_5lw,Walgreens,"152 E Lancaster Ave",Paoli,PA,19301,40.041371,-75.477138,2.5,6,1
+_81CVazPnxJel7IWP0m22w,"Image Sun Tanning Center","6843 N Strawberry Glen Rd, Ste 130",Boise,ID,83714,43.660103,-116.284992,4.5,6,0
+_862ur1CNEtAr72r2DQmUA,"Roberts Camera","12761 Old Meridian St",Carmel,IN,46032,39.973661,-86.149237,4.0,29,0
+_88ao0DzRuxYjU-Hp2G05Q,"Top Shelf Lounge","5564 Market St",Philadelphia,PA,19139,39.960694,-75.232626,4.0,9,1
+_8A-0knz2yjMX5XlevSRow,"Ross Dress for Less","9240 S Houghton Rd",Tucson,AZ,85747,32.084070,-110.774411,2.0,5,1
+_8awHDOi2io_Gtd_tGqkNw,"Excel Medical Imaging","5626 Gulf Dr","New Port Richey",FL,34652,28.238283,-82.721015,2.5,17,1
+_8BCclqN21WvzvaLcqgUxg,"Brain Freeze Ice Cream Parlor","99 W Main St",Moorestown,NJ,08057,39.963444,-74.948437,4.5,13,1
+_8bELjUz5tnftBbXAxKyjA,Starbucks,"9616 Manchester Rd","St. Louis",MO,63119,38.608365,-90.367276,3.5,34,1
+_8c3ykQczPF77-qaOSks1Q,"Zano Cars","2005 S Alvernon Way",Tucson,AZ,85711,32.199124,-110.909044,2.5,10,1
+_8cLL7stUAkPpWLBI09GHA,"Amigos restaurant & Pizza","576 Cottman Ave",Cheltenham,PA,19012,40.068244,-75.096311,4.5,6,1
+_8d7yWDfgN12tMgekjPNjA,"Huff Appliance Service","1314 Woodland St",Nashville,TN,37206,36.177347,-86.746091,3.0,11,1
+_8DE1Zl3AOqn0pyAmGcKmg,"Super Sports & Scuba","7129 US Hwy 19","New Port Richey",FL,34652,28.261100,-82.728497,4.0,8,1
+_8dFWEVSVxU6nIW3yM0xRA,"Panda Express","1504 W U.S. 50",O'Fallon,IL,62269,38.592413,-89.948247,2.5,54,1
+_8DMOJZoJnX4WPgqEdEUsg,"Taqueria El Gallo de Sinaloa","6841 S Craycroft Rd",Tucson,AZ,85756,32.127491,-110.874719,3.5,7,1
+_8ElK2w-AM3J1BYy9rAFjA,"Purolator Courier","17718 114 Avenue NW",Edmonton,AB,"T5S 2N4",53.563925,-113.624720,2.0,8,1
+_8EZt3JUPQ9dlCLY3NSrqg,"Carshop - Chester Springs","21 Pottstown Pike","Chester Springs",PA,19425,40.072665,-75.684065,3.0,70,1
+_8fsFNmqNmsPTd1tkCHLzQ,"Family Dermatology","525 Jamestown St, Ste 206",Philadelphia,PA,19128,40.028175,-75.208751,1.5,10,1
+_8GP2wBnG2CdmZKHmpz8ng,"Haddonfield Fine Jewelers","116 Kings Hwy E",Haddonfield,NJ,08033,39.896946,-75.033454,5.0,18,1
+_8GPLch3GAnhOmymvG947w,"Lola's Bowl and Bistro","9045 Crawfordsville Rd",Clermont,IN,46234,39.815703,-86.322560,3.5,28,0
+_8HapUnPIj89zPIr_sEdAA,"Hadleys Catering and Events","4700 Lebanon Pike",Hermitage,TN,37076,36.216895,-86.591920,3.0,77,0
+_8igh2mxuHZTOnm0k2MT_Q,"Why Not? Cafe And Bar","8534 109 Street NW",Edmonton,AB,"T6G 1E5",53.521658,-113.512299,4.5,13,1
+_8JJHa6fHX8kXkww7KMN6g,"Peggy Sterling, OD","29154 Chapel Park Dr","Wesley Chapel",FL,33543,28.239436,-82.332406,2.5,9,1
+_8JQBGQYH-JhNdKT035mDg,"Cryan John S Jewelers","673 2nd Street Pike",Southampton,PA,18966,40.173508,-75.043797,4.5,9,1
+_8JrzxWYNODeyo2rDCR_IQ,"Dolan's Irish Pub","630 Rt 130 S",Burlington,NJ,08016,40.070945,-74.866419,3.5,41,0
+_8MkUoObdLpakXbCobbKxA,"Pure Eatery","1043 Virginia Ave, Ste 3",Indianapolis,IN,46203,39.752734,-86.140862,4.0,357,0
+_8mrg8d1KWWND8fMAQVqRQ,"Sal's On 12th","200 S 12th St",Philadelphia,PA,19107,39.948431,-75.160772,2.5,15,0
+_8QkK3WwGxNnn54Q1VTTcA,"Leneghan's Crusader Inn","7412 Frankford Ave",Philadelphia,PA,19136,40.038263,-75.037615,5.0,5,1
+_8S2COsrFi5nJwbx6EPFhQ,"CBD REVOLUTION","10202 E Washington St, Ste 446",Indianapolis,IN,46229,39.779389,-85.986320,4.0,5,1
+_8Smw4aJmDN0gGKdr02Knw,"Carmel Family Dentistry","370 Medical Dr, Ste E",Carmel,IN,46032,39.960770,-86.120631,4.0,12,1
+_8SSuIhSyhsVl8p9CsLGCQ,"Chic Nails & Spa","817 N 2nd St",Philadelphia,PA,19123,39.963352,-75.140597,4.0,106,1
+_8sT3VfmHCwu8AXk73e4Hg,"Art Nails","8315 E Washington St",Indianapolis,IN,46219,39.772782,-86.020436,3.0,12,1
+_8uqfnMGPK0YHO1qc6c7vQ,"Pizza Haven","122 E Brandon Blvd",Brandon,FL,33511,27.938661,-82.284714,4.5,87,1
+_8VtR-ZfG4-WeDjeI7cEXA,"The UPS Store","9511 Chef Menteur Hwy, Ste 109","New Orleans",LA,70127,30.017209,-89.975059,3.5,6,1
+_8Wi-FvM3z0itovHLtDUuw,"Fresh Works of Warminster","348 York Rd",Warminster,PA,18974,40.200089,-75.101127,4.0,16,0
+_8Wq8lh2uJoMTftYtNAC3w,"Saige Cafe","1631 Wallace St",Philadelphia,PA,19130,39.965803,-75.165451,2.5,26,0
+_8XdNPiCJmrbehZr5nRyfA,"Taco Bell","2456 McMullen Booth Rd",Clearwater,FL,33759,28.009960,-82.708940,3.0,20,1
+_8Y8tsvMmwCkT3xrlmWbNg,"Advance Auto Parts","3823 S Dale Mabry Hwy",Tampa,FL,33611,27.907515,-82.506665,4.0,8,1
+_8yGCHO9xX7J6bWRB3oNwA,"Sunshine Cafe","207 W Ridge Pike",Royersford,PA,19468,40.224083,-75.514704,4.0,81,1
+_8YjZsIqyk9kSpWey7BftA,"BJ's Custom Auto Upholstery","8624 N Florida Ave",Tampa,FL,33604,28.028748,-82.459791,4.5,11,1
+_8zIpeRbMVwwyuUngyuemA,"Cafe De Manila","1575 Vassar St",Reno,NV,89502,39.513801,-119.787902,3.5,110,0
+_9_aqbw4ak8qFskzxHxrpQ,"University Family Fun Center","4006 Spruce St",Philadelphia,PA,19104,39.951538,-75.203486,4.0,38,1
+_91owoeF7Ab9hnLgVBsLXg,EvelineCharles,"11100 - 51 Avenue, Suite 601",Edmonton,AB,"T6H 4M9",53.485515,-113.513543,2.0,20,0
+_92GOLKC_FWTNaDIg7VVbA,"City Farmhouse","117 3rd Ave N",Franklin,TN,37064,35.925910,-86.869727,3.5,6,1
+_9347lfomXNjr2Sq0YMk8g,"CopyRight Printing Systems","5708 Hollister Ave",Goleta,CA,93117,34.435936,-119.823249,4.0,5,1
+_94_FAiPqGauzHfa4SahcA,"Blue Fugu","4615 Gulf Blvd, Ste 210","St. Pete Beach",FL,33706,27.721591,-82.738486,3.5,133,1
+_94pflFSusXDrv5sk8jQoA,"Peter Piper Pizza","7621 N Oracle Rd",Tucson,AZ,85704,32.345452,-110.976341,3.5,11,0
+_95ZY2UZrasSfuoDD_E1YA,"Suki Hana","132 Christiana Mall, Ste 1477",Newark,DE,19702,39.678752,-75.651730,3.0,50,1
+_980W4Bu_9ZrtnIbdZMDuA,"Integrity Limousine Services","10667 Andrade Dr",Zionsville,IN,46077,39.942010,-86.243892,4.0,23,1
+_98csRGckqIKkWy89T881g,"Toto's Tacos Restaurant","1118 W St Marys Rd",Tucson,AZ,85745,32.229832,-110.989448,4.5,16,1

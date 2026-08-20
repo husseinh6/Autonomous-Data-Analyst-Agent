@@ -25,10 +25,18 @@ def apply_cleaning(df, recommendations):
                 before_sample = f"{missing_count} missing values"
                 after_sample = f"filled with median {fill_value}"
             else:
-                fill_value = clean_df[col].mode()[0]
-                clean_df[col] = clean_df[col].fillna(fill_value)
-                before_sample = f"{missing_count} missing values"
-                after_sample = f"filled with most common value '{fill_value}'"
+                mode_value = clean_df[col].mode()[0]
+                mode_count = (clean_df[col] == mode_value).sum()
+                not_null_count = clean_df[col].notna().sum()
+                mode_perc = mode_count / not_null_count
+                if mode_perc >= 0.3:
+                       clean_df[col] = clean_df[col].fillna(mode_value)
+                       before_sample = f"{missing_count} missing values"
+                       after_sample = f"filled with most common value '{mode_value}'"
+                else:
+                       clean_df[col] = clean_df[col].fillna("Unknown")
+                       before_sample = f"{missing_count} missing values with no distinguishable replaceable word"
+                       after_sample = f"filled with placeholder 'Unknown' (no value appeared often enough)"
         elif action == "drop":
             before_sample = "column present"
             clean_df = clean_df.drop(columns=[col])
@@ -37,16 +45,25 @@ def apply_cleaning(df, recommendations):
             if pd.api.types.is_numeric_dtype(clean_df[col]) == True:
                 Q1 = clean_df[col].quantile(0.25)
                 Q3 = clean_df[col].quantile(0.75)
-                LC = Q1 - 1.5*(Q3-Q1)
-                UC = Q3 + 1.5*(Q3-Q1)
-                num_out = (clean_df[col] < LC).sum() + (clean_df[col] > UC).sum()
-                min_df_before = clean_df[col].min()
-                max_df_before = clean_df[col].max()
-                clean_df[col] = clean_df[col].clip(lower=LC, upper=UC)
-                min_df_after = clean_df[col].min()
-                max_df_after = clean_df[col].max()
-                before_sample = f"{num_out} outliers, min/max {min_df_before}/{max_df_before}"
-                after_sample = f"min/max {min_df_after}/{max_df_after}"
+                IQR = Q3 - Q1
+                if IQR == 0:
+                    # Q1 == Q3 — usually a binary/near-constant column (e.g. a 0/1
+                    # flag where one value dominates). Clipping here would flag the
+                    # entire minority class as "outliers" and overwrite them with
+                    # the majority value — real data corruption, not a fix. Skip.
+                    before_sample = f"skipped — IQR is 0 (likely binary/near-constant), clipping would corrupt real values"
+                    after_sample = "no change"
+                else:
+                    LC = Q1 - 1.5*IQR
+                    UC = Q3 + 1.5*IQR
+                    num_out = (clean_df[col] < LC).sum() + (clean_df[col] > UC).sum()
+                    min_df_before = clean_df[col].min()
+                    max_df_before = clean_df[col].max()
+                    clean_df[col] = clean_df[col].clip(lower=LC, upper=UC)
+                    min_df_after = clean_df[col].min()
+                    max_df_after = clean_df[col].max()
+                    before_sample = f"{num_out} outliers, min/max {min_df_before}/{max_df_before}"
+                    after_sample = f"min/max {min_df_after}/{max_df_after}"
             else:
                 exp_bef = clean_df[col].iloc[0]
                 clean_df[col] = clean_df[col].str.strip()

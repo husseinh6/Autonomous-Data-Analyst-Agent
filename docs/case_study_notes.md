@@ -289,3 +289,61 @@ worked, what broke, what the agent got wrong.
   (report generation) all done, each verified against real output, not
   just "ran without error." Next per Notion/Plan.md: Thu Aug 20 — test
   on Yelp export + a second messy CSV, fix bugs.
+
+## 2026-08-20 — Week 2, Day 4 (Thursday) — test on a second messy CSV, fix bugs
+- `top_reviewed_businesses.csv` (used all week) turned out to have 0%
+  missing values and 0 duplicates throughout — never actually exercised
+  the messy-data paths. Built a genuinely messy second file instead:
+  `business_sample_messy.csv`, exported from the real `yelp_db.business`
+  table via `(SELECT ... WHERE address IS NULL LIMIT 100) UNION ALL
+  (SELECT ... WHERE address IS NOT NULL LIMIT 400)` — 500 rows, 11
+  columns, 100 genuinely missing addresses by design, not luck.
+- First export attempt failed to even load: `attributes` (nested JSON)
+  wasn't properly quote-escaped by MySQL Workbench's CSV export, so
+  unescaped internal quotes broke the file's column structure entirely
+  (`ParserError: Expected 12 fields, saw 14`). Fixed by re-exporting
+  without that column — not needed for what's being tested anyway. A
+  different, more realistic kind of messy than anything hit before: a
+  structurally broken file, not just messy values inside a valid one.
+- Full pipeline (profile → Claude → clean → audit → report) ran
+  end-to-end on the new 500-row/11-column file with no crash — real
+  evidence the code generalizes beyond the narrow 50-row/5-column file
+  it was originally built against.
+- Two genuine bugs found by actually reading the output, not just
+  checking it ran (same principle as every prior "sanity check" this
+  project keeps coming back to):
+  1. **Serious — `is_open` (binary 0/1) got silently corrupted.**
+     IQR-based outlier clipping is meaningless on a column with two
+     values: when one class dominates, Q1 and Q3 both land on the
+     majority value, the IQR collapses to 0, and the "valid range"
+     becomes a single point — so the entire minority class (closed
+     businesses) got flagged as "outliers" and clipped to match the
+     majority (silently turned into "open"). Real data corruption, not
+     a stylistic issue. Fixed in `data/cleaning.py`: skip clipping
+     entirely when `IQR == 0`, with an explicit before/after message
+     explaining why, rather than silently doing nothing or corrupting
+     data.
+  2. **`address` got filled with a fabricated duplicate.** Text-column
+     imputation used `.mode()` unconditionally — meaningless for a
+     near-unique column (400 unique values across 400 non-null rows),
+     so it just grabbed an arbitrary single address and copied it into
+     100 different businesses' records. Fixed (Hamsa's own design,
+     mirroring the IQR-zero fix's logic): only use the mode value if it
+     actually represents at least 30% of non-null values; otherwise
+     fall back to a `"Unknown"` placeholder. Verified this also
+     correctly caught `postal_code` as a case that looked plausible for
+     mode-fill by eye but didn't actually clear the 30% bar either —
+     the fix judges the real data, not assumptions about it.
+  3. **Documented, not fixed today — aggressive clipping on naturally
+     skewed data.** `longitude` (68/500 flagged, spans genuinely
+     different states) and `review_count` (64/500, max clipped from
+     1119 down to 72) both got heavily clipped by simple 1.5×IQR, which
+     doesn't distinguish "erroneous extreme value" from "legitimate but
+     rare high value." A real methodological limitation of the outlier
+     method chosen in week 1, not a quick bug fix — flagged for the
+     write-up's limitations section rather than solved today.
+- Both fixed bugs directly demonstrate why the audit trail and report
+  exist: neither would have been caught by "did it crash" alone, only
+  by actually reading what the agent did.
+- Week 2 complete except Friday's wrap-up. Next per Notion/Plan.md:
+  Fri Aug 21 — review + notes for the case study.
