@@ -347,3 +347,35 @@ worked, what broke, what the agent got wrong.
   by actually reading what the agent did.
 - Week 2 complete except Friday's wrap-up. Next per Notion/Plan.md:
   Fri Aug 21 — review + notes for the case study.
+
+## 2026-08-21 — Week 2, Day 5 (Friday) — review + wrap-up
+- Week 2 in one line: the cleaning agent went from "Claude suggests
+  actions" (end of week 1) to a full pipeline that actually applies
+  changes, logs them, reports on them, and survives real messy data —
+  including finding and fixing two genuine bugs along the way, one of
+  which was silently corrupting data (`is_open`).
+- Pace held up again — every day landed at or under its estimate, no
+  plan adjustments needed. Two build-mode moments worth remembering for
+  future weeks: (1) purely mechanical/repetitive fixes (the cleaning.py
+  before/after enrichment) got handed to Claude directly rather than
+  redone by hand once the pattern was already understood; (2) genuinely
+  new territory (file I/O and JSON on Tuesday) got more scaffolding
+  than usual, correctly — not every new thing deserves the same "figure
+  it out" treatment.
+- Recurring theme worth carrying into week 3: several real findings
+  this week only surfaced because output got actually read, not just
+  checked for crashes (the `stars`/`review_count` action inconsistency,
+  the `is_open` corruption, the fake-duplicate address). Worth keeping
+  that habit deliberately as SQL and DB work starts — a query that runs
+  without error is not the same as a query that's correct.
+- Open items carried forward, not forgotten: (1) the naturally-skewed-
+  data outlier-clipping limitation (`longitude`/`review_count`) — 
+  documented, not fixed, candidate for the write-up's limitations
+  section; (2) the recommendation-inconsistency pattern (`stars`/
+  `review_count` getting reformat/impute/drop across different runs on
+  identical data) — the first concrete test case already in hand for
+  week 4's validation layer.
+- Week 3 tasks added to Notion (Mon Aug 24 – Fri Aug 28): connect to
+  Yelp MySQL DB, build the question-to-SQL agent call, execute SQL
+  safely with guardrails, turn results into a chart + plain-English
+  answer, then run a fixed test-question set and log failures.
