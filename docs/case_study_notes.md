@@ -379,3 +379,46 @@ worked, what broke, what the agent got wrong.
   Yelp MySQL DB, build the question-to-SQL agent call, execute SQL
   safely with guardrails, turn results into a chart + plain-English
   answer, then run a fixed test-question set and log failures.
+
+## 2026-08-24 — Week 3, Day 1 (Monday) — connect to Yelp MySQL DB
+- Created a dedicated read-only MySQL user (`agent_readonly`) with
+  `GRANT SELECT` only on `yelp_db` — no write/delete privileges at the
+  DB level, per Technical Design.md's guardrails (belt-and-braces
+  alongside the application-level SELECT-only check planned for
+  Wednesday). Credentials added to `.env` (`DB_HOST`, `DB_USER`,
+  `DB_PASSWORD`, `DB_NAME`), never committed.
+- Built `db/connection.py` — two functions:
+  1. `get_connection()` — opens a `mysql-connector-python` connection
+     using the four `.env` values, same pattern as `agent/client.py`'s
+     API-key loading. First attempt passed the env-var names in
+     unquoted (`os.getenv(DB_HOST)`), which Python read as an undefined
+     variable reference rather than a string key — fixed by quoting.
+  2. `get_schema()` — queries `INFORMATION_SCHEMA.COLUMNS` for every
+     table/column/type in `yelp_db`, builds a `{table: [(column, type),
+     ...]}` dict. This is what Wednesday's SQL-generation agent will
+     read to ground its queries in real column names.
+- Two real bugs in the `get_schema()` loop, both self-corrected with
+  guidance: (1) an unnecessary inner `for column_name in table_name:`
+  — looping over a string iterates its individual characters, not
+  useful here, since the outer loop already unpacks one full row per
+  iteration; (2) `schema = {table_name: [...]}` inside the loop
+  overwrote the entire dict every iteration instead of adding to it —
+  fixed with an `if table_name in schema` branch, appending to the
+  existing list or creating a new one. A follow-up slip on the fix
+  itself: called `.append()` with two arguments instead of one tuple,
+  and reassigned `schema[table_name] = schema[table_name].append(...)`
+  — `.append()` mutates a list in place and returns `None`, unlike the
+  pandas methods used all of week 2 that return new objects and need
+  reassignment. Good contrast to have hit directly.
+- Verified against the real local `yelp_db`, not just "ran without
+  error": `Connected: True`, and `get_schema()` returned real
+  structure for **9 tables** (business, business_category,
+  business_hours, category, checkin, review, tip, user_elite_year,
+  yelp_user) with correct column names and types — e.g. `business` has
+  12 columns including `attributes` (json). Technical Design.md Section
+  4 says "8 tables" — minor doc/reality mismatch, not investigated
+  further today (likely just an old count from before `user_elite_year`
+  or `business_category` were split out); worth a one-line fix to the
+  design doc at some point, doesn't block anything.
+- Day 1 of week 3 complete, roughly on estimate. Next per Notion/
+  Plan.md: Tue Aug 25 — build the question-to-SQL agent call.
