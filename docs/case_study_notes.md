@@ -422,3 +422,96 @@ worked, what broke, what the agent got wrong.
   design doc at some point, doesn't block anything.
 - Day 1 of week 3 complete, roughly on estimate. Next per Notion/
   Plan.md: Tue Aug 25 — build the question-to-SQL agent call.
+
+## 2026-08-25 — Week 3, Day 2 (Tuesday) — question-to-SQL agent call
+- Built `generate_sql(question)` in `agent/sql_agent.py`: calls
+  yesterday's `get_schema()`, drops the resulting dict straight into an
+  f-string (Python auto-stringifies it — no manual formatting needed),
+  asks Claude for a single SQL SELECT answering the question, extracts
+  the text block same as `cleaning_agent.py`, returns it as a plain
+  string. Deliberately simpler than a full tool-calling loop for today
+  — schema goes in the prompt directly rather than Claude calling
+  `get_schema` as a tool mid-conversation (Technical Design.md Section 4
+  explicitly allows this simplification). SQL execution itself is
+  tomorrow's task, not today's.
+- Conceptual point clarified: no JSON parsing needed here, unlike
+  `cleaning_agent.py`. `json.loads()` was only needed there because
+  that prompt specifically asked for JSON; today's prompt asks for a
+  plain SQL string, so Claude's text reply is already the final answer
+  — no conversion step.
+- Tested against two real questions on the actual `yelp_db` schema, not
+  just one: (1) "Which city has the most businesses?" — produced a
+  correct single-table `GROUP BY`/`COUNT`/`ORDER BY`/`LIMIT` query; (2)
+  "top 5 businesses by average review star rating, with at least 10
+  reviews" — correctly `JOIN`ed `business` and `review` on
+  `business_id`, grouped by both `business_id` and `name`, used
+  `HAVING` (not `WHERE`) to filter on the aggregate review count.
+  Deliberately picked the second question to force multi-table
+  reasoning rather than trusting a single easy query as proof it works.
+- Real finding, not just a clean run: despite the prompt explicitly
+  saying "no markdown code fences," Claude wrapped both replies in
+  ` ```sql ... ``` ` anyway — an instruction not followed, consistent
+  across both test runs (systematic habit, not a one-off). Same class
+  of unreliability as week 2's `JSONDecodeError`s. Left unfixed today,
+  deliberately deferred to tomorrow's "execute SQL safely" task, since
+  stripping the fences before execution belongs naturally with that
+  guardrail work rather than bolted on today.
+- Day 2 of week 3 complete. Next per Notion/Plan.md: Wed Aug 26 —
+  execute SQL safely (read-only, guardrails), return results — starts
+  with stripping the markdown-fence issue found today.
+
+## 2026-08-26 — Week 3, Day 3 (Wednesday) — execute SQL safely, guardrails
+- Fixed yesterday's leftover fence issue first: `generate_sql` now
+  strips ` ```sql ` / ` ``` ` via `.replace().replace().strip()` before
+  returning. First attempt forgot to reassign the result (`sql_query =
+  ...`) — same "string/DataFrame methods return new objects, don't
+  mutate in place" rule that's recurred all project, this time on a
+  plain string rather than a pandas object. Confirmed fixed by rerunning
+  both of yesterday's test questions — clean SQL, no fences, both still
+  correct.
+- Built `run_sql_query(sql, row_limit=1000, timeout_ms=5000)` in
+  `db/connection.py`, implementing all three guardrails from Technical
+  Design.md Section 5: (1) reject anything not starting with `SELECT`
+  (case-insensitive check via `.upper().startswith(...)`); (2) reject
+  if a semicolon remains after stripping a single trailing one (blocks
+  multi-statement injection); (3) auto-append `LIMIT {row_limit}` if
+  the query doesn't already specify one; (4) a MySQL session-level
+  `SET SESSION MAX_EXECUTION_TIME` timeout set immediately before
+  running the real query. Returns both column names (from
+  `cursor.description`) and row data, not just rows — needed for
+  Thursday's chart/answer step to know what the columns mean.
+  Self-corrected bugs along the way: `=!` instead of `!=` (backwards
+  operator), a 5-character slice (`[0:5]`) that could never match the
+  6-character word `"SELECT"` even if fixed, and `NOT` (SQL-style
+  capitalization) instead of Python's lowercase `not` keyword — the
+  last one a direct consequence of writing SQL-as-text and Python
+  side by side today for the first time.
+- Didn't just trust the happy path — deliberately tested each guardrail
+  in isolation before trusting the combined pipeline: `SELECT * FROM
+  business` (no `LIMIT` in the query) correctly capped at exactly 1000
+  rows; `DELETE FROM business` correctly raised `ValueError` before
+  ever reaching the database, nothing deleted.
+- Genuine, unplanned finding: wiring `generate_sql` + `run_sql_query`
+  together end-to-end, the JOIN query from yesterday (`business` JOIN
+  `review`, no `WHERE`, `GROUP BY`/`HAVING`/`ORDER BY` on an aggregate)
+  hit the timeout guardrail for real — `MySQLInterfaceError: Query
+  execution was interrupted, maximum statement execution time
+  exceeded` — at both 5000ms and, retested, still at 15000ms. This
+  wasn't a bug in the guardrail code; it's the timeout doing its job on
+  a legitimately expensive, unindexed aggregation across the full
+  `review` table (6.9M rows). Read as an honest limitation worth
+  keeping for the write-up: correct SQL can still get blocked by a
+  safety guardrail purely for being slow, which is a real trade-off,
+  not something to silently paper over. Not optimized today (would
+  need indexing or a narrower question) — deliberately left as
+  documented, not fixed, same treatment as week 2's skewed-outlier-
+  clipping limitation.
+- Full pipeline proven end-to-end for the first time with a query that
+  actually completes: "Which city has the most businesses?" → clean
+  generated SQL → guardrails pass → real execution → `[('Philadelphia',
+  14577)]`, matching the direct `run_sql_query` test from earlier today
+  exactly.
+- Day 3 of week 3 complete, all three Technical Design.md guardrails
+  now genuinely proven (not just written), plus one real limitation
+  found and documented rather than silently hit. Next per Notion/
+  Plan.md: Thu Aug 27 — results → chart + plain-English answer.

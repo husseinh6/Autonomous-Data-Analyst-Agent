@@ -58,10 +58,46 @@ def get_schema():
     return schema
     
     
+def run_sql_query(sql, row_limit=1000, timeout_ms=5000):
+    sql_clean = sql.strip().rstrip(";")
+    uppercase_sql = sql_clean.upper()
+    if not uppercase_sql.startswith("SELECT"):
+        raise ValueError("Only SELECT queries are allowed.")
+
+    if ";" in sql_clean:  # a semicolon left in the middle means multiple statements
+        raise ValueError("Multiple statements are not allowed.")
+
+    if "LIMIT" not in sql_clean.upper():
+        sql_clean = sql_clean + f" LIMIT {row_limit}"
+
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute(f"SET SESSION MAX_EXECUTION_TIME={timeout_ms}")
+    cursor.execute(sql_clean)
+    rows = cursor.fetchall()
+    columns = [desc[0] for desc in cursor.description]
+    cursor.close()
+    conn.close()
+    return columns, rows    
+    
+
+    
 if __name__ == "__main__":
     conn = get_connection()
     print(conn)
     print("Connected:", conn.is_connected())
     schema = get_schema()
     print(schema)
+    columns, rows = run_sql_query("SELECT city, COUNT(*) FROM business GROUP BY city ORDER BY COUNT(*) DESC LIMIT 3")
+    print(columns)
+    print(rows)
+    # test 1: does the LIMIT auto-inject when missing?
+    columns, rows = run_sql_query("SELECT * FROM business")
+    print("Row count with no LIMIT in query:", len(rows))
+
+    # test 2: does a non-SELECT get rejected?
+    try:
+        run_sql_query("DELETE FROM business")
+    except ValueError as e:
+        print("Correctly rejected:", e)
     conn.close()
