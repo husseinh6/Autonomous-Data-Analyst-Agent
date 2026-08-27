@@ -515,3 +515,47 @@ worked, what broke, what the agent got wrong.
   now genuinely proven (not just written), plus one real limitation
   found and documented rather than silently hit. Next per Notion/
   Plan.md: Thu Aug 27 — results → chart + plain-English answer.
+
+## 2026-08-27 — Week 3, Day 4 (Thursday) — results → chart + plain-English answer
+- Built `generate_answer(question, columns, rows)` in `agent/sql_agent.py`
+  — a second, separate Claude call (not the same call that generated
+  the SQL), same shape as `generate_sql`: builds a prompt embedding the
+  question plus the real query results, asks for a short natural-
+  language sentence, explicitly instructed not to leak SQL/column/row
+  language into the answer. Worked correctly first attempt: "Philadelphia
+  has the most businesses, with 14,577 in total."
+- Built `build_chart(columns, rows)` using `plotly.express` (`px`) —
+  first exposure to Plotly. Deliberately kept deterministic (plain
+  Python, no LLM call) rather than asking Claude to choose a chart
+  type — same philosophy as `profile_dataset()` never needing an LLM,
+  and one less place for an unreliable instruction-following failure
+  (like this week's markdown-fence issue) to creep in. Splits `rows`
+  (a list of tuples) into separate `labels`/`values` lists via a plain
+  loop with `.append()` (functionally identical to a list
+  comprehension, just more explicit — fine), then `px.bar(x=labels,
+  y=values, ...)` builds the figure in one line.
+- First test used the existing `LIMIT 1` question ("which city has the
+  most businesses") — technically worked, but only produced a single
+  bar, not a real test of the chart with multiple values. Caught before
+  trusting it: switched to "top 5 cities by number of businesses"
+  instead, confirmed 5 real bars (Philadelphia, Tucson, Tampa,
+  Indianapolis, Nashville), correctly ordered descending.
+- Also fixed on the same pass: default `px.bar()` axes were labeled
+  generically "x"/"y" rather than the real column names, since raw
+  lists carry no column identity. Added a `labels={"x": columns[0],
+  "y": columns[1]}` argument mapping the internal axis names to the
+  actual query's column names ("city", "business_count") — matters for
+  the eventual Streamlit demo looking finished, not just functionally
+  correct.
+- `.show()` used to preview the chart in a browser tab for now (opens
+  in Safari) — real Streamlit rendering (`st.plotly_chart`) is later
+  integration work, not today's scope.
+- Milestone moment: this is the first day the full, real pipeline ran
+  end-to-end exactly as originally scoped in Plan.md's Goal section —
+  natural-language question in, generated SQL, guardrailed execution,
+  plain-English answer, and a chart out — with zero manual SQL writing
+  on the user's side. Genuinely felt like the project's core idea
+  working, not just individual pieces passing tests in isolation.
+- Day 4 of week 3 complete, on estimate. Next per Notion/Plan.md: Fri
+  Aug 28 — run a fixed test-question set against the pipeline, log
+  failures (light review day, closes out week 3).
