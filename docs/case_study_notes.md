@@ -559,3 +559,65 @@ worked, what broke, what the agent got wrong.
 - Day 4 of week 3 complete, on estimate. Next per Notion/Plan.md: Fri
   Aug 28 — run a fixed test-question set against the pipeline, log
   failures (light review day, closes out week 3).
+
+## 2026-08-28 — Week 3, Day 5 (Friday) — fixed test-question set, week 3 wrap
+- Built `tests/test_questions.py`: 5 real questions run through the full
+  pipeline (`generate_sql` → `run_sql_query` → `generate_answer`),
+  chosen to map onto ground-truth patterns already in `Code.md` (the
+  manual SQL from the original Yelp project) — single-table aggregate,
+  state-level `GROUP BY`, JOIN + `HAVING` threshold, date-based
+  `GROUP BY`, and simple `ORDER BY`/`LIMIT`. Deliberately scoped down
+  from full automated SQL-equivalence grading (checking whether
+  generated SQL is *exactly* equivalent to hand-written SQL is a hard
+  problem on its own) to manual review against `Code.md`'s patterns —
+  appropriate for a 1h light day.
+- One bug, self-corrected: 3 of the 5 question strings in the list were
+  missing trailing commas. Python doesn't error on this — adjacent
+  string literals with no comma between them get silently concatenated
+  into one string. All 4 later questions merged into a single ~200-word
+  run-on question, which Claude then tried to answer with a 4-part
+  `UNION ALL` query wrapped in parentheses — correctly rejected by
+  yesterday's guardrail, since the query started with `(` rather than
+  `SELECT`. Good incidental confirmation the guardrail works on
+  malformed input too, not just the deliberate `DELETE` test from
+  Wednesday. Root cause was the missing commas, not the guardrail.
+- All 5 questions passed on the rerun, checked against `Code.md`
+  patterns and cross-referenced against real prior findings — no
+  failures to log, stated plainly rather than manufactured:
+  1. City with most businesses: Philadelphia, 14,577 (consistent all
+     week).
+  2. State with most businesses: PA, 34,039 — sanity-checks correctly
+     against #1 (state total > single city total).
+  3. Highest-rated category (≥100 businesses): Reiki, 4.68 — matches
+     `Code.md`'s JOIN+HAVING pattern exactly; Claude's version used
+     `COUNT(DISTINCT business_id)` rather than plain `COUNT(*)`,
+     arguably more correct than the original manual query.
+  4. Reviews per year: matches `Code.md`'s year-grouping pattern;
+     plain-English answer correctly flagged 2022's low count as likely
+     incomplete data rather than a real decline — an appropriate,
+     unprompted caveat.
+  5. Top 10 businesses by review count: Acme Oyster House, 7,568 — this
+     exact number independently matches `review_count`'s documented
+     original max from week 2's `top_reviewed_businesses.csv` outlier
+     analysis, a real cross-check of internal consistency across
+     unrelated parts of the project.
+- Week 3 in one line: went from "no DB connection at all" (Monday) to a
+  fully working NL-to-SQL pipeline — schema-grounded SQL generation,
+  guardrailed execution, plain-English answers, and charts — verified
+  against real ground-truth SQL patterns from the original Yelp
+  project, with zero failures on the first full test pass.
+- Two genuine, unplanned guardrail confirmations this week, neither
+  manufactured as a test: Wednesday's timeout firing on a legitimately
+  expensive JOIN query, and today's SELECT-only check catching a
+  malformed `UNION ALL` query caused by an unrelated Python bug. Real
+  evidence the guardrails work under real conditions, not just the
+  cases they were written for.
+- Week 4 tasks (Mon Aug 31 – Fri Sep 4) added to Notion: sanity checks
+  (row counts, table-relevance), seeding deliberate errors to confirm
+  the validation harness catches them, confidence scoring/flagging in
+  the UI, applying the same validation logic to risky cleaning changes,
+  and a check-in against the plan's original success criteria. This is
+  the week that turns this week's `stars`/`review_count` recommendation-
+  inconsistency (week 2) and Wednesday's timeout-vs-correctness
+  trade-off (week 3) from documented findings into an actual working
+  validation layer.
