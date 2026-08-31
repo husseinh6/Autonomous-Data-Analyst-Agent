@@ -666,3 +666,57 @@ worked, what broke, what the agent got wrong.
   actually proven yet.
 - Day 1 of week 4 complete. Next: Tue — seed deliberate errors, confirm
   the harness (today's two checks, at minimum) actually catches them.
+
+## 2026-08-31 — Week 4, Day 2 (Monday session, same day) — seed deliberate errors
+- Ran Monday's two checks against 3 deliberately broken question/SQL
+  pairs, each targeting one of Plan.md's own named failure types
+  (wrong join, silently-wrong column, doesn't actually answer the
+  question) — real, mixed results, not a clean sweep:
+  1. **Wrong join** (joined `tip` into a city/star-rating question):
+     `check_table_relevance` correctly flagged `tip` — the actual
+     intended catch. `check_row_count` fired too, but coincidentally —
+     it flagged truncation at 1000 rows, an unplanned finding that the
+     real `business` table likely has 1000+ distinct `city` string
+     values (probably inconsistent capitalization/whitespace in the
+     live production table, not just the messy CSVs from week 2), not
+     evidence the join itself was caught.
+  2. **Impossible filter → zero rows** (`stars > 10`, impossible since
+     stars only go to 5): clean pass, exactly as designed —
+     `check_row_count` caught it, `check_table_relevance` correctly
+     stayed quiet.
+  3. **Wrong metric, doesn't answer the question** (ordered by
+     `review_count` instead of `stars`): `check_row_count` correctly
+     stayed silent (real, non-empty result — this class of error is a
+     genuine, expected gap for a row-count check). But
+     `check_table_relevance` incorrectly flagged `review` as a table
+     used — a real bug, not a heuristic limitation: the check matched
+     the substring `"review"` inside the column name `review_count`,
+     even though the `review` table itself was never touched.
+- Fixed the substring bug directly (Hamsa's explicit request, invoking
+  the established fallback — this was new syntax, not a derivable
+  extension of known patterns): switched `check_table_relevance`'s
+  table-detection from a plain `in` substring check to a regex
+  word-boundary match (`\btable_name\b`, via Python's `re` module,
+  first use in this project). `_` counts as a word character in
+  regex, so `\breview\b` correctly fails to match inside
+  `review_count` (no boundary between `w` and `_`) while still matching
+  a real standalone `review` reference. Reran the same 3 seeded tests
+  after the fix: test 3's false `review` flag is gone, now correctly
+  reports `"ok"`; tests 1 and 2 unchanged as expected.
+- Real, honest limitation left undone, deliberately not "fixed" today:
+  test 1's `business` false positive (the right table, flagged only
+  because the question's wording — "star rating per city" — never
+  literally says "business"). This isn't a bug in the same sense as the
+  substring issue; it's the ceiling of what keyword-matching alone can
+  ever do, and is exactly why Technical Design.md calls for a separate,
+  smarter LLM-based "fresh eyes" cross-check rather than trying to
+  brute-force natural-language understanding with more string logic.
+  Documented as the concrete motivation carried into the rest of this
+  week, not a gap to silently work around.
+- Net result for the day: 1 real catch confirmed clean (impossible
+  filter), 1 real catch confirmed but with a coincidental/misleading
+  companion signal (wrong join), 1 real implementation bug found and
+  fixed (substring-inside-column-name false match), and 1 genuine,
+  well-understood limitation documented rather than glossed over. Two
+  tasks done in one sitting today, per this week's flexible holiday
+  pacing. Next: Wed — confidence scoring / flagging in the UI.

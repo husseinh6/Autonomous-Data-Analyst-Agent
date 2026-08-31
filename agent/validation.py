@@ -7,6 +7,8 @@ result actually answers the question asked, plus deterministic checks
 
 
 """
+import re
+
 from db.connection import get_schema
 
 def check_row_count(rows, row_limit=1000):
@@ -23,7 +25,8 @@ def check_table_relevance(question, sql):
 
     tables_used = []
     for table_name in schema:
-        if table_name.lower() in sql_lower:
+        pattern = r"\b" + table_name.lower() + r"\b"
+        if re.search(pattern, sql_lower):
             tables_used.append(table_name)
 
     flagged = []
@@ -43,17 +46,32 @@ def check_table_relevance(question, sql):
     
     
 if __name__ == "__main__":
-    list1 = []
-    list2 = []
-    list3 = [1,2,3,4]
-    for i in range(1000):
-        list2.append(i)
-    print(check_row_count(list1))
-    print(check_row_count(list2))
-    print(check_row_count(list3))
-    question = "What is the busiest day of the week for check-ins?"
-    sql = "SELECT COUNT(*) FROM tip"
-    print(check_table_relevance(question, sql))
+    from db.connection import run_sql_query
+
+    seeded_tests = [
+    {
+        "label": "wrong join",
+        "question": "What is the average star rating per city?",
+        "sql": "SELECT business.city, AVG(business.stars) FROM business JOIN tip ON business.business_id = tip.business_id GROUP BY business.city",
+    },
+    {
+        "label": "Impossible filter → zero rows",
+        "question": "Which businesses have a star rating above 10?",
+        "sql": "SELECT name FROM business WHERE stars > 10",
+    },
+    {
+        "label": "Doesn't actually answer the question",
+        "question": "Which business has the highest star rating?",
+        "sql": "SELECT name, review_count FROM business ORDER BY review_count DESC LIMIT 1",
+    }
+    ]
+
+    for test in seeded_tests:
+       print(test["label"])
+       columns, rows = run_sql_query(test["sql"])
+       print("row check:", check_row_count(rows))
+       print("table check:", check_table_relevance(test["question"], test["sql"]))
+       print("---")
     
     
     
