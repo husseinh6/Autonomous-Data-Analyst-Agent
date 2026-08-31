@@ -621,3 +621,48 @@ worked, what broke, what the agent got wrong.
   inconsistency (week 2) and Wednesday's timeout-vs-correctness
   trade-off (week 3) from documented findings into an actual working
   validation layer.
+- Pacing note: Hamsa is off work this week (holiday), wants to move
+  faster than one task/day where the day allows — up to 2 tasks in a
+  session some days, one on others, driven by how the day's going
+  rather than the calendar. Same execution either way (hands-on build,
+  verify real output, log notes, git command, Notion update per task)
+  — just decoupled from the strict one-task-per-weekday cadence used
+  weeks 1-3.
+
+## 2026-08-31 — Week 4, Day 1 (Monday) — sanity checks: row counts, table relevance
+- Built two deterministic (non-LLM) checks in `agent/validation.py`,
+  per Technical Design.md Section 4's split between mechanical checks
+  and the separate LLM-based "fresh eyes" review (not built yet — later
+  this week):
+  1. `check_row_count(rows, row_limit=1000)` — flags zero rows back
+     (wrong filter, or a genuinely correct empty result — worth
+     surfacing either way) and rows count exactly at the row-limit cap
+     (results possibly truncated by Wednesday's guardrail, meaning an
+     answer could be based on an incomplete picture). The row-limit
+     case is a small extension beyond the plan's literal wording
+     ("suspiciously huge") — same spirit, adapted to the fact the
+     guardrail already caps results at exactly 1000 rather than letting
+     genuinely huge results through.
+  2. `check_table_relevance(question, sql)` — a blunt keyword-matching
+     heuristic: finds which real schema tables the SQL touches, then
+     checks whether any word from each table's name (split on `_`, so
+     `yelp_user` → `yelp`/`user`) appears in the question. Flags tables
+     used that don't obviously relate to anything asked. Explicitly not
+     real semantic understanding — good for catching obvious
+     table-choice errors, not subtle ones. Tomorrow's "seed deliberate
+     errors" task is the real stress test of how well this catches
+     genuine problems.
+- Both functions tested across all branches, not just the happy path —
+  same discipline as every guardrail test this project has done:
+  `check_row_count` confirmed on an empty list, a 1000-item list
+  (built via a loop, `list(range(1000))` noted as the shorter
+  equivalent), and a normal small list. `check_table_relevance`
+  confirmed both on a real matching pair (question about businesses,
+  SQL touching `business` → `"ok"`) and a deliberately broken pair
+  (question about check-ins, SQL touching only `tip` →
+  correctly flagged `['tip']` as unrelated) — the mismatch case wasn't
+  tested until asked for explicitly, worth remembering as a recurring
+  habit: a check that's never seen its own failure case fire isn't
+  actually proven yet.
+- Day 1 of week 4 complete. Next: Tue — seed deliberate errors, confirm
+  the harness (today's two checks, at minimum) actually catches them.
