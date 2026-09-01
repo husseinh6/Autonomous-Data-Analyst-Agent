@@ -97,7 +97,65 @@ def validate(question, sql, columns, rows):
     }    
     
     
+
+
+
+def check_drop_severity(column, profile_col, action):
+    if action != "drop":
+        return "ok"
+    missing_pct = profile_col["Missing values percentage"]
+    if missing_pct < 20:
+        return f"warning: dropping '{column}', which is only {missing_pct}% missing — dropping a mostly-complete column may be too aggressive"
+    return "ok"
     
+    
+    
+    
+def check_cleaning_decision(column, profile_col, recommendation):
+    client = get_client()
+
+    prompt = f"""Here you have the column, its profile info and recommended action in this following order.
+
+Column: {column}
+Profile info: {profile_col}
+Recommended action: {recommendation}
+
+Do you think this is sound decision given the actual data?
+
+Respond with ONLY one word, "yes" or "no", followed by a short reason
+on the next line.
+"""
+
+    response = client.messages.create(
+        model="claude-sonnet-5",
+        max_tokens=256,
+        messages=[{"role": "user", "content": prompt}],
+    )
+    review = next(block.text for block in response.content if block.type == "text")
+    return review    
+    
+    
+ 
+ 
+def validate_cleaning(column, profile_col, recommendation):
+    action = recommendation["action"]
+    drop_check = check_drop_severity(column, profile_col, action)
+    llm_check = check_cleaning_decision(column, profile_col, recommendation)
+
+    llm_answer = llm_check.strip().split()[0].lower()
+
+    if llm_answer == "no":
+        risk = "high"
+    elif "warning" in drop_check:
+        risk = "medium"
+    else:
+        risk = "low"
+
+    return {
+        "risk": risk,
+        "drop_check": drop_check,
+        "llm_check": llm_check,
+    }    
     
     
     
@@ -139,6 +197,10 @@ if __name__ == "__main__":
     columns2, rows2 = run_sql_query(sql2)
     result2 = validate(question2, sql2, columns2, rows2)
     print(result2)
-    
-    
+    fake_profile_col = {"Missing values percentage": 0.0}
+    print(check_drop_severity("stars", fake_profile_col, "drop"))
+    fake_recommendation = {"action": "drop", "reason": "3 outliers detected", "risk": "medium"}
+    print(validate_cleaning("stars", fake_profile_col, fake_recommendation))
+    fake_recommendation2 = {"action": "reformat", "reason": "3 outliers, cap using IQR bounds", "risk": "low"}
+    print(validate_cleaning("stars", fake_profile_col, fake_recommendation2))
     

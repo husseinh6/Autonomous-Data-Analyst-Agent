@@ -770,3 +770,60 @@ worked, what broke, what the agent got wrong.
 - Day 3 of week 4 complete. Next: Thu — apply this same validation
   logic to risky cleaning changes (week 2's `stars`/`review_count`
   drop-recommendation inconsistency becomes the real test case here).
+
+## 2026-09-01 — Week 4, Day 4 (Tuesday session, same day) — validation on risky cleaning changes
+- Built `check_drop_severity(column, profile_col, action)` in
+  `agent/validation.py` — a deterministic check flagging `"drop"`
+  actions on columns with low missing percentage (< 20%), on the
+  reasoning that dropping a mostly-complete column is a poor default
+  unless justified by something other than missingness (outliers are a
+  reformat problem, not a drop problem). Tested directly against the
+  real week 2 case: `stars` at 0% missing, action `"drop"` — correctly
+  flagged as suspicious on the first try.
+- Built `check_cleaning_decision(column, profile_col, recommendation)`
+  — the cleaning-side "fresh eyes" LLM review, same shape as
+  yesterday's `check_answers_question`. Self-corrected bugs while
+  writing it (asked for help rather than guessing): missing `def`
+  keyword (function definition wasn't recognized as one), and leftover
+  `{question}`/`{sql}` variable names copy-pasted from yesterday's SQL
+  version instead of this function's real parameters (`{column}`/
+  `{profile_col}`) — would have thrown `NameError` immediately. Tested
+  against the real `stars`/`"drop"` case: correctly said "no," with
+  genuinely good reasoning — "outliers should be handled at the row
+  level (capping, transformation, removal), not by discarding the
+  whole column."
+- Built `validate_cleaning(column, profile_col, recommendation)`,
+  combining both signals into one risk level — same structure as
+  yesterday's `validate()`, written by Hamsa with minimal scaffolding
+  this time (a near-direct application of yesterday's proven pattern).
+  Tested against the real `stars`/`"drop"` case: correctly returned
+  `"high"`, both signals agreeing.
+- Significant, unplanned finding testing the "clean" comparison case
+  (`stars` with a sensible `"reformat"` action instead of `"drop"`):
+  expected `"low"` risk, got `"high"` instead — not a bug, a genuine
+  new critique from the LLM review. It flagged that `stars` is a
+  bounded rating scale (1-5), so IQR-based outlier *clipping* itself
+  may be inappropriate, not just the drop action. This connects
+  directly to a real number already on record: week 2 documented
+  `stars`'s original min as 2.5, flagged as an "outlier" by the 1.5×IQR
+  rule and clipped up to 3.25 — but 2.5 is a completely legitimate
+  rating, not a data error; clipping it doesn't fix bad data, it
+  artificially inflates a real business's real low rating. Week 2 had
+  already flagged this exact failure mode for `longitude`/
+  `review_count` ("aggressive clipping on naturally skewed data") but
+  never applied it to `stars`, which got reformatted all week without
+  question since it looked like the "safe" choice next to the more
+  visible drop-recommendation bug. The validation layer just surfaced a
+  problem in the option that looked safe, not only the one that looked
+  risky — a stronger result for the case study than a clean pass would
+  have been. Not fixed today, deliberately — same treatment as the
+  original skewed-clipping limitation: documented for the write-up's
+  "where the agent got it wrong" section, not chased down mid-task.
+- Day 4 of week 4 complete, two tasks done today (Tue Day 3 + Day 4).
+  Net result: week 2's real, previously-documented `stars`/
+  `review_count` drop bug is now caught automatically by two
+  independent signals, and a second, previously-unnoticed methodological
+  issue (inappropriate IQR clipping on a bounded rating scale) was
+  found as a direct side effect of building the validation layer, not
+  something specifically hunted for. Next: Fri — check progress against
+  the plan's original success criteria, closing out week 4.
