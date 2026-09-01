@@ -10,6 +10,7 @@ result actually answers the question asked, plus deterministic checks
 import re
 
 from db.connection import get_schema
+from agent.client import get_client
 
 def check_row_count(rows, row_limit=1000):
     if len(rows) == 0:
@@ -45,6 +46,62 @@ def check_table_relevance(question, sql):
     
     
     
+    
+def check_answers_question(question, sql):
+    client = get_client()
+
+    prompt = f"""You generated SQL to answer a question. Review it with
+fresh eyes, as if someone else wrote it.
+
+Question: {question}
+SQL: {sql}
+
+Does this SQL query actually answer the question being asked? Consider
+whether it uses the right columns and the right logic, not just whether
+it runs without error.
+
+Respond with ONLY one word, "yes" or "no", followed by a short reason
+on the next line.
+"""
+
+    response = client.messages.create(
+        model="claude-sonnet-5",
+        max_tokens=256,
+        messages=[{"role": "user", "content": prompt}],
+    )
+    review = next(block.text for block in response.content if block.type == "text")
+    return review    
+    
+    
+    
+    
+def validate(question, sql, columns, rows):
+    row_result = check_row_count(rows)
+    table_result = check_table_relevance(question, sql)
+    llm_result = check_answers_question(question, sql)
+
+    llm_answer = llm_result.strip().split()[0].lower()
+
+    if llm_answer == "no":
+        risk = "high"
+    elif "warning" in row_result or "warning" in table_result:
+        risk = "medium"
+    else:
+        risk = "low"
+
+    return {
+        "risk": risk,
+        "row_check": row_result,
+        "table_check": table_result,
+        "llm_check": llm_result,
+    }    
+    
+    
+    
+    
+    
+    
+    
 if __name__ == "__main__":
     from db.connection import run_sql_query
 
@@ -72,7 +129,16 @@ if __name__ == "__main__":
        print("row check:", check_row_count(rows))
        print("table check:", check_table_relevance(test["question"], test["sql"]))
        print("---")
-    
+    question = "Which business has the highest star rating?"
+    sql = "SELECT name, review_count FROM business ORDER BY review_count DESC LIMIT 1"
+    columns, rows = run_sql_query(sql)
+    result = validate(question, sql, columns, rows)
+    print(result)
+    question2 = "Which city has the most businesses?"
+    sql2 = "SELECT city, COUNT(*) AS business_count FROM business GROUP BY city ORDER BY business_count DESC LIMIT 1"
+    columns2, rows2 = run_sql_query(sql2)
+    result2 = validate(question2, sql2, columns2, rows2)
+    print(result2)
     
     
     

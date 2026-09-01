@@ -720,3 +720,53 @@ worked, what broke, what the agent got wrong.
   well-understood limitation documented rather than glossed over. Two
   tasks done in one sitting today, per this week's flexible holiday
   pacing. Next: Wed — confidence scoring / flagging in the UI.
+
+## 2026-09-01 — Week 4, Day 3 (Tuesday) — confidence scoring
+- Built `check_answers_question(question, sql)` in `agent/validation.py`
+  — the "fresh eyes" LLM check named in Technical Design.md Section 4:
+  a separate Claude call (not the one that generated the SQL)
+  reviewing whether the query actually answers the question, replying
+  yes/no plus a short reason. This is the piece that closes Monday's
+  documented gap: tested directly against the "wrong metric" seeded
+  error (ordered by `review_count` instead of `stars`), and it
+  correctly caught it — "No, the query orders by review_count instead
+  of the star rating column" — something neither deterministic check
+  could ever see, since it requires actually understanding what the
+  question wants, not just which tables/columns are touched.
+- Built `validate(question, sql, columns, rows)`, combining all three
+  signals (row-count check, table-relevance check, LLM fresh-eyes
+  check) into one overall risk level — `"low"`/`"medium"`/`"high"`,
+  matching `cleaning_agent.py`'s existing risk vocabulary for
+  consistency across the project. LLM "no" leads to `"high"` (most
+  serious, the actual answer would be wrong); "yes" but a deterministic
+  warning leads to `"medium"`; clean on all three leads to `"low"`.
+  Actual Streamlit UI rendering of this is week 5 integration work, not
+  today's scope — today built and proved the logic via prints, same
+  pattern as every other day.
+- One self-corrected bug: `llm_answer = llm_result.strip().split(" ")[0]`
+  used `.split(" ")` (splits only on literal space characters), but
+  `check_answers_question`'s reply has a newline between "no"/"yes" and
+  the reason, not a space — so this would have grabbed `"no\nThe"` as
+  one chunk instead of just `"no"`, silently breaking the `"high"` risk
+  branch forever. Fixed to `.split()` with no argument, which splits on
+  any whitespace including newlines. Also added `.lower()` defensively
+  — turned out not to be theoretical: a later real run had Claude reply
+  `"No"` (capital N) instead of `"no"`, confirming the normalization
+  was genuinely necessary, not just caution for its own sake.
+- Also caught and fixed independently: a leftover `validate(question,
+  sql, columns, rows)` test call referencing bare `question`/`sql`
+  variables that were never assigned outside the seeded-tests loop
+  (only `test["question"]`/`test["sql"]` existed) — would have thrown
+  `NameError`. Replaced with a proper, explicit test case.
+- Tested both ends of the risk scale for real, not just the interesting
+  one: the wrong-metric case correctly returned `"high"` (LLM said no,
+  reasoning correct both times it was asked, once with lowercase "no"
+  and once with capital "No"); a genuinely correct question ("which
+  city has the most businesses") correctly returned `"low"`, LLM
+  confirming "Yes, the query... directly answers the question."
+  `"medium"` not separately exercised through `validate()` itself —
+  it's a simple OR of two already-individually-proven signals from
+  Monday, reasonable to trust without a dedicated fourth test.
+- Day 3 of week 4 complete. Next: Thu — apply this same validation
+  logic to risky cleaning changes (week 2's `stars`/`review_count`
+  drop-recommendation inconsistency becomes the real test case here).
