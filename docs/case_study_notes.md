@@ -882,3 +882,86 @@ worked, what broke, what the agent got wrong.
   validation layer) actually gets wired into `app.py`'s Streamlit UI
   for the first time — until now, every piece has been tested via
   prints and `.show()`, not the real interface end users would see.
+- Pacing change: Hamsa wants to compress week 5 into this week given
+  the pace held all through week 4 — Notion due dates moved from the
+  original Mon-Fri spread to today/tomorrow/Friday (2/2/1 tasks). Same
+  execution discipline regardless of compression.
+
+## 2026-09-02 — Week 5, Day 1 (Wednesday) — full end-to-end test, fresh CSV
+- First real wiring of `app.py` to the actual pipeline — until today it
+  was still the Day 2 (week 1) skeleton, just title/caption/uploader
+  with a status message. Chained the five already-built functions
+  behind the file uploader for the first time: `profile_dataset` →
+  `get_cleaning_recommendations` → `apply_cleaning` → `write_audit_log`
+  → `generate_report`, displayed via two new Streamlit calls
+  (`st.text` for the report, `st.dataframe` for the cleaned data —
+  free sorting/downloading included, no extra code).
+- Test data deliberately chosen to be genuinely fresh: `yelp_user`
+  (200 rows via `SELECT * FROM yelp_user LIMIT 200`), a table never
+  exercised through the cleaning pipeline before — different column
+  types entirely (datetime, several integer counters, a decimal
+  average). Checked for real missingness first (`WHERE name = '' OR
+  name IS NULL` → 0) rather than assuming; proceeded anyway since
+  today's actual goal was schema generalization and UI wiring, not
+  re-proving missing-value handling (already covered week 2).
+- Two real bugs on the way to a working run, neither Hamsa's fault in
+  the interesting sense — both genuine gaps in translating known
+  patterns to a new context:
+  1. First `app.py` attempt chained `dataset_test` into every function
+     call instead of each function's actual expected input (e.g.
+     passing the raw dataframe to `get_cleaning_recommendations`,
+     which needs the profile dict) — pointed back to `data/report.py`'s
+     own `__main__` block as the reference for the correct chain,
+     which Hamsa then reproduced correctly.
+  2. `TabError: inconsistent use of tabs and spaces` — the original
+     Day 2 `else` block used a tab character, the newly pasted lines
+     used spaces; Python 3 refuses to guess how to reconcile mixed
+     indentation within one block. Fixed directly (pure whitespace
+     mismatch, not a logic bug). Side finding: Safari showed a blank
+     white page rather than Streamlit's usual in-browser error display
+     for this same error, while Chrome rendered the real traceback
+     correctly — Chrome confirmed as the more reliable browser for this
+     project going forward.
+- First full run through the real UI succeeded, and reading the actual
+  report (not just confirming it ran) surfaced three genuine findings:
+  1. **Serious — `user_id` corrupted by the generic text-reformat
+     step.** `.str.lower()` in `cleaning.py`'s text-reformat branch
+     applies uniformly to every text column; sensible for `city`/
+     `state`, actively harmful for `user_id`, an opaque unique
+     identifier — `___6aix-XvFcQz3GauAPpw` became
+     `___6aix-xvfcqz3gauappw`. If this ID is ever matched back against
+     the real `yelp_db.yelp_user.user_id` (a join, a lookup), the
+     lowercased version silently no longer matches. More serious than
+     prior findings: this actively breaks referential integrity, not
+     just cosmetic accuracy.
+  2. **`review_count` clipped extremely aggressively** — max dropped
+     from 1247 to 45.125 (27 outliers, >27x reduction). Same documented
+     skewed-clipping limitation as week 2's `longitude`/`review_count`
+     and Tuesday's `stars` finding, but the starkest real example yet.
+  3. **`yelping_since` recommended for datetime conversion, never
+     actually converted.** Before/after sample identical
+     (`'2011-09-26 18:10:05'` both times) — the text-reformat branch
+     only ever does `.str.strip().str.lower()` regardless of what the
+     recommendation's stated reason says is needed. Confirms and
+     sharpens week 2's "reformat is a vague bucket" finding with a
+     concrete case where the code silently doesn't do what the
+     reasoning claims.
+  4. Also observed, not a bug: several `compliment_*` columns'
+     recommendation reasons said "consider capping extreme values"
+     even though the `IQR == 0` guard correctly skipped clipping for
+     all of them (all binary/near-constant) — a reminder that Claude's
+     stated reasoning and the deterministic code executing it aren't
+     always in sync, which is exactly why the guard exists as a safety
+     net rather than trusting the reasoning text to self-police.
+  5. Genuinely good: the one real missing value in `name` (1/200,
+     0.5%) correctly fell through to the `"Unknown"` placeholder path
+     from week 2's 30%-threshold fix, rather than fabricating a
+     duplicate — first real (not seeded) exercise of that fix on live
+     data.
+- None of the three findings fixed today, deliberately — per the
+  plan's own week 5 split, today's job was finding what breaks;
+  tomorrow's is fixing it. All three carried forward as concrete,
+  numbered items for tomorrow's task, not vague reminders.
+- Day 1 of week 5 complete. Next: fix the `user_id` corruption, the
+  review_count over-clipping, and the yelping_since non-conversion —
+  today's three real findings.
