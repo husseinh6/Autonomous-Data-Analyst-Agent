@@ -827,3 +827,58 @@ worked, what broke, what the agent got wrong.
   found as a direct side effect of building the validation layer, not
   something specifically hunted for. Next: Fri — check progress against
   the plan's original success criteria, closing out week 4.
+
+## 2026-09-02 — Week 4, Day 5 (Wednesday) — success-criteria audit, week 4 wrap
+- Went through Plan.md's five success criteria one by one against real
+  work done, rather than assuming they're all satisfied:
+  1. Data-quality report + cleaned dataset, every change logged — met
+     (weeks 1-2, tested on real messy data, two genuine bugs found and
+     fixed along the way).
+  2. Fixed test-question set answered correctly, checked against manual
+     SQL — met (week 3 Friday, 5/5 questions passed against `Code.md`
+     patterns, cross-verified independently).
+  3. Validation layer catches wrong join / silently dropped column /
+     doesn't-answer-the-question — the one criterion worth actually
+     re-testing rather than assuming: this week's seeded tests covered
+     "wrong join" and "wrong metric" on the SQL side, and a "drop"
+     decision on the cleaning side, but not the specific case of SQL
+     silently dropping a *requested column* from a `SELECT` (a question
+     asking for two things, SQL returning only one) — a real, distinct
+     failure mode from the cleaning-side column drop already tested
+     Tuesday. Constructed a real test for it: "Give me the name and
+     star rating of the most-reviewed business" against SQL that only
+     selects `name`. Predicted before running (not just checked after):
+     `check_row_count` and `check_table_relevance` almost certainly
+     wouldn't catch it (real row back, right table used — "business" is
+     literally in the question), and `check_answers_question` was the
+     real chance, since its prompt explicitly asks it to consider "the
+     right columns." Confirmed exactly as predicted: row/table checks
+     stayed silent, LLM check correctly caught it — "The query selects
+     only 'name' but not the star rating, missing the 'stars' column
+     requested in the question." All three of the plan's named failure
+     types are now genuinely confirmed caught, not assumed to be.
+  4. Public deployment — not done, correctly scheduled for week 6, not
+     a gap.
+  5. Write-up with explicit limitations — in progress and on track;
+     `case_study_notes.md` already holds substantial honest material
+     (skewed-outlier clipping, recommendation inconsistency, the
+     bounded-rating-scale clipping finding from Tuesday, the wrong-join
+     false-positive limitation). Actual Notion write-up is week 6.
+- Week 4 in one line: went from zero validation logic (end of week 3)
+  to a working two-layer system — deterministic sanity checks plus an
+  independent LLM "fresh eyes" review — that catches real, previously
+  undetected problems on both the SQL side and the cleaning side,
+  including one (the `stars` clipping issue) nobody had thought to
+  question until the validation layer surfaced it unprompted.
+- Pace note: week 4's five tasks were completed across 3 sessions
+  (Mon: 2 tasks, Tue: 2 tasks, Wed: 1 task) rather than one per weekday,
+  per this week's flexible holiday pacing — same rigor and verification
+  discipline throughout regardless of how many tasks landed in a
+  session.
+- Week 5 tasks (Mon Sep 7 – Fri Sep 11, Integration + polish) added to
+  Notion: full end-to-end test on a fresh CSV, fixing what breaks,
+  more fixing/edge cases, UI polish, and a buffer day. This is the
+  week everything built so far (cleaning pipeline, NL-to-SQL pipeline,
+  validation layer) actually gets wired into `app.py`'s Streamlit UI
+  for the first time — until now, every piece has been tested via
+  prints and `.show()`, not the real interface end users would see.

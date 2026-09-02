@@ -203,4 +203,8 @@ if __name__ == "__main__":
     print(validate_cleaning("stars", fake_profile_col, fake_recommendation))
     fake_recommendation2 = {"action": "reformat", "reason": "3 outliers, cap using IQR bounds", "risk": "low"}
     print(validate_cleaning("stars", fake_profile_col, fake_recommendation2))
+    question3 = "Give me the name and star rating of the most-reviewed business."
+    sql3 = "SELECT name FROM business ORDER BY review_count DESC LIMIT 1"
+    columns3, rows3 = run_sql_query(sql3)
+    print(validate(question3, sql3, columns3, rows3))
     
