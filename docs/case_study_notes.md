@@ -965,3 +965,73 @@ worked, what broke, what the agent got wrong.
 - Day 1 of week 5 complete. Next: fix the `user_id` corruption, the
   review_count over-clipping, and the yelping_since non-conversion —
   today's three real findings.
+
+## 2026-09-02/03 — Week 5, Day 2 — fix what breaks
+- Pacing change: Hamsa is compressing week 5 into this week given the
+  pace held all through weeks 3-4 — Notion due dates for the remaining
+  4 week-5 tasks moved to today/tomorrow/Friday (2/2/1) rather than
+  spread Mon-Fri.
+- **`review_count` over-clipping** — discussed as a real design
+  decision before touching code, not assumed: this is the third
+  recurrence of the same skewed-distribution-clipping problem (week 2's
+  `longitude`/`review_count`, Tuesday's `stars`, now `yelp_user`'s
+  `review_count` at 27x reduction), so worth actually mitigating this
+  week rather than documenting a fourth time. Clarified an important
+  distinction Hamsa's mental model had blurred: this is NOT the same
+  failure mode as `is_open` (a binary/near-constant column where
+  IQR = 0, already fixed by a guard) — `review_count`'s IQR is
+  genuinely non-zero, the real problem is a long-tailed/skewed
+  distribution where the "normal range" computed from typical users is
+  too narrow to fairly represent legitimate high-end values. Fix:
+  widened the outlier multiplier from 1.5×IQR to 3×IQR in **both**
+  `data/profiling.py` (outlier counting) and `data/cleaning.py`
+  (actual clip bounds) — both had to change together, or the reported
+  outlier count and the real clipping behavior would fall out of sync.
+  Verified against real data: outliers flagged dropped 27→14, clip cap
+  rose 45.125→71. Explicitly documented as a mitigation, not a full
+  fix — even at 3×IQR, genuinely high real values (100, 1247) still
+  get clipped; a truly long-tailed distribution needs a fundamentally
+  different method (percentile capping, log-transform) to fully solve,
+  which is deliberately out of scope for this week.
+- **`user_id` corruption** — root cause: `cleaning.py`'s text-reformat
+  branch applied `.str.strip().str.lower()` uniformly to every text
+  column, appropriate for genuine free text (`city`) but actively
+  harmful for an opaque unique identifier, where the exact
+  characters/casing *are* the value itself, not incidental formatting.
+  Fix: added a check for near-100% column uniqueness
+  (`nunique() == len(column)`) — if every row has a different value,
+  treat it as an identifier and skip the transformation entirely,
+  logging why, same pattern as the existing `IQR == 0` guard.
+- **`yelping_since` non-conversion** — root cause: the same
+  text-reformat branch never attempted real type conversion, only
+  string cleaning, regardless of what the recommendation's reasoning
+  claimed was needed. Fix: try `pd.to_datetime(col, errors="coerce")`
+  first; if ≥90% of values parse successfully as real dates, convert
+  the column for real rather than just tidying the text.
+  Deliberately ordered this check *before* the uniqueness check above
+  — `yelping_since` is also 100% unique (every signup timestamp
+  differs to the second), so checking uniqueness first would have
+  wrongly caught it as "an identifier, skip" before ever getting a
+  real chance at datetime conversion. Order of checks mattered for
+  correctness, not just style.
+- Genuine debugging saga getting these verified, worth documenting for
+  the write-up as a real Python/Streamlit gotcha, not just "it worked
+  eventually": two reruns after the code fix showed *zero* change in
+  behavior, exactly matching the old broken output. Diagnosed in
+  stages: (1) ruled out browser-level staleness — cleared cache,
+  refreshed, reuploaded, no change; (2) suspected the running Python
+  process still held the old version of `cleaning.py` in memory (a
+  module already imported doesn't reload just because the file on disk
+  changed) — did a full `Ctrl+C` + restart of the Streamlit process,
+  confirmed via a fresh startup timestamp — still no change; (3) real
+  root cause: stale compiled bytecode in `__pycache__` folders. Deleted
+  every `__pycache__` directory in the project
+  (`find . -name "__pycache__" -type d -exec rm -rf {} +`) before the
+  next restart — fixed it immediately, both `user_id` and
+  `yelping_since` came out correct on the very next run. Confirmed the
+  fix was never actually broken; three separate layers of caching
+  (browser, in-memory module, compiled bytecode) all needed to be
+  independently ruled out before the real cause was found.
+- Day 2 of week 5 complete — all three findings from Day 1 fixed and
+  verified with real output, not assumed. Next: more fixing/edge
+  cases, or UI polish, depending on pace.

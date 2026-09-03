@@ -21,7 +21,7 @@ def profile_dataset(df):
 		if pd.api.types.is_numeric_dtype(df[i]):
 			Q1 = df[i].quantile(0.25)
 			Q3 = df[i].quantile(0.75)
-			num_out = (df[i] < Q1 - 1.5*(Q3-Q1)).sum() + (df[i] > Q3 + 1.5*(Q3-Q1)).sum()
+			num_out = (df[i] < Q1 - 3*(Q3-Q1)).sum() + (df[i] > Q3 + 3*(Q3-Q1)).sum()
 			
 		profile[i] = {"Column Type": col_type, "Missing values": num_missing, "Missing values percentage": miss_perc, "Number of unique values": num_unique, "Number of outliers": num_out} 
 	return profile

@@ -54,8 +54,8 @@ def apply_cleaning(df, recommendations):
                     before_sample = f"skipped — IQR is 0 (likely binary/near-constant), clipping would corrupt real values"
                     after_sample = "no change"
                 else:
-                    LC = Q1 - 1.5*IQR
-                    UC = Q3 + 1.5*IQR
+                    LC = Q1 - 3*IQR
+                    UC = Q3 + 3*IQR
                     num_out = (clean_df[col] < LC).sum() + (clean_df[col] > UC).sum()
                     min_df_before = clean_df[col].min()
                     max_df_before = clean_df[col].max()
@@ -66,11 +66,33 @@ def apply_cleaning(df, recommendations):
                     after_sample = f"min/max {min_df_after}/{max_df_after}"
             else:
                 exp_bef = clean_df[col].iloc[0]
-                clean_df[col] = clean_df[col].str.strip()
-                clean_df[col] = clean_df[col].str.lower()
-                exp_aft = clean_df[col].iloc[0]
-                before_sample = f"first row: '{exp_bef}'"
-                after_sample = f"first row: '{exp_aft}'"
+                parsed_dates = pd.to_datetime(clean_df[col], errors="coerce")
+                successfully_parsed = parsed_dates.notna().sum()
+                total_count = len(clean_df[col])
+                if successfully_parsed / total_count >= 0.9:
+                    # Looks like a real date/datetime stored as text (CSV export
+                    # flattens everything to strings). Convert it for real instead
+                    # of just tidying the text — lets later code do actual date
+                    # math (age, year grouping, etc.) instead of string comparison.
+                    clean_df[col] = parsed_dates
+                    exp_aft = clean_df[col].iloc[0]
+                    before_sample = f"first row: '{exp_bef}' (stored as text)"
+                    after_sample = f"first row: '{exp_aft}' (converted to real datetime type)"
+                else:
+                    unique_count = clean_df[col].nunique()
+                    if unique_count == total_count:
+                        # Every value is different — this is an identifier, not
+                        # free text. Lowercasing/stripping would change the actual
+                        # value, silently breaking any real-world matching against
+                        # the original ID (e.g. a join back to the source database).
+                        before_sample = f"first row: '{exp_bef}'"
+                        after_sample = "skipped — column is a unique identifier (100% unique values); case/whitespace changes would risk breaking real-world matching"
+                    else:
+                        clean_df[col] = clean_df[col].str.strip()
+                        clean_df[col] = clean_df[col].str.lower()
+                        exp_aft = clean_df[col].iloc[0]
+                        before_sample = f"first row: '{exp_bef}'"
+                        after_sample = f"first row: '{exp_aft}'"
         changes.append({
             "column": col,
             "action": action,
