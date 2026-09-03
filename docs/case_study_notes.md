@@ -1035,3 +1035,55 @@ worked, what broke, what the agent got wrong.
 - Day 2 of week 5 complete — all three findings from Day 1 fixed and
   verified with real output, not assumed. Next: more fixing/edge
   cases, or UI polish, depending on pace.
+
+## 2026-09-03 — Week 5, Day 3 — more fixing / edge cases
+- Deliberately tested an edge case no prior file had exercised: a
+  column with zero real values at all (100% missing), via a small
+  hand-built `edge_case_empty_column.csv` (8 rows, `notes` column
+  entirely blank) — a plausible real scenario, not just theoretical.
+- First test (through the real recommendation pipeline, LLM in the
+  loop): no crash, because Claude itself recommended `"drop"` for the
+  fully-empty column — a sound call, but one that meant the actually
+  fragile code path (`"impute"` on a 100%-missing column) was never
+  exercised. Correctly treated as inconclusive, not "proven safe" —
+  same "did it run" vs "is it correct" lesson one layer deeper: relying
+  on the LLM to happen to avoid a dangerous path isn't the same as the
+  code being safe, especially given documented evidence elsewhere in
+  this project that identical data can get different LLM
+  recommendations across runs.
+- Second test: bypassed the LLM entirely, directly calling
+  `apply_cleaning` with a hand-built recommendations dict forcing
+  `"impute"` on `notes` — genuinely testing the code path itself, same
+  approach as validation.py's fake-recommendation tests.
+- Result was a real bug, but not the one predicted — worth being
+  honest about the wrong guess and why: expected an `IndexError` from
+  `.mode()[0]` on a fully-empty *text* column, but pandas actually
+  infers an entirely-blank CSV column as `float64` (since `NaN` itself
+  is a float), not text — so it hit the *numeric* branch instead.
+  `.median()` on zero real values doesn't crash, it returns `NaN`, so
+  `fillna(NaN)` is a silent no-op. The real bug: the report then
+  claimed `"filled with median nan"` — text that reads like a
+  successful fix, when in fact nothing changed and the column is still
+  100% empty. Arguably worse than a crash: a crash is loud and gets
+  noticed immediately; a silently-false "success" message undermines
+  the actual point of the audit trail — "auditable, not a black box"
+  only holds if what gets logged is genuinely true.
+- Fixed in `data/cleaning.py`'s `"impute"` branch: added a
+  `not_null_count == 0` check as the first condition, before the
+  existing numeric/text split — skips honestly with an explicit
+  message rather than attempting (and silently failing at) a fill.
+  Also removed a duplicate `not_null_count` calculation that had
+  previously only existed inside the text branch, now computed once
+  and reused. Verified fixed: rerunning the forced-impute test now
+  correctly reports "skipped — column is entirely empty, no real
+  values exist to compute a fill value from."
+- Recurring `JSONDecodeError` (empty Claude reply) hit again mid-task,
+  this time exhausting all 3 of week 2's retry attempts rather than
+  failing once and recovering — a slightly worse instance of an
+  already-known, already-partially-mitigated limitation. Not
+  investigated further today (same call succeeded on a plain rerun) —
+  worth flagging as still not fully eliminated for the write-up's
+  limitations section, consistent with Monday week 2's original note.
+- All three of week 5's compressed Wed-due tasks (full end-to-end test,
+  fix what breaks, more fixing/edge cases) now complete in one
+  extended session. Remaining: UI polish and buffer, both due Friday.

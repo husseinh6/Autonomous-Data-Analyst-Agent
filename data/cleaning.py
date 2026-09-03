@@ -19,7 +19,18 @@ def apply_cleaning(df, recommendations):
         action = info["action"]
         if action == "impute":
             missing_count = clean_df[col].isnull().sum()
-            if pd.api.types.is_numeric_dtype(clean_df[col]) == True:
+            not_null_count = clean_df[col].notna().sum()
+            if not_null_count == 0:
+                # Zero real values anywhere in the column — nothing exists to
+                # compute a fill value (median, mode, or otherwise) from.
+                # median()/mode() would either silently return NaN (numeric,
+                # no crash but a fake "fix" that changes nothing) or raise an
+                # IndexError (text, empty .mode() result) depending on how
+                # pandas happened to infer the dtype. Skip honestly instead
+                # of reporting a fix that didn't actually happen.
+                before_sample = f"{missing_count} missing values (100% missing)"
+                after_sample = "skipped — column is entirely empty, no real values exist to compute a fill value from"
+            elif pd.api.types.is_numeric_dtype(clean_df[col]) == True:
                 fill_value = clean_df[col].median()
                 clean_df[col] = clean_df[col].fillna(fill_value)
                 before_sample = f"{missing_count} missing values"
@@ -27,7 +38,6 @@ def apply_cleaning(df, recommendations):
             else:
                 mode_value = clean_df[col].mode()[0]
                 mode_count = (clean_df[col] == mode_value).sum()
-                not_null_count = clean_df[col].notna().sum()
                 mode_perc = mode_count / not_null_count
                 if mode_perc >= 0.3:
                        clean_df[col] = clean_df[col].fillna(mode_value)
@@ -124,3 +134,15 @@ if __name__ == "__main__":
 
     print("CHANGES:", changes)
     print("CLEANED SHAPE:", clean_df.shape)
+
+    # Edge-case test: force "impute" on a 100%-missing text column, bypassing
+    # the LLM entirely, to check whether the code itself is safe regardless
+    # of what Claude happens to recommend (rather than trusting it'll always
+    # avoid the dangerous path, as it did in the real run today).
+    print("\n--- FORCED-IMPUTE EDGE CASE TEST ---")
+    edge_df = pd.read_csv("edge_case_empty_column.csv")
+    fake_recommendations = {
+        "notes": {"action": "impute", "reason": "forced test", "risk": "low"}
+    }
+    edge_clean_df, edge_changes = apply_cleaning(edge_df, fake_recommendations)
+    print("EDGE CASE CHANGES:", edge_changes)
