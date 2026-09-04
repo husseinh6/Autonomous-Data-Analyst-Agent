@@ -6,3 +6,12 @@ venv/
 .venv/
 .DS_Store
 audit_log.jsonl
+
+# Local scratch/test data used in various __main__ test blocks and manual
+# testing — not part of the pipeline itself, regenerable/replaceable, so
+# not tracked (matches top_reviewed_businesses.csv, already untracked).
+business_sample_messy1.csv
+top_reviewed_businesses.csv
+
+# Stray R session history — not part of this Python project.
+docs/.Rhistory

@@ -31,7 +31,7 @@ if __name__ == "__main__":
     from data.cleaning import apply_cleaning
     import pandas as pd
 
-    df = pd.read_csv("top_reviewed_businesses.csv")
+    df = pd.read_csv("business_sample_messy.csv")
     profile = profile_dataset(df)
     recommendations = get_cleaning_recommendations(profile)
     clean_df, changes = apply_cleaning(df, recommendations)
