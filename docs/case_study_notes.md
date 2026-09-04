@@ -1087,3 +1087,79 @@ worked, what broke, what the agent got wrong.
 - All three of week 5's compressed Wed-due tasks (full end-to-end test,
   fix what breaks, more fixing/edge cases) now complete in one
   extended session. Remaining: UI polish and buffer, both due Friday.
+
+## 2026-09-04 — Week 5, Day 4/5 — UI polish + buffer, week 5 wrap
+- Scope decision made explicitly rather than assumed: Plan.md's literal
+  "UI polish" task only covers the existing cleaning UI, but the
+  NL-to-SQL half of the project (built since week 3) had never been
+  wired into `app.py` at all — only tested via terminal prints and
+  `.show()` browser tabs. Raised as a real choice (narrow polish only,
+  vs. polish + full SQL-agent integration using today's buffer slack)
+  rather than deciding unilaterally; Hamsa chose the larger scope,
+  wanting the demo to actually show both capabilities named in Plan.md's
+  Goal section before calling the app "finished."
+- **Cleaning-UI readability fix** (Hamsa's own observation, raised
+  proactively): the report was a single wall of text via `st.text`,
+  hard to read. Fixed by leveraging structured data already available —
+  `changes` (a list of per-column dicts) converted directly to
+  `pd.DataFrame(changes)` and shown via `st.dataframe`, a real
+  sortable table instead of a text blob. The original full text report
+  wasn't discarded, just tucked into a collapsible `st.expander` for
+  anyone who wants the narrative version. Also updated the stale Day 2
+  title/caption/docstring, which still described "proving the plumbing
+  works" long after that was true.
+- **SQL-agent wired into the app for the first time.** New "2. Ask a
+  question" section: `st.text_input` for the question, `st.button` to
+  gate execution (important new concept — Streamlit reruns the entire
+  script on every interaction, so without gating behind a button click,
+  every keystroke would fire off live Claude/DB calls), running the
+  full pipeline (`generate_sql` → `run_sql_query` → `generate_answer` →
+  `build_chart`) and displaying results with `st.plotly_chart` (the
+  real in-page renderer, vs. `.show()`'s separate browser tab used for
+  all testing until now) and `st.code(sql, language="sql")` for the
+  generated query.
+- **Closed a task explicitly deferred since Tuesday**: Technical
+  Design.md's "confidence scoring / flagging in the UI" was built
+  (Tuesday) but its actual Streamlit rendering was deliberately left
+  for week 5 integration. Wired `validate()`'s risk level into the new
+  section — `st.error` (red) for high risk, `st.warning` (yellow) for
+  medium — genuinely closing a loop left open for two days rather than
+  a new feature invented today.
+- Real bugs along the way, self-written then reviewed together:
+  1. A broken import split across two lines (`from agent.sql_agent
+     import generate_sql` then a bare `generate_answer, build_chart`
+     on the next line with no `import` keyword) — would have thrown
+     `NameError` immediately. Self-corrected before running.
+  2. More structural: the entire new "Ask a question" section was
+     nested inside the CSV-upload `else` block (matching indentation),
+     meaning it would only appear *after* uploading a file — defeating
+     the point of two independent, parallel capabilities. Also mixed
+     tabs/spaces again (same class of bug as Wednesday's `TabError`).
+     Fixed by rewriting the file cleanly (a targeted edit failed on a
+     whitespace mismatch) with section 2 as a sibling after the
+     `if/else` block, not nested inside it.
+- Real-world verification, not just "it ran": tested the full loop live
+  in the browser twice. First: "which city has the most businesses?" —
+  correct answer, correct inline chart, no false warning (correctly
+  silent on a genuinely good answer). Second: "which business has the
+  highest star rating?" — triggered a real, substantively different
+  critique from the LLM fresh-eyes check than any seen before: not the
+  old "wrong metric" bug, but a legitimate concern about unhandled ties
+  (multiple businesses could share the top rating; `LIMIT 1`
+  arbitrarily picks one and silently hides the rest) — genuine evidence
+  the validation layer reasons per-query, not from a canned response.
+  Also caught a cosmetic bug from this same test: the error message
+  read "Low confidence in this answer: no The query ignores ties..." —
+  `llm_check`'s raw `"no\n<reason>"` format bleeding into the display
+  text. Fixed with `.split("\n", 1)[1]` to show just the reason.
+  Rerunning the same question afterward triggered no warning at all —
+  not a failure, a real, expected demonstration of LLM
+  non-determinism showing up in the validation layer itself, not just
+  SQL generation (same well-documented theme from all project, new
+  context).
+- **Week 5 complete** — full end-to-end testing, three real bugs found
+  and fixed on fresh data, and both capabilities now genuinely
+  integrated into one working, polished app — completed well ahead of
+  the original Mon Sep 7–Fri Sep 11 schedule, compressed into a handful
+  of extended sessions across three days per Hamsa's own pacing choice
+  this week.

@@ -1,14 +1,13 @@
 """
 Autonomous Data Analyst Agent — Streamlit entrypoint.
 
-Today's task (Tue Aug 11, Week 1): page loads, upload button, blank
-results area. No profiling/cleaning/agent logic yet.
-
-TODO (Hamsa, Tue Aug 11):
-1. Give the page a title and a short caption.
-2. Add a file uploader that only accepts .csv files.
-3. Below it, show a placeholder message if nothing's been uploaded yet,
-   or a "received: <filename>" message if something has.
+Two capabilities, wired into one app:
+1. Upload a messy CSV -> get a data-quality report + cleaned dataset,
+   every change logged with a reason (data/profiling.py, agent/
+   cleaning_agent.py, data/cleaning.py, audit/logger.py).
+2. Ask a natural-language question about the Yelp database -> get a
+   plain-English answer + chart, generated SQL run behind the scenes
+   with guardrails (agent/sql_agent.py, db/connection.py).
 """
 import streamlit as st
 import pandas as pd
@@ -17,11 +16,14 @@ from agent.cleaning_agent import get_cleaning_recommendations
 from data.cleaning import apply_cleaning
 from audit.logger import write_audit_log
 from data.report import generate_report
+from agent.sql_agent import generate_sql, generate_answer, build_chart
+from db.connection import run_sql_query
+from agent.validation import validate
 
-# Your code goes here.
+st.title("Autonomous Data Analyst Agent")
+st.caption("Upload a messy CSV for automatic profiling and cleaning, or ask a question about the Yelp database in plain English — no SQL required.")
 
-st.title("Autonomous Agent Streamlit")
-st.caption("Building the empty shell of the app: page loads, CSV upload button, blank results area. Just proving the plumbing works end to end.")
+st.header("1. Clean a dataset")
 uploaded_file = st.file_uploader("Upload a CSV file", type="csv")
 if uploaded_file == None:
 	st.write("NO FILE UPLOADED")
@@ -32,5 +34,35 @@ else:
 	clean_df, changes = apply_cleaning(df, recommendations)
 	report = generate_report(profile, changes)
 	write_audit_log(changes)
-	st.text(report)
+
+	st.subheader("Data-quality report")
+	changes_table = pd.DataFrame(changes)
+	st.dataframe(changes_table)
+
+	with st.expander("Full text report"):
+		st.text(report)
+
+	st.subheader("Cleaned data")
 	st.dataframe(clean_df)
+
+st.header("2. Ask a question")
+question = st.text_input("Ask a question about the Yelp database")
+if st.button("Get answer"):
+	sql = generate_sql(question)
+	columns, rows = run_sql_query(sql)
+	answer = generate_answer(question, columns, rows)
+	chart = build_chart(columns, rows)
+	validation_result = validate(question, sql, columns, rows)
+
+	st.subheader("Answer")
+	st.write(answer)
+	st.plotly_chart(chart)
+
+	if validation_result["risk"] == "high":
+		reason_only = validation_result["llm_check"].split("\n", 1)[1]
+		st.error(f"Low confidence in this answer: {reason_only}")
+	elif validation_result["risk"] == "medium":
+		st.warning("Some concerns with this answer — worth double-checking.")
+
+	with st.expander("Generated SQL"):
+		st.code(sql, language="sql")
