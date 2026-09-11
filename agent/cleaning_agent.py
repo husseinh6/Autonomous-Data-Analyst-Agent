@@ -32,6 +32,7 @@ code fences. Use this exact structure:
             messages=[{"role": "user", "content": prompt}],
         )
         reply_text = next(block.text for block in response.content if block.type == "text")
+        reply_text = reply_text.replace("```json", "").replace("```", "").strip()
         try:
             return json.loads(reply_text)
         except json.JSONDecodeError:
