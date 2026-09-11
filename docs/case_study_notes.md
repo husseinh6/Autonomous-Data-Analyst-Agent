@@ -1163,3 +1163,111 @@ worked, what broke, what the agent got wrong.
   the original Mon Sep 7–Fri Sep 11 schedule, compressed into a handful
   of extended sessions across three days per Hamsa's own pacing choice
   this week.
+
+## 2026-09-07 to 2026-09-11 — Week 6, Day 1 — deploy (the real story)
+Planned as a single 2h task ("deploy to Streamlit Community Cloud, fix
+deploy-specific bugs"). Took five days. Worth documenting honestly,
+since the gap between estimate and reality — and why — is itself a
+useful case-study finding: deployment surfaced a real architecture
+decision (Technical Design.md Section 1, signed off back in week 1)
+that had never actually been built, not just "deploy-specific bugs" in
+already-working code.
+
+**The gap that caused it.** Streamlit Community Cloud can't reach
+`localhost:3306`. The signed-off plan was always a two-tier setup —
+full `yelp_db` local for dev, a trimmed subset on a free-tier cloud
+MySQL (Aiven) for the public link — but this had never been built,
+only decided. Discovered on deploy day itself rather than earlier,
+which meant a genuinely new, unplanned chunk of work (subset design,
+cloud DB setup, cross-database ETL) landed on what was scoped as a
+"just deploy it" day.
+
+**Subset design.** Picked cities by real query results rather than
+guessing — `SELECT city, COUNT(*) ... GROUP BY city` gave real
+per-city business counts, then a review-count-per-city query sized the
+dominant storage cost (review text, not row count). Kept referential
+integrity by chaining every table's trim through `business_id`/
+`user_id` back to the chosen cities, rather than trimming each table
+independently (which would silently orphan foreign keys — a review
+pointing at a business_id that no longer exists in the trimmed set).
+
+**Storage estimate vs. reality — a real miss.** Estimated a 5-city
+subset (~220MB review text) would comfortably fit Aiven's 1GB free
+tier. It didn't — disk filled to 100% mid-load, confirmed via Aiven's
+own Metrics dashboard, not just inferred from an error. True overhead
+(InnoDB per-row/per-index cost — `review` alone carries 4 indexes
+beyond its primary key) was roughly 3x the raw text estimate, not the
+20-30% assumed. Cut to 2 cities (Metairie + Sparks) as a direct,
+evidence-based response rather than continuing to guess — final load
+landed safely under budget.
+
+**Real bugs found and fixed, not just "it eventually worked":**
+- `mysqldump` needed `--single-transaction --no-tablespaces
+  --set-gtid-purged=OFF` to run at all under the deliberately
+  SELECT-only `agent_readonly` user — the read-only guardrail (by
+  design, per Technical Design.md Section 5) doesn't have `LOCK
+  TABLES`/`PROCESS`/`RELOAD` privileges, and `mysqldump`'s defaults
+  assume a more privileged user.
+- Import failed twice more from two different causes masquerading as
+  the same "lost connection" symptom: first an oversized single
+  `INSERT` statement (fixed with `--max_allowed_packet=4M`, letting
+  mysqldump auto-batch rows instead of one giant statement or one row
+  per statement), second a genuine disk-full event (confirmed via the
+  Metrics graph's disk-usage line climbing to 100% and staying there,
+  not assumed).
+- `db/connection.py` had two latent bugs neither surfaced against
+  local MySQL: `DB_PORT` was read from `.env` but never actually
+  passed to `mysql.connector.connect()` (worked locally purely because
+  3306 is MySQL's default; would have silently failed against Aiven's
+  non-default port), and `get_schema()` hardcoded `WHERE table_schema
+  = 'yelp_db'` instead of using the real `DB_NAME` (would have
+  returned an empty schema against Aiven's `defaultdb`, breaking SQL
+  generation entirely). Both fixed, both verified against the real
+  Aiven service directly before touching Streamlit Cloud at all —
+  isolating "does the code work" from "does the deploy platform work"
+  as two separate questions, rather than debugging both at once.
+- Added SSL support to `get_connection()` (Aiven requires
+  `ssl-mode=REQUIRED`; local MySQL uses none) and a startup bridge in
+  `app.py` that copies Streamlit Cloud's `st.secrets` into
+  `os.environ` — local `.env` continues to work completely unchanged,
+  satisfying the original "local .env unchanged" constraint.
+- `agent/cleaning_agent.py`'s JSON parsing had no markdown-fence
+  stripping (unlike `sql_agent.py`, which got this fix back in week
+  3). Failed identically twice in a row on the deployed app despite an
+  internal 3-attempt retry loop — strong evidence Claude was
+  consistently wrapping the reply in fences on that input, not random
+  flakiness, since every retry would fail the same way without the
+  fix. Added the same `.replace("```json","").replace("```","")`
+  fix `sql_agent.py` already had.
+- API key pasted into Streamlit Cloud's Secrets box triggered
+  `anthropic.AuthenticationError` — a genuine copy-paste error, same
+  root cause as an earlier `l`/`1` misread in an Aiven password
+  transcribed from a screenshot. Worth flagging as a recurring class of
+  error this project: manually transcribing credentials between a
+  screenshot and a config file is genuinely error-prone, independent
+  of care taken.
+
+**A real, unresolved limitation, documented rather than hidden:**
+Aiven's free tier auto-powers off when idle and does not auto-wake on
+a connection attempt. Confirmed directly — the service went to sleep
+multiple times mid-session from normal debugging pauses. This means
+the deployed public link's "Ask a question" feature will fail if
+nobody has used it in a while, until someone manually wakes the
+service in the Aiven console. Two honest options going forward: pay
+Aiven's $5/month tier (removes this), or lean on Wednesday's planned
+backup demo video as the fallback and note the limitation explicitly
+in the write-up. Left as an open decision, not resolved today —
+consistent with Technical Design.md's own framing that hosting-cost
+constraints are legitimate to document, not shortcuts to hide.
+
+**Final verification — live, on the real deployed link, not just "it
+built":** re-tested both capabilities directly in the browser against
+the actual public URL. CSV upload/cleaning: works. "Which city has the
+most businesses?": correctly answered "Metairie, with 1,645" (matches
+the real trimmed dataset exactly). A follow-up, differently-phrased
+question ("which cities have the most businesses") correctly returned
+both cities and — notably — the validation layer correctly flagged a
+real, legitimate concern (missing `LIMIT` clause) rather than staying
+silent or producing a false positive. A clean, real demonstration of
+the validation layer's actual purpose, caught live on the production
+deploy rather than in a local test.
