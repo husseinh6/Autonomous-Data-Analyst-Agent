@@ -15,17 +15,27 @@ import mysql.connector
 
 def get_connection():
     load_dotenv()
-    host = os.getenv("DB_HOST")      
+    host = os.getenv("DB_HOST")
+    port = int(os.getenv("DB_PORT", 3306))
     user = os.getenv("DB_USER")
     password = os.getenv("DB_PASSWORD")
     database = os.getenv("DB_NAME")
+    # Only set when pointing at Aiven (deployed) — local MySQL doesn't use
+    # SSL, so this stays unset and connect_kwargs below skips it entirely.
+    ssl_ca = os.getenv("DB_SSL_CA")
 
-    conn = mysql.connector.connect(
-        host=host,
-        user=user,
-        password=password,
-        database=database,
-    )
+    connect_kwargs = {
+        "host": host,
+        "port": port,
+        "user": user,
+        "password": password,
+        "database": database,
+    }
+    if ssl_ca:
+        connect_kwargs["ssl_ca"] = ssl_ca
+        connect_kwargs["ssl_verify_cert"] = True
+
+    conn = mysql.connector.connect(**connect_kwargs)
     return conn
     
     
@@ -35,13 +45,14 @@ def get_connection():
 def get_schema():
     conn = get_connection()
     cursor = conn.cursor()
+    database = os.getenv("DB_NAME")
 
     sql = """
         SELECT table_name, column_name, data_type
         FROM information_schema.columns
-        WHERE table_schema = 'yelp_db'
+        WHERE table_schema = %s
     """
-    cursor.execute(sql)
+    cursor.execute(sql, (database,))
     rows = cursor.fetchall()
 
     schema = {}

@@ -9,7 +9,39 @@ Two capabilities, wired into one app:
    plain-English answer + chart, generated SQL run behind the scenes
    with guardrails (agent/sql_agent.py, db/connection.py).
 """
+import os
+import tempfile
 import streamlit as st
+
+# --- Bridge Streamlit Cloud's secrets into os.environ ---
+# Locally, .env + python-dotenv populate os.environ, and every module
+# below reads config via os.getenv(...). Streamlit Community Cloud has no
+# .env file — secrets live in st.secrets instead, and don't become
+# os.environ automatically. Copying them over here means the exact same
+# os.getenv(...) calls work unchanged in both places. Locally, st.secrets
+# is just empty (no secrets.toml file), so this block does nothing and
+# .env keeps working exactly as before.
+try:
+	has_secrets = len(st.secrets) > 0
+except Exception:
+	# No secrets.toml at all (normal for local dev) — some Streamlit
+	# versions raise here instead of just returning empty. Either way,
+	# no secrets to bridge, so fall through to the local .env path.
+	has_secrets = False
+
+if has_secrets:
+	for key, value in st.secrets.items():
+		os.environ[key] = str(value)
+
+	# mysql-connector-python's ssl_ca needs a file *path*, not raw PEM
+	# text, so write the cert content (stored as a secret) to a temp file
+	# once at startup and point DB_SSL_CA at that file.
+	if "DB_SSL_CA_CONTENT" in st.secrets:
+		ca_file = tempfile.NamedTemporaryFile(mode="w", delete=False, suffix=".pem")
+		ca_file.write(st.secrets["DB_SSL_CA_CONTENT"])
+		ca_file.close()
+		os.environ["DB_SSL_CA"] = ca_file.name
+
 import pandas as pd
 from data.profiling import profile_dataset
 from agent.cleaning_agent import get_cleaning_recommendations

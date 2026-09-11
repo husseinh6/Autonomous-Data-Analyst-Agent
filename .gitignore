@@ -1,4 +1,6 @@
 .env
+.env.aiven
+subset_export/
 __pycache__/
 *.pyc
 .streamlit/secrets.toml
